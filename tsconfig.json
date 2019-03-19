@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
+    "lib": [
+      "dom",
+      "es6",
+    ], 
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "esnext",
+    "module": "es6",
+    "target": "es6",
     "jsx": "react",
     "moduleResolution": "node",
     "baseUrl": "./",
@@ -12,6 +16,12 @@
       "*": [
        "node_modules/*",
        "src/typings/*"
+      ],
+      "@Redux/*":[
+        "src/redux/*"
+      ],
+      "@Components/*": [
+        "src/components/*"
       ]
     }
   },

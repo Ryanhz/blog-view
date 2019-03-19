@@ -1,9 +1,22 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-import Hello from "./components/Hello";
+import configureStore from "./redux/store/configureStore";
+import Hello from "./redux/containers/hello";
+
+const store = configureStore();
+const rootElement = document.getElementById('root') as HTMLElement
+
+
+store.subscribe(() => {
+  console.log(store.getState());
+})
 
 ReactDOM.render(
-  <Hello name="TypeScript" enthusiasmLevel={10} />,
-  document.getElementById('root') as HTMLElement
+  <Provider store={store} >
+    <Hello />
+  </Provider>,
+  rootElement
 );
+

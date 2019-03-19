@@ -1,20 +1,26 @@
 import * as React from 'react';
 
-// import styles from "./hello.css";
-const style = require('./hello.css');
+import style from "./style.css";
+
+
+const image = require('./../yjtp.png')
+
 
 export interface Props {
   name: string;
   enthusiasmLevel?: number;
+  onIncrement?: () => void;
+  onDecrement?: () => void;
 }
 
 export default class Hello extends React.Component<Props, object> {
   render() {
-    const { name, enthusiasmLevel = 1 } = this.props;
+    const { name, enthusiasmLevel = 1, onDecrement, onIncrement } = this.props;
 
     if (enthusiasmLevel <= 0) {
       throw new Error('You could be a little more enthusiastic. :D');
     }
+    console.log(`onDecrement: ${onDecrement}`);
 
     return (
 
@@ -22,6 +28,9 @@ export default class Hello extends React.Component<Props, object> {
         <div className={style.greeting}>
           Hello11111 {name + getExclamationMarks(enthusiasmLevel)}
         </div>
+        <img src={image} alt="imagex" />
+        <button onClick={onDecrement}> - </button>
+        <button onClick={onIncrement}> + </button>
       </div>
     );
   }

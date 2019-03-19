@@ -8,6 +8,7 @@ module.exports = {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
     chunkFilename: "[name].chunk.js",
+    // publicPath: '/dist/',
   },
 
   devtool: "scource-map",
@@ -35,6 +36,7 @@ module.exports = {
         ]
       },
       { enforce: "pre", test: /\.js$/, use: "source-map-loader" },
+      { test: /\.(png|jpe?g|gif)/, loader: "file-loader" }
     ]
   },
 

@@ -1,8 +1,11 @@
 .hello{
-  background:#000;
   transform: rotate(0deg);
+  font-size: 3rem;
 }
 .greeting{
   display: block;
-  color:#fff;
+}
+
+button {
+  font-size: 3rem;
 }
