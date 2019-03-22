@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
-import { enthusiasm } from '../reducers/index';
+import reducers from '../reducers/index';
 import initState from './initState';
 export default function () {
-  const store = createStore(enthusiasm, initState);
+  const store = createStore(reducers, initState);
   return store;
 }

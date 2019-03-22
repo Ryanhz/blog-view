@@ -17,14 +17,22 @@
        "node_modules/*",
        "src/typings/*"
       ],
+      "@Assets/*": [
+        "src/assets/*"
+      ],
       "@Redux/*":[
         "src/redux/*"
       ],
       "@Components/*": [
         "src/components/*"
+      ],
+      "@Style": [
+        "src/styles"
       ]
     }
   },
+  "experimentalDecorators": true,
+  "esModuleInterop": true,
   "include": [
     "./src/**/*"
   ],

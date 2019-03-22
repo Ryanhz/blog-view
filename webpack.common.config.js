@@ -1,6 +1,78 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const tsImportPlugFactory = require('ts-import-plugin')
+const AntdScssThemePlugin = require('antd-scss-theme-plugin');
 
+const lessRules = {
+  test: /\.less$/, use: [
+    {
+      loader: "style-loader",
+    }, {
+      loader: "css-loader",
+    },
+    AntdScssThemePlugin.themify({ loader: 'less-loader', options: { javascriptEnabled: true, } }),
+  ]
+}
+
+const scssRules = {
+  test: /\.scss$/,
+  loader: ['style-loader', {
+    loader: 'css-loader',
+    options: {
+      modules: true,
+      importLoaders: 1,
+      localIdentName: '[path][name]__[local]--[hash:base64:5]',
+    }
+  }, AntdScssThemePlugin.themify({
+    loader: 'sass-loader',
+    options: {
+      sourceMap: process.env.NODE_ENV !== 'production',
+    },
+  }),
+  ],
+}
+
+const cssRules = {
+  test: /\.css$/, use: [
+    "style-loader",
+    {
+      loader: 'css-loader',
+      options: {
+        modules: false,
+        importLoaders: 1,
+        localIdentName: '[path][name]__[local]--[hash:base64:5]',
+      }
+    },
+    "postcss-loader"
+  ]
+}
+
+const styleRules = [cssRules, scssRules, lessRules]
+
+const tsRules = {
+  test: /\.ts(x?)$/,
+  use: [
+    {
+      loader: 'awesome-typescript-loader',
+      options: {
+        getCustomTransformers: () => ({
+          before: [
+            tsImportPlugFactory({
+              libraryName: 'antd',
+              // libraryDirectory: 'es',
+              //填写true的话使用组件的less文件
+              //填写css的话使用css文件，但同时不能定制主题
+              style: true
+            })
+          ]
+        })
+      }
+    }
+  ]
+}
+
+
+// 获取自己定义的要覆盖antd默认样式的文件
 module.exports = {
   mode: "development",
   entry: "./src/index.tsx",
@@ -14,29 +86,21 @@ module.exports = {
   devtool: "scource-map",
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json"],
+    alias: {
+      "@Style": path.resolve("src/styles"),
+      "@Assets": path.resolve("src/assets"),
+      "@Redux": path.resolve("src/redux"),
+      "@Components": path.resolve("src/components")
+    }
   },
 
   module: {
     rules: [
-      { test: /\.tsx?$/, use: "awesome-typescript-loader" },
-      {
-        test: /\.css$/, use: [
-          "style-loader",
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            }
-          },
-          "postcss-loader"
-
-        ]
-      },
+      ...styleRules,
+      tsRules,
       { enforce: "pre", test: /\.js$/, use: "source-map-loader" },
-      { test: /\.(png|jpe?g|gif)/, loader: "file-loader" }
+      { test: /\.(png|jpe?g|gif)/, loader: "file-loader" },
     ]
   },
 
@@ -48,6 +112,7 @@ module.exports = {
       hash: true,
       favicon: "./favicon.ico"
     }),
+    new AntdScssThemePlugin(path.resolve(__dirname, "src/styles/theme.scss")),
   ],
   externals: {
     "react": "React",

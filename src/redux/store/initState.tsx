@@ -1,4 +1,10 @@
 export default {
-  enthusiasmLevel: 1,
-  languageName: 'TypeScript',
+
+  dome: {
+    enthusiasmLevel: 1,
+    languageName: 'TypeScript',
+  },
+  // user: {
+  //   userName:  
+  // }
 }

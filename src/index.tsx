@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import route from "./routers"
 
 import configureStore from "./redux/store/configureStore";
-import Hello from "./redux/containers/hello";
 
 const store = configureStore();
 const rootElement = document.getElementById('root') as HTMLElement
@@ -15,7 +15,7 @@ store.subscribe(() => {
 
 ReactDOM.render(
   <Provider store={store} >
-    <Hello />
+    {route}
   </Provider>,
   rootElement
 );

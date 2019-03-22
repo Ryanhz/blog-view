@@ -5,7 +5,7 @@ import { StoreState } from "./../types";
 import Hello from "./../../components/hello";
 
 
-export function mapStateToProps({ enthusiasmLevel, languageName }: StoreState) {
+export function mapStateToProps({ dome: { enthusiasmLevel, languageName } }: StoreState) {
   return {
     enthusiasmLevel,
     name: languageName,
