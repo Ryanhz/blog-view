@@ -73,8 +73,5 @@ class Article extends React.Component<any, any> {
 
   }
 
-
-
-
 }
 export default Article;

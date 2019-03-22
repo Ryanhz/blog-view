@@ -7,7 +7,8 @@ interface TextFiledP {
   show: boolean
   onHide?: () => void
 }
-
+//https://www.liangjucai.com/article/144
+// https://react-bootstrap.github.io/components/modal/
 class Signup extends React.Component<TextFiledP> {
 
   render() {
@@ -18,11 +19,7 @@ class Signup extends React.Component<TextFiledP> {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
-          </Modal.Title>
-        </Modal.Header>
+        <Button onClick={this.props.onHide}>Close</Button>
         <Modal.Body>
           <h4>Centered Modal</h4>
           <p>
@@ -31,9 +28,10 @@ class Signup extends React.Component<TextFiledP> {
             ac consectetur ac, vestibulum at eros.
           </p>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
-        </Modal.Footer>
+        <Modal.Dialog >
+          ss
+        </Modal.Dialog>
+
       </Modal>
     );
   }
