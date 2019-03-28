@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as styles from './index.scss';
 import headerImage from "@Assets/yjtp.png";
+import { Account } from "@Redux/types";
 
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 
 // class Header extends React.Component {
 //   public render() {
@@ -20,13 +21,15 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container } from "
 // }
 
 interface HeaderP {
-  username?: string
   loginAction: () => void
   userAction: () => void
 }
 
-class Header extends React.Component<HeaderP> {
+class Header extends React.Component<HeaderP & Account> {
   public render() {
+
+    const { didsignIn, user, loginAction, userAction } = this.props
+    console.log(`-------${user}`)
     return (
       <Navbar bg="light" sticky="top" expand="sm">
         <Navbar.Brand href="#home">
@@ -42,21 +45,11 @@ class Header extends React.Component<HeaderP> {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            {this.loginState()}
+            {didsignIn ? <p>Signed in as: <a onClick={userAction}>{user.nickname}</a>;</p> : <a onClick={loginAction}>Signed</a>}
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>
     );
-  }
-
-  loginState() {
-    const { username, loginAction, userAction } = this.props;
-
-    if (username) {
-      return <p>Signed in as: <a onClick={userAction}>{username!}</a>;</p>
-    } else {
-      return <a onClick={loginAction}>Signed</a>
-    }
   }
 }
 

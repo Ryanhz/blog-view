@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { enthusiasm } from "./dome";
+import { account } from "./account";
 
 const rootReducer = combineReducers({
-  dome: enthusiasm
+  account
 });
 
 export default rootReducer;

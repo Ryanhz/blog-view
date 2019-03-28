@@ -26,9 +26,13 @@
       "@Components/*": [
         "src/components/*"
       ],
-      "@Style": [
-        "src/styles"
+      "@Style/*": [
+        "src/styles/*"
+      ],
+      "@Routers/*": [
+        "src/routers/*"
       ]
+
     }
   },
   "experimentalDecorators": true,

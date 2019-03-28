@@ -1,10 +1,14 @@
 export default {
-
-  dome: {
-    enthusiasmLevel: 1,
-    languageName: 'TypeScript',
-  },
-  // user: {
-  //   userName:  
-  // }
+  account: {
+    didsignIn: false,
+    user: {
+      nickname: "",
+      profile_photo: "",
+      phone: "",
+      userId: "",
+      email: "",
+      birthday: "",
+      registration_time: "",
+    }
+  }
 }

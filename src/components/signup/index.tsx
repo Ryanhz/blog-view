@@ -4,8 +4,11 @@ import "./index.css"
 import { Modal, Form, Button } from "react-bootstrap";
 import { HtmlAttributes } from "csstype";
 import { string } from "prop-types";
+import { StoreState, Account } from "@Redux/types";
+
 interface NormalLoginProps { }
 const login_left = require("@Assets/login_left.png")
+
 
 interface TextFiledP {
   show: boolean
@@ -18,11 +21,12 @@ interface state {
   validated: boolean
 }
 
-interface props {
+interface Props {
   post: (username: string, password: string) => any;
+  onClose: () => void
 }
 
-class AccountContent extends React.Component<props, state> {
+class AccountContent extends React.Component<Props, state> {
 
   username: string
   password: string
@@ -49,6 +53,7 @@ class AccountContent extends React.Component<props, state> {
   }
   render() {
     const { validated } = this.state
+    const { onClose } = this.props
     return (
       <div className={styles.content}>
         <div className={styles.left}>
@@ -56,7 +61,7 @@ class AccountContent extends React.Component<props, state> {
         </div>
         <div className={styles.right}>
           <div className={styles.header}>
-            <button className={styles.close}>X</button>
+            <button className={styles.close} onClick={onClose}>X</button>
             <h4 className={styles.title}>进入口令</h4>
           </div>
           <div className={styles.content}>
@@ -83,27 +88,32 @@ class AccountContent extends React.Component<props, state> {
 }
 
 interface TextFiledP {
-  show: boolean
+  show: boolean,
+  didsignin: boolean,
   onHide?: () => void
+  signin: (account: string, password: string) => void
 }
 class Signup extends React.Component<TextFiledP> {
 
   render() {
+    const { onHide, show } = this.props
+    console.log(`onHide:${onHide}`)
     return (
       <Modal
-        {...this.props}
+        show={show}
+        onHide={onHide}
         aria-labelledby="contained-modal-title-vcenter"
         centered
         dialogClassName="modal-custom"
       >
-        <AccountContent post={this.post} />
-
+        <AccountContent post={this.post} onClose={onHide} />
       </Modal>
     );
   }
 
   post = (username: string, password: string) => {
     console.log(`username: ${username}, password: ${password}`)
+    this.props.signin(username, password)
     return true;
   }
 }

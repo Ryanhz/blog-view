@@ -91,7 +91,8 @@ module.exports = {
       "@Style": path.resolve("src/styles"),
       "@Assets": path.resolve("src/assets"),
       "@Redux": path.resolve("src/redux"),
-      "@Components": path.resolve("src/components")
+      "@Components": path.resolve("src/components"),
+      "@Routers": path.resolve("src/routers")
     }
   },
 
