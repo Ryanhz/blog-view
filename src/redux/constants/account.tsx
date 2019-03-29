@@ -1,5 +1,0 @@
-export const ACCOUNT_SIGNIN = 'ACCOUNT_SIGNIN';
-export type ACCOUNT_SIGNIN = typeof ACCOUNT_SIGNIN;
-
-export const ACCOUNT_SIGNOUT = 'ACCOUNT_SIGNOUT';
-export type ACCOUNT_SIGNOUT = typeof ACCOUNT_SIGNOUT;

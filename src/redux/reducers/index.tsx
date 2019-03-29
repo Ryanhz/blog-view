@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { account } from "./account";
+import { account } from "./global";
 
 const rootReducer = combineReducers({
   account

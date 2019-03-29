@@ -16,3 +16,20 @@ export interface User {
   birthday: string,
   registration_time: string,
 }
+
+export interface Post {
+  category: [any],
+  articleList: [any],
+  articleDetail: any,
+  pageNum: number,
+  total: number
+}
+
+export interface Global {
+  isFetching: boolean,
+  msg: {
+    type: number,//0失败 1成功
+    content: string
+  },
+  userInfo: User
+}

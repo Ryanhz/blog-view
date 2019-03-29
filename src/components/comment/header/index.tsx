@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as styles from './index.scss';
-import headerImage from "@Assets/yjtp.png";
+import IconReact from "@Assets/hzy-logo-2.svg";
 import { Account } from "@Redux/types";
 
 import { Navbar } from "react-bootstrap";
@@ -34,13 +34,13 @@ class Header extends React.Component<HeaderP & Account> {
       <Navbar bg="light" sticky="top" expand="sm">
         <Navbar.Brand href="#home">
           <img
-            src={headerImage}
+            src={IconReact}
             width="30"
             height="30"
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
           />
-          {'   blog '}
+          {' \'s  blog '}
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
@@ -48,7 +48,7 @@ class Header extends React.Component<HeaderP & Account> {
             {didsignIn ? <p>Signed in as: <a onClick={userAction}>{user.nickname}</a>;</p> : <a onClick={loginAction}>Signed</a>}
           </Navbar.Text>
         </Navbar.Collapse>
-      </Navbar>
+      </Navbar >
     );
   }
 }

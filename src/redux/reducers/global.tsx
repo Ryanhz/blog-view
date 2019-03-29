@@ -1,6 +1,6 @@
-import { AccounAction } from '../actions';
+import { GlobalAction } from '../actions/global';
 import { User, Account } from '../types/index';
-import { ACCOUNT_SIGNIN, ACCOUNT_SIGNOUT } from '../constants/index';
+import * as  Global from '../constants/global';
 import initState from "../store/initState";
 
 let user = {
@@ -13,11 +13,11 @@ let user = {
    registration_time: "",
 }
 
-export function account(state: Account = initState.account, action: AccounAction): Account {
+export function global(state: Account = initState.account, action: GlobalAction) {
    switch (action.type) {
-      case ACCOUNT_SIGNIN:
+      case Global.SIGNIN:
          return { ...state, didsignIn: true, user };
-      case ACCOUNT_SIGNOUT:
+      case Global.SIGNOUT:
          return state;
    }
    return state;

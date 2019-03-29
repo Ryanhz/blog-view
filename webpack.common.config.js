@@ -71,6 +71,27 @@ const tsRules = {
   ]
 }
 
+const svgRule = {
+  test: /\.svg$/,
+  exclude: /node_modules/,
+  use: ['@svgr/webpack', 'url-loader'],
+}
+
+const imgRule = {
+  test: /\.(png|jpg|gif|JPG|GIF|PNG|BMP|bmp|JPEG|jpeg)$/,
+  exclude: /node_modules/,
+  use: [
+    {
+      loader: 'url-loader',
+      options: {
+        limit: 8192
+      }
+    }
+  ]
+}
+
+const flieRules = [svgRule, imgRule]
+
 
 // 获取自己定义的要覆盖antd默认样式的文件
 module.exports = {
@@ -101,7 +122,7 @@ module.exports = {
       ...styleRules,
       tsRules,
       { enforce: "pre", test: /\.js$/, use: "source-map-loader" },
-      { test: /\.(png|jpe?g|gif)/, loader: "file-loader" },
+      ...flieRules
     ]
   },
 
