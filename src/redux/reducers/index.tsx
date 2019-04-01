@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { account } from "./global";
+import { global } from "./global";
+import { front } from "./front";
 
-const rootReducer = combineReducers({
-  account
+export default combineReducers({
+  global,
+  front,
 });
-
-export default rootReducer;

@@ -11,7 +11,21 @@ export interface Post_detail_Action {
   id: string
 }
 
-export type PostAction = Post_list_Action | Post_detail_Action;
+export interface Response_detail_Action {
+  type: Front.RESPONSE_POST_DETAIL;
+  data: any
+}
+
+export interface Response_list_Action {
+  type: Front.RESPONSE_POST_LIST;
+  data: {
+    list: any[]
+    pageNum: number
+    total: number
+  }
+}
+
+export type PostAction = Post_list_Action | Post_detail_Action | Response_list_Action | Response_detail_Action;
 
 export function post_list(tag: string, pageNum: string): Post_list_Action {
   return {

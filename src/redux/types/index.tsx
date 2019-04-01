@@ -1,12 +1,3 @@
-export interface StoreState {
-  account: Account
-}
-
-export interface Account {
-  didsignIn: boolean
-  user: User
-}
-
 export interface User {
   nickname: string,
   profile_photo: string,
@@ -18,9 +9,9 @@ export interface User {
 }
 
 export interface Post {
-  category: [any],
-  articleList: [any],
-  articleDetail: any,
+  category: string[],
+  postList: any[],
+  postDetail: any,
   pageNum: number,
   total: number
 }
