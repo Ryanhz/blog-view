@@ -103,7 +103,7 @@ module.exports = {
   devtool: "scource-map",
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json", ".scss", ".css"],
+    extensions: [".ts", ".tsx", ".js", ".json"],
     alias: {
       "@Style": path.resolve("src/styles"),
       "@Assets": path.resolve("src/assets"),
