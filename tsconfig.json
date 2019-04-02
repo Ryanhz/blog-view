@@ -31,6 +31,9 @@
       ],
       "@Routers/*": [
         "src/routers/*"
+      ],
+      "@Containers/*": [
+        "src/containers/*"
       ]
 
     }

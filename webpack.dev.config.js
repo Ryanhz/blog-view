@@ -22,4 +22,5 @@ config.devServer = {
 }
 
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
+
 module.exports = config;

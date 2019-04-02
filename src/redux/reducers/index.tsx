@@ -3,6 +3,6 @@ import { global } from "./global";
 import { front } from "./front";
 
 export default combineReducers({
-  global,
-  front,
+  globalState: global,
+  frontState: front,
 });

@@ -4,7 +4,7 @@ import "./index.css"
 import { Modal, Form, Button } from "react-bootstrap";
 import { HtmlAttributes } from "csstype";
 import { string } from "prop-types";
-import { StoreState, Account } from "@Redux/types";
+// import { StoreState, Account } from "@Redux/types";
 
 interface NormalLoginProps { }
 const login_left = require("@Assets/login_left.png")

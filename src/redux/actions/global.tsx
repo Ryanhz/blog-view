@@ -36,6 +36,15 @@ export interface FETCH_Action {
   type: Global.FETCH_START | Global.FETCH_END;
 }
 
+// export enum GlobalAction {
+//   SignOut_Action,
+//   SignIn_Action,
+//   Register_Action,
+//   SET_msg_Action,
+//   User_auth_Action,
+//   FETCH_Action,
+//   RESPONSE_user_Action
+// }
 
 export type GlobalAction = SignOut_Action | SignIn_Action | Register_Action | SET_msg_Action | User_auth_Action | FETCH_Action | RESPONSE_user_Action;
 

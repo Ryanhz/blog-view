@@ -23,12 +23,9 @@ const scssRules = {
       importLoaders: 1,
       localIdentName: '[path][name]__[local]--[hash:base64:5]',
     }
-  }, AntdScssThemePlugin.themify({
-    loader: 'sass-loader',
-    options: {
-      sourceMap: process.env.NODE_ENV !== 'production',
-    },
-  }),
+  },
+    "postcss-loader",
+    "sass-loader",
   ],
 }
 
@@ -92,7 +89,6 @@ const imgRule = {
 
 const flieRules = [svgRule, imgRule]
 
-
 // 获取自己定义的要覆盖antd默认样式的文件
 module.exports = {
   mode: "development",
@@ -107,13 +103,14 @@ module.exports = {
   devtool: "scource-map",
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".json", ".scss", ".css"],
     alias: {
       "@Style": path.resolve("src/styles"),
       "@Assets": path.resolve("src/assets"),
       "@Redux": path.resolve("src/redux"),
       "@Components": path.resolve("src/components"),
-      "@Routers": path.resolve("src/routers")
+      "@Routers": path.resolve("src/routers"),
+      "@Containers": path.resolve("src/Containers")
     }
   },
 
@@ -134,7 +131,7 @@ module.exports = {
       hash: true,
       favicon: "./favicon.ico"
     }),
-    new AntdScssThemePlugin(path.resolve(__dirname, "src/styles/theme.scss")),
+    // new AntdScssThemePlugin(path.resolve(__dirname, "src/styles/theme.scss")),
   ],
   externals: {
     "react": "React",

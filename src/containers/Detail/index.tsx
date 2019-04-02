@@ -4,9 +4,8 @@ import { RouteComponentProps } from "react-router-dom";
 
 
 import * as Marked from "marked";
-import Header from './../comment/header';
 
-class Details extends React.Component<RouteComponentProps> {
+class Detail extends React.Component<RouteComponentProps> {
   constructor(props: any) {
     super(props)
   }
@@ -17,10 +16,9 @@ class Details extends React.Component<RouteComponentProps> {
   public render() {
     return (
       <div>
-        {/* <Header /> */}
         <div className="details-container" dangerouslySetInnerHTML={{ __html: Marked("# Marked in the browser\n\nRendered by **marked**.") }} />
       </div>
     );
   }
 }
-export default Details;
+export default Detail;

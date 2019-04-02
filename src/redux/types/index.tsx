@@ -24,3 +24,8 @@ export interface Global {
   },
   userInfo: User
 }
+
+export interface BaseState {
+  globalState: Global,
+  frontState: Post
+}

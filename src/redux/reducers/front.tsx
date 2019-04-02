@@ -3,14 +3,7 @@ import { Post } from '../types/index';
 import * as  Types from '../constants/front';
 import { frontState } from "../store/initState";
 
-// export interface Post {
-//   category: string[],
-//   articleList: any[],
-//   articleDetail: any,
-//   pageNum: number,
-//   total: number
-// }
-export function global(state: Post = frontState, action: PostAction) {
+export function front(state: Post = frontState, action: PostAction) {
   switch (action.type) {
     case Types.RESPONSE_POST_LIST:
       return { ...state, postList: [...action.data.list], pageNum: action.data.pageNum, total: action.data.total };
@@ -19,4 +12,4 @@ export function global(state: Post = frontState, action: PostAction) {
     default:
       return state;
   }
-}
+} 

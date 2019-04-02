@@ -100,7 +100,7 @@ import * as React from "react";
 // }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Article);
-export default class List extends React.Component {
+export default class Home extends React.Component {
   render() {
     return (<div>list</div>)
   }

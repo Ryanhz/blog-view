@@ -1,7 +1,7 @@
 import { GlobalAction } from '../actions/global';
-import { User, Account, Global } from '../types/index';
+import { Global } from '../types/index';
 import * as  Types from '../constants/global';
-import initState from "../store/initState";
+import { globalState } from "../store/initState";
 
 let user = {
    nickname: "hzy",
@@ -13,7 +13,7 @@ let user = {
    registration_time: "",
 }
 
-export function global(state: Global = initState, action: GlobalAction) {
+export function global(state: Global = globalState, action: GlobalAction) {
    switch (action.type) {
       case Types.FETCH_START:
          return { ...state, isFetching: true };

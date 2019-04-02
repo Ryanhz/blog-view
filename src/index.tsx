@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import route from "@Routers/index"
+import IndexApp from "@Containers/index";
 
 import configureStore from "@Redux/store/configureStore";
 
@@ -14,7 +15,7 @@ store.subscribe(() => {
 
 ReactDOM.render(
   <Provider store={store} >
-    {route}
+    <IndexApp />
   </Provider>,
   rootElement
 );
