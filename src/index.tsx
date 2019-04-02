@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import route from "@Routers/index"
-import IndexApp from "@Containers/index";
+// import route from "@Routers/index"
+import IndexApp from "./containers";
 
 import configureStore from "@Redux/store/configureStore";
 

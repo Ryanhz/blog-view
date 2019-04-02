@@ -31,11 +31,7 @@
       ],
       "@Routers/*": [
         "src/routers/*"
-      ],
-      "@Containers/*": [
-        "src/containers/*"
       ]
-
     }
   },
   "experimentalDecorators": true,
