@@ -10,7 +10,6 @@
   "author": "韩争锋 <hanzf1@centaline.com.cn>",
   "license": "MIT",
   "dependencies": {
-    "@svgr/webpack": "^4.1.0",
     "antd": "^3.15.1",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
@@ -25,6 +24,7 @@
     "redux-saga": "^1.0.2"
   },
   "devDependencies": {
+    "@svgr/webpack": "^4.1.0",
     "@types/axios": "^0.14.0",
     "@types/marked": "^0.6.3",
     "@types/node": "^11.11.3",

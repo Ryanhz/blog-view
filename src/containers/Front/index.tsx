@@ -7,7 +7,7 @@ import {
 import Home from './../Home'
 import Detail from './../Detail'
 import NotFound from '../NotFound'
-
+import Mine from "@Components/mine";
 import * as styles from "./index.scss"
 
 export default class Front extends React.Component<RouteComponentProps> {
@@ -17,8 +17,8 @@ export default class Front extends React.Component<RouteComponentProps> {
     return (
       <div className={styles.main}>
         <div className={styles.left_container}>
-          left
-       </div>
+          <Mine />
+        </div>
         <div className={styles.right_container}>
           <Switch>
             <Route exact path={url} component={Home} />
