@@ -30,12 +30,10 @@ class AppIndex extends React.Component<AppIndexProps> {
   render() {
     return (
       <Router>
-        <div>
-          <Switch>
-            <Route path='/404' component={NotFound} />
-            <Route component={Front} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route path='/404' component={NotFound} />
+          <Route component={Front} />
+        </Switch>
       </Router>
     )
   }

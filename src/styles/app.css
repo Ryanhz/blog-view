@@ -1,0 +1,71 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+  font-size: 14px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+  background-color: #f3f6f7;
+  color: #48505b;
+  font-family: Josefin Sans,PingFang SC,Microsoft JhengHei,sans-serif;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  transition: all .2s ease-in;
+  background-color: transparent;
+  word-wrap: break-word;
+  cursor: pointer;
+  outline: none;
+}
+
+a:focus {
+  text-decoration:none
+}
+
+a:hover {
+  text-decoration:none
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(96,125,139,.2);
+}
+
+::selection {
+  background-color: rgba(96,125,139,.4);
+}
+
+::-webkit-scrollbar-track{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: rgba(0, 0, 0, 0.4);
+}   

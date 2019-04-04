@@ -1,0 +1,98 @@
+
+.section {
+  display: flex;
+  overflow: hidden;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  margin: 0 1rem;
+  padding: 0 1rem;
+  border-radius: 6px;
+  background-color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+
+  .item {
+    position: relative;
+    display: inline-block;
+    padding: 1.25rem 0;
+    min-width: 24%;
+    border-radius: 6px;
+    
+    &::after{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 62%;
+      height: .3rem;
+      content: "";
+      transition: transform .4s;
+      transform: scaleY(0);
+      transform-origin: bottom center;
+      // background-color: #607d8b;
+    }
+    &:hover {
+      &::after{
+        background-color: #607d8b;
+        transform: scaleY(1);
+      }
+    }
+
+    span{
+      position: relative;
+      display: block;
+      padding: 0 .5rem;
+
+      &:first-child {
+        padding-bottom: .5rem;
+        font-size: 1.4rem;
+      }
+
+      &:last-child{
+        font-size: .95rem;
+        opacity: .618;
+      }
+    }
+  }
+}
+
+.nav {
+  padding: 2rem 0 4rem;
+  user-select: none;
+
+  .nav_item {
+    transition: all .15s;
+
+    position: relative;
+    display: block;
+    padding-right: 2rem;
+    height: 3rem;
+    text-align: right;
+    text-transform: capitalize;
+    font-family: Baloo Bhaijaan,PingFang SC,Microsoft JhengHei,sans-serif;
+    line-height: 3rem;
+
+    &::after{
+      position: absolute;
+      top: 50%;
+      right: -.3rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #f3f6f7;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+      content: "";
+      transform: translateY(-50%);
+    }
+
+    &:hover, &:active, &:focus {
+      font-size: 1.168rem;
+      color: #607d8b;
+      &::after{
+        background-color: #607d8b;
+      }
+    }
+  }
+}
