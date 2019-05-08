@@ -13,14 +13,13 @@ config.devServer = {
   historyApiFallback: true, // true for index.html upon 404, object for multiple paths
   hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
   https: false, // true for self-signed, object for cert authority
-  noInfo: true, // only errors & warns on hot reload
+  noInfo: true, // only errors & warns on hot reloadSSS
   port: 9000,
   allowedHosts: [
     'hzy.com',
-    '.hzy.com',
+    '.hzy.com'
   ]
 }
-
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
 module.exports = config;

@@ -1,7 +1,7 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const tsImportPlugFactory = require('ts-import-plugin')
-const AntdScssThemePlugin = require('antd-scss-theme-plugin');
+//const AntdScssThemePlugin = require('antd-scss-theme-plugin');
 
 const lessRules = {
   test: /\.less$/, use: [
@@ -10,7 +10,8 @@ const lessRules = {
     }, {
       loader: "css-loader",
     },
-    AntdScssThemePlugin.themify({ loader: 'less-loader', options: { javascriptEnabled: true, } }),
+    'less-loader'
+    //AntdScssThemePlugin.themify({ loader: 'less-loader', options: { javascriptEnabled: true, } }),
   ]
 }
 

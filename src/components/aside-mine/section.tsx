@@ -16,7 +16,7 @@ const navs = [
 export default class Content extends React.Component<any, any> {
   render() {
     return (
-      <div>
+      <div className={styles.content}>
         <section className={styles.section}>
           {
             tags.map((tag, index) => {

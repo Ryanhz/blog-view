@@ -1,8 +1,14 @@
 
+.footer_absolute{
+  position: absolute;;
+  bottom: 0;
+}
 .footer_box {
   padding: 1rem;
   text-align: center;
   line-height: 1.4em;
+  width: 280px;
+  height: 120px;
 
   .social_box{
     padding: 1rem;

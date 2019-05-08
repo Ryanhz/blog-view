@@ -20,6 +20,9 @@ body {
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+
+  left: 0;
+  top: 0;
 }
 
 a {
@@ -69,3 +72,12 @@ p {
 ::-webkit-scrollbar-thumb:hover{
   background: rgba(0, 0, 0, 0.4);
 }   
+
+.bottom{
+  position: absolute;;
+  bottom: 0;
+}
+
+.display-none{
+  display: none;
+}
