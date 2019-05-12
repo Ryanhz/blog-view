@@ -100,8 +100,13 @@ import * as React from "react";
 // }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Article);
+
+import PostCard from "@Components/post-card";
+import * as styles  from "./index.scss";
 export default class Home extends React.Component {
   render() {
-    return (<div>list</div>)
+    return (<div className={styles.container}>
+      <PostCard/>
+    </div>)
   }
 }

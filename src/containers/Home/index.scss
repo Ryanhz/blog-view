@@ -73,9 +73,11 @@
 }
 
 .container {
-  padding: 25px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  box-shadow: 0 1px 6px #e5e5e5;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 2rem auto;
+  max-width: 660px;
+  border-radius: 6px;
+
 }

@@ -1,3 +1,20 @@
+/*
+ * Created Date: Sunday, April 7th 2019, 9:53:45 am
+ * Author: zy han
+ * -----
+ * Last Modified: Sunday, 12th May 2019 12:59:32 am
+ * Modified By:zy han (1810022686@qq.com>) 
+ * -----
+ * Copyright (c) 2019 hzy
+ * 
+ * All shall be well and all shall be well and all manner of things shall be well.
+ * Nope...we're doomed!
+ * -----
+ * HISTORY:
+ * Date      	By	Comments
+ * ----------	---	----------------------------------------------------------
+ */
+
 import * as React from "react";
 import * as styles from "./footer.scss";
 
@@ -19,26 +36,14 @@ export default class Footer extends React.Component<any, any> {
     )
   }
   componentDidMount(){
-    this.resetFooterClass()
+
   }
+  
   componentWillMount(){
-    window.addEventListener('resize',this.handleResize)
+
   }
 
   componentWillUnmount(){
-    window.removeEventListener('resize',this.handleResize)
   }
 
-  handleResize=(e: UIEvent)=>{
-    this.resetFooterClass()
-  }
-
-  resetFooterClass=()=>{
-    const bodyHeight =  document.querySelector('body').clientHeight    
-    if (bodyHeight>820) {
-      document.querySelector("#left-footer").classList.add('bottom')
-     } else {
-       document.querySelector("#left-footer").classList.remove('bottom')
-     }
-  }
 }
