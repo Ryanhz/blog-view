@@ -21,8 +21,8 @@
   padding: 1rem;
   text-align: center;
   line-height: 1.4em;
-  width: 280px;
-  height: 120px;
+  width: 28rem;
+  height: 12rem;
 
   @media only screen and (min-height: 820px)  {
     position: absolute;;
@@ -47,19 +47,19 @@
     margin: .25rem 0;
     font-size: .85rem;
     word-wrap: break-word;
-    line-height: 1.8;
+    line-height: 1.8rem;
 
     i{
-      margin-right: 2px;
-      vertical-align: -1px;
+      margin-right: 0.2rem;
+      vertical-align: -0.1rem;
     }
 
     span{
       color: red;
-      margin: 0px 2px;
+      margin: 0 0.2rem;
     }
     a{
-      border-bottom: 1px dotted #85889b;
+      border-bottom: 0.1rem dotted #85889b;
       -webkit-transition: color .15s,border-color .15s,opacity .15s;
       transition: color .15s,border-color .15s,opacity .15s;
     }

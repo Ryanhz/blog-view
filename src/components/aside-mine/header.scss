@@ -24,10 +24,10 @@
 
   .avatar {
     display: inline-block;
-    padding: 2px;
-    width: 160px;
-    height: 160px;
-    border: 1px solid;
+    padding: 0.2rem;
+    width: 16rem;
+    height: 16rem;
+    border: 0.1rem solid;
     border-radius: 50%;
     border-color: rgba(96,125,139,.4);
     h2 {
@@ -36,13 +36,13 @@
     a {
       display: block;
       letter-spacing: 0;
-      line-height: 2.4;
+      line-height: 2.4rem;
       white-space: nowrap;
       -webkit-transition: color .15s;
       transition: color .15s;
     }
     .say{
-      line-height: 1.5;
+      line-height: 1.5rem;
       opacity: .618;
     }
   }

@@ -6,7 +6,7 @@
 html {
   overflow: hidden;
   height: 100%;
-  font-size: 14px;
+  font-size: 62.5%; /*10px*/
   -webkit-text-size-adjust: 100%;
 }
 
@@ -50,6 +50,9 @@ p {
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+}
+figure {
+  margin: 0;
 }
 
 ::-webkit-scrollbar {

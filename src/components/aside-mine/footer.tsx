@@ -35,15 +35,15 @@ export default class Footer extends React.Component<any, any> {
       </footer>
     )
   }
-  componentDidMount(){
-
-  }
-  
-  componentWillMount(){
+  componentDidMount() {
 
   }
 
-  componentWillUnmount(){
+  componentWillMount() {
+
+  }
+
+  componentWillUnmount() {
   }
 
 }

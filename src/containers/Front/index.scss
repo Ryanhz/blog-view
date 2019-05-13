@@ -7,13 +7,13 @@
 }
 
 .left_container{
-  min-width: 280px;
-  max-width: 280px;
+  min-width: 28rem;
+  max-width: 28rem;
   border-right: 1px solid rgba(0,0,0,.1);
   z-index: 1;
   display: none;
 
-  @include respond-to(sm) {
+  @include respond-to(md) {
     display: block;
   }
 }
@@ -23,4 +23,9 @@
   display: block;
   flex: 1;
   overflow-y: auto;
+  @include respond-to(md) {
+    padding: {
+      left: 2rem;
+    }
+  }
 }

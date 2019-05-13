@@ -19,3 +19,9 @@ $breakpoints: (
     @content;
   }
 }
+
+.hoverActive{ 
+  &:hover{
+    color: #607d8b;
+  }
+}

@@ -111,6 +111,7 @@ module.exports = {
       "@Redux": path.resolve("src/redux"),
       "@Components": path.resolve("src/components"),
       "@Routers": path.resolve("src/routers"),
+      "@Types": path.resolve("src/Types"),
     }
   },
 
