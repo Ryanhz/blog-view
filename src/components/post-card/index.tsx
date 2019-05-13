@@ -2,7 +2,7 @@
  * Created Date: Sunday, May 12th 2019, 12:35:30 am
  * Author: zy han
  * -----
- * Last Modified: Sunday, 12th May 2019 12:56:46 am
+ * Last Modified: Tuesday, 14th May 2019 12:05:47 am
  * Modified By:zy han (1810022686@qq.com>) 
  * -----
  * Copyright (c) 2019 hzy
@@ -43,9 +43,6 @@ export default class PostCard extends React.Component<Post_cardable, any> {
         <footer>
           <span>
             <i className="fa fa-calendar-o"> {created}</i>
-          </span>
-          <span>
-            <i className="fa fa-calendar-o"> {modify}</i>
           </span>
         </footer>
       </section >

@@ -126,6 +126,17 @@ const post_list: Post_cardable[] = [{
   # 开发组件库时 Vue 应该放哪儿：devDependencies or peerDependencies？`,
   created: "Dec 12, 2019",
   modify: "Dec 12, 2019"
+},{
+  id: 1,
+  cover: "",
+  title: "post-title",
+  digest: `[jingsam](http://jingsam.github.io/)
+
+  [首页](http://jingsam.github.io/) [归档](http://jingsam.github.io/archives/) [关于](http://jingsam.github.io/about)
+  
+  # 开发组件库时 Vue 应该放哪儿：devDependencies or peerDependencies？`,
+  created: "Dec 12, 2019",
+  modify: "Dec 12, 2019"
 }]
 
 export default class Home extends React.Component<RouteComponentProps, any> {
