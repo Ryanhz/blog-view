@@ -9,6 +9,7 @@ import Detail from './../Detail'
 import NotFound from '../NotFound'
 import Mine from "@Components/aside-mine";
 import * as styles from "./index.scss"
+import Menu from "@Components/memu"
 
 export default class Front extends React.Component<RouteComponentProps> {
   render() {
@@ -24,8 +25,12 @@ export default class Front extends React.Component<RouteComponentProps> {
             <Route exact path={`/`} component={Home} />
             <Route exact path={`/detail/:id`} component={Detail} />
             <Route exact path={`/:tag`} component={Home} />
+            <Route exact path={`/page/:page`} component={Home} />
             <Route component={NotFound} />
           </Switch>
+          <div className={styles.memu}>
+            <Menu />
+          </div>
         </main>
       </div >
     )

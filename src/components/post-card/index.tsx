@@ -31,12 +31,10 @@ export default class PostCard extends React.Component<Post_cardable, any> {
       <section className={styles.container}>
         <figure>
           <a>
-            <img src={wn} />
+            <img className={styles.cover} src={wn} />
           </a>
         </figure>
-        <h3>
-          <Link className={styles.hoverActive} to={`/detail/${id}`}>{title}</Link>
-        </h3>
+        <Link className={styles.title} to={`/detail/${id}`}>{title}</Link>
         <article >
           <MarkDown content={digest} />
         </article>

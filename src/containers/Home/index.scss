@@ -3,7 +3,20 @@
   position: relative;
   display: block;
   overflow: hidden;
-  margin: 2rem auto;
-  max-width: 71.2rem;
-  min-width: 32rem;
+  padding: 0.2rem auto;
+  margin: 0 auto;
+  max-width: 7.12rem;
+  min-width: 3.2rem;
+  min-height: 100%;
+
+  .listTable {
+    margin: {
+      bottom: .84rem;
+    }
+  }
+
+  .footer {
+    @extend .bottom;
+    width: 100%;
+  }
 }

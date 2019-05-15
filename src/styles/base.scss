@@ -1,11 +1,29 @@
 $gray-text: #828282;
 $black-text: #41464b;
 
+$h1-font-size: .32rem;
+$h2-font-size: .24rem;
+$h3-font-size: .1872rem;
+$h4-font-size: .16rem;
+$h5-font-size: .1382rem;
+$h6-font-size: .12rem;
+
+h1, .h1 { font-size: $h1-font-size; }
+h2, .h2 { font-size: $h2-font-size; }
+h3, .h3 { font-size: $h3-font-size; }
+h4, .h4 { font-size: $h4-font-size; }
+h5, .h5 { font-size: $h5-font-size; }
+h6, .h6 { font-size: $h6-font-size; }
+
 $breakpoints: (
   'xs': 'only screen and ( min-width: 480px)',
   'sm': 'only screen and ( min-width: 768px)',
   'md': 'only screen and ( min-width: 992px)',
   'lg': 'only screen and ( min-width: 1200px)',
+  'x-xs': 'only screen and ( max-width: 480px)',
+  'x-sm': 'only screen and ( max-width: 768px)',
+  'x-md': 'only screen and ( max-width: 992px)',
+  'x-lg': 'only screen and ( max-width: 1200px)',
 ) !default;
 
 @mixin respond-to($breakpoint) {
@@ -24,4 +42,17 @@ $breakpoints: (
   &:hover{
     color: #607d8b;
   }
+}
+
+.bottom{
+  position: absolute;;
+  bottom: 0;
+}
+
+.bg {
+  background-color: #607d8b;
+}
+
+.circle {
+  border-radius: 50%
 }

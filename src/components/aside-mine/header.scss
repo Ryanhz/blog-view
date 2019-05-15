@@ -16,22 +16,22 @@
  */
 
 .header {
-  margin: 1rem 1rem .5rem;
-  padding: 2.6rem 2rem 1rem;
-  border-radius: 6px;
+  margin: 0.1rem .1rem .05rem;
+  padding: .26rem .2rem .1rem;
+  border-radius: 0.06rem;
   background-color: #fff;
   text-align: center;
 
   .avatar {
     display: inline-block;
     padding: 0.2rem;
-    width: 16rem;
-    height: 16rem;
-    border: 0.1rem solid;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: .01rem solid;
     border-radius: 50%;
     border-color: rgba(96,125,139,.4);
     h2 {
-      margin: .5rem 0 0;
+      margin: .05rem 0 0;
     }
     a {
       display: block;

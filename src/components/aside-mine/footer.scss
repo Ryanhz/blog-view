@@ -18,11 +18,11 @@
 @import '@Style/base.scss';
 
 .footer_box {
-  padding: 1rem;
+  padding: .1rem;
   text-align: center;
-  line-height: 1.4em;
-  width: 28rem;
-  height: 12rem;
+  line-height: 0.14em;
+  width: 2.8rem;
+  height: 1.2rem;
 
   @media only screen and (min-height: 820px)  {
     position: absolute;;
@@ -30,12 +30,12 @@
   }
 
   .social_box{
-    padding: 1rem;
+    padding: .1rem;
     text-align: center;
-    line-height: 1.4em;
+    line-height: .14em;
 
     a {
-      margin: 0 .5rem;
+      margin: .05rem;
       &:hover{
         color: #607d8b;
       }
@@ -44,22 +44,22 @@
   }
 
   .auther{
-    margin: .25rem 0;
-    font-size: .85rem;
+    margin: .025rem 0;
+    font-size: .085rem;
     word-wrap: break-word;
-    line-height: 1.8rem;
+    line-height: .18rem;
 
     i{
-      margin-right: 0.2rem;
-      vertical-align: -0.1rem;
+      margin-right: .02rem;
+      vertical-align: -.01rem;
     }
 
     span{
       color: red;
-      margin: 0 0.2rem;
+      margin: 0 .02rem;
     }
     a{
-      border-bottom: 0.1rem dotted #85889b;
+      border-bottom: .01rem dotted #85889b;
       -webkit-transition: color .15s,border-color .15s,opacity .15s;
       transition: color .15s,border-color .15s,opacity .15s;
     }

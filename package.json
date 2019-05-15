@@ -13,7 +13,6 @@
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
-    "bootstrap": "^4.3.1",
     "marked": "^0.6.1",
     "npm": "^6.9.0",
     "react": "^16.8.4",

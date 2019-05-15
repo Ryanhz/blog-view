@@ -7,10 +7,10 @@
 }
 
 .left_container{
-  min-width: 28rem;
-  max-width: 28rem;
+  min-width: 2.8rem;
+  max-width: 2.8rem;
   border-right: 1px solid rgba(0,0,0,.1);
-  z-index: 1;
+  z-index: 2;
   display: none;
 
   @include respond-to(md) {
@@ -23,9 +23,12 @@
   display: block;
   flex: 1;
   overflow-y: auto;
-  @include respond-to(md) {
-    padding: {
-      left: 2rem;
-    }
+
+  .memu {
+    position: fixed ;
+    right: 0.15rem;
+    bottom: 0.5rem;
+    height: 0.56rem;
+    width: 0.56rem;
   }
 }
