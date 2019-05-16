@@ -1,0 +1,39 @@
+{
+  "scripts": {
+    "start": "npm run build && npm run http",
+    "http": "node dis/http-server.js",
+    "https": "node dis/https-server.js",
+    "build": "tsc",
+    "pro": "cross-env NODE_ENV=production",
+    "dev": "cross-env NODE_ENV=development",
+    "local": "cross-env NODE_ENV=local",
+    "d-start": "npm run dev && npm run start"
+  },
+  "dependencies": {
+    "@types/koa": "^2.0.46",
+    "@types/koa-bodyparser": "^5.0.1",
+    "@types/koa-router": "^7.0.33",
+    "@types/koa-static": "^4.0.0",
+    "@types/mz": "^0.0.32",
+    "@types/node": "^10.12.7",
+    "babel-cli": "^6.26.0",
+    "cross-env": "^5.2.0",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-multer": "^1.0.2",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "mime": "^2.3.1",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5",
+    "mz": "^2.7.0",
+    "reflect-metadata": "^0.1.13",
+    "routing-controllers": "^0.7.7",
+    "sequelize": "^4.43.0",
+    "sequelize-typescript": "^0.6.7"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
+  }
+}

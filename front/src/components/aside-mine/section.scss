@@ -1,0 +1,117 @@
+/*
+ * Created Date: Sunday, April 7th 2019, 9:53:45 am
+ * Author: zy han
+ * -----
+ * Last Modified: Sunday, 12th May 2019 1:04:31 am
+ * Modified By:zy han (1810022686@qq.com>) 
+ * -----
+ * Copyright (c) 2019 hzy
+ * 
+ * All shall be well and all shall be well and all manner of things shall be well.
+ * Nope...we're doomed!
+ * -----
+ * HISTORY:
+ * Date      	By	Comments
+ * ----------	---	----------------------------------------------------------
+ */
+
+
+.section {
+  display: flex;
+  overflow: hidden;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  margin: 0 .1rem;
+  padding: 0 .1rem;
+  border-radius: .06rem;
+  background-color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+ 
+
+  .item {
+    position: relative;
+    display: inline-block;
+    padding: .125rem 0;
+    min-width: 24%;
+    border-radius: .06rem;
+    
+    &::after{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 62%;
+      height: .03rem;
+      content: "";
+      transition: transform .4s;
+      transform: scaleY(0);
+      transform-origin: bottom center;
+      // background-color: #607d8b;
+    }
+    &:hover {
+      &::after{
+        background-color: #607d8b;
+        transform: scaleY(1);
+      }
+    }
+
+    span{
+      position: relative;
+      display: block;
+      padding: 0 .05rem;
+
+      &:first-child {
+        padding-bottom: .05rem;
+        font-size: .14rem;
+      }
+
+      &:last-child{
+        font-size: .095rem;
+        opacity: .618;
+      }
+    }
+  }
+}
+
+.nav {
+  padding: .2rem 0 .4rem;
+  user-select: none;
+
+  .nav_item {
+    transition: all .15s;
+
+    position: relative;
+    display: block;
+    padding-right: .2rem;
+    height: .3rem;
+    text-align: right;
+    text-transform: capitalize;
+    // font-family: Baloo Bhaijaan,PingFang SC,Microsoft JhengHei,sans-serif;
+    line-height: .3rem;
+
+    &::after{
+      position: absolute;
+      top: 50%;
+      right: -0.04rem;
+      width: .08rem;
+      height: .08rem;
+      border-radius: 50%; 
+      background-color: #f3f6f7;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+      content: "";
+      transform: translateY(-50%);
+    }
+
+    &:hover, &:active, &:focus {
+      font-size: .18rem;
+      font-weight: 800;
+      color: #607d8b;
+      &::after{
+        background-color: #607d8b;
+      }
+    }
+  }
+}

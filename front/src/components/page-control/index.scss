@@ -1,0 +1,26 @@
+@import '@Style/base.scss';
+
+.control{
+  text-align: center;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: .2rem 0;
+
+  .item {
+    margin: 0 2px;
+    width: .24rem;
+    height: .24rem;
+    border-radius: 50%;
+    line-height: .24rem;
+  }
+
+  .item_selected {
+    @extend .item;
+    @extend .bg;
+    color: white;
+
+  }
+
+}

@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "lib": [
+      "dom",
+      "es6",
+    ], 
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es6",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+       "node_modules/*",
+       "src/typings/*"
+      ],
+      "@Assets/*": [
+        "src/assets/*"
+      ],
+      "@Redux/*":[
+        "src/redux/*"
+      ],
+      "@Components/*": [
+        "src/components/*"
+      ],
+      "@Style/*": [
+        "src/styles/*"
+      ],
+      "@Routers/*": [
+        "src/routers/*"
+      ],
+      "@Types/*": [
+        "src/Types/*"
+      ]
+    }
+  },
+  "experimentalDecorators": true,
+  "esModuleInterop": true,
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+  ],
+}
