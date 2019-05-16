@@ -1,3 +1,4 @@
+
 export const GET_POST_LIST = "GET_POST_LIST";
 export type GET_POST_LIST = typeof GET_POST_LIST;
 

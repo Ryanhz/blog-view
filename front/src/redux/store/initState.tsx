@@ -8,12 +8,12 @@ export let globalState: Global = {
   },
   userInfo: {
     nickname: "",
-    profile_photo: "",
+    avatar: "",
     phone: "",
     userId: "",
     email: "",
     birthday: "",
-    registration_time: "",
+    createdAt: "",
   }
 }
 

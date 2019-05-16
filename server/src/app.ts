@@ -6,7 +6,9 @@ import { distPath, configs } from './config'
 import server from "./server"
 
 const mysqlConfig = configs.mysql as MysqlConfig
-const _ = new Sequelize({
+
+console.log(mysqlConfig)
+const sequelize = new Sequelize({
   host: mysqlConfig.host[0],
   database: mysqlConfig.database,
   username: mysqlConfig.user,
@@ -26,5 +28,6 @@ const _ = new Sequelize({
   // true会在控制台打印每次sequelize操作时对应的SQL命令
   logging: true,
 })
+sequelize.sync({ force: true })
 
 export default server;

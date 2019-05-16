@@ -9,6 +9,7 @@ export default class Label extends Base {
   @Column(DataType.BIGINT)
   id: number
 
+  @Comment('标签名')
   @Column(DataType.CHAR(20))
   name: string
 
@@ -16,6 +17,7 @@ export default class Label extends Base {
   @Column(DataType.CHAR(15))
   alias: string
 
+  @Comment('标签描述')
   @Column(DataType.BIGINT)
   des: string
 }

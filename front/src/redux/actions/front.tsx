@@ -1,12 +1,12 @@
 import * as Front from '../constants/front';
 
-export interface Post_list_Action {
+export interface GET_list_Action {
   type: Front.GET_POST_LIST;
   tag: string
   pageNum: string
 }
 
-export interface Post_detail_Action {
+export interface GET_detail_Action {
   type: Front.GET_POST_DETAIL;
   id: string
 }
@@ -25,9 +25,10 @@ export interface Response_list_Action {
   }
 }
 
-export type PostAction = Post_list_Action | Post_detail_Action | Response_list_Action | Response_detail_Action;
+export type RequsetAction = GET_list_Action | GET_detail_Action
+export type ResponseAction = Response_list_Action | Response_detail_Action
 
-export function post_list(tag: string, pageNum: string): Post_list_Action {
+export function get_post_list(tag: string, pageNum: string): GET_list_Action {
   return {
     type: Front.GET_POST_LIST,
     pageNum,
@@ -35,9 +36,16 @@ export function post_list(tag: string, pageNum: string): Post_list_Action {
   }
 }
 
-export function post_detail(id: string): Post_detail_Action {
+export function get_post_detail(id: string): GET_detail_Action {
   return {
     type: Front.GET_POST_DETAIL,
     id
   }
+}
+
+
+
+export const Request = {
+  get_post_list,
+  get_post_detail,
 }

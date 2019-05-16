@@ -1,16 +1,28 @@
 import * as Global from '../constants/global';
+import { User } from "@Redux/types";
+import { type } from 'os';
 
-export interface SignIn_Action {
+export interface GET_user_action {
+  type: Global.GET_USER;
+  id: string
+}
+
+export interface Response_user_action {
+  type: Global.RESPONSE_USER;
+  user: User
+}
+
+export interface POST_SignIn_Action {
   type: Global.SIGNIN;
   account: string
   password: string
 }
 
-export interface SignOut_Action {
+export interface POST_SignOut_Action {
   type: Global.SIGNOUT;
 }
 
-export interface Register_Action {
+export interface POST_Register_Action {
   type: Global.USER_REGISTER;
   data: any
 }
@@ -36,19 +48,16 @@ export interface FETCH_Action {
   type: Global.FETCH_START | Global.FETCH_END;
 }
 
-// export enum GlobalAction {
-//   SignOut_Action,
-//   SignIn_Action,
-//   Register_Action,
-//   SET_msg_Action,
-//   User_auth_Action,
-//   FETCH_Action,
-//   RESPONSE_user_Action
-// }
 
-export type GlobalAction = SignOut_Action | SignIn_Action | Register_Action | SET_msg_Action | User_auth_Action | FETCH_Action | RESPONSE_user_Action;
+export type Global_Requset_Action = GET_user_action | POST_SignIn_Action | POST_Register_Action | POST_SignOut_Action
 
-export function signIn(account: string, password: string): SignIn_Action {
+export type Global_Response_Action = User_auth_Action | RESPONSE_user_Action;
+
+export type Global_Notify_Action = FETCH_Action | SET_msg_Action
+
+export type Global_Action = Global_Notify_Action | Global_Response_Action | Global_Requset_Action
+
+export function signIn(account: string, password: string): POST_SignIn_Action {
   return {
     type: Global.SIGNIN,
     account,
@@ -56,13 +65,13 @@ export function signIn(account: string, password: string): SignIn_Action {
   }
 }
 
-export function signOut(): SignOut_Action {
+export function signOut(): POST_SignOut_Action {
   return {
     type: Global.SIGNOUT
   }
 }
 
-export function register(data: any): Register_Action {
+export function register(data: any): POST_Register_Action {
   return {
     type: Global.USER_REGISTER,
     data
@@ -80,5 +89,12 @@ export function clear_msg(): SET_msg_Action {
 export function user_auth(): User_auth_Action {
   return {
     type: Global.USER_AUTH
+  }
+}
+
+export function get_user_info(id: string): GET_user_action {
+  return {
+    type: Global.GET_USER,
+    id
   }
 }

@@ -9,11 +9,12 @@ import { BaseState } from "@Redux/types";
 import Front from './Front';
 import NotFound from './NotFound';
 
-const { clear_msg, user_auth } = GlobalFunc;
+const { clear_msg, user_auth, get_user_info } = GlobalFunc;
 
 interface AppIndexProps {
   clear_msg: () => void
   user_auth: () => void
+  get_user: (id: string) => void
 }
 
 class AppIndex extends React.Component<AppIndexProps> {
@@ -24,7 +25,7 @@ class AppIndex extends React.Component<AppIndexProps> {
   }
 
   componentDidMount() {
-    // this.props.user_auth();
+    this.props.get_user("1");
   }
 
   render() {
@@ -48,10 +49,11 @@ function mapStateToProps({ globalState }: BaseState) {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.GlobalAction>) {
+function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
   return {
     clear_msg: bindActionCreators(clear_msg, dispatch),
-    user_auth: bindActionCreators(user_auth, dispatch)
+    user_auth: bindActionCreators(user_auth, dispatch),
+    get_user: bindActionCreators(get_user_info, dispatch)
   }
 }
 

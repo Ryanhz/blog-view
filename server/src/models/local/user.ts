@@ -11,22 +11,31 @@ export default class User extends Base {
   id: number
 
   // @AllowNull
+  @Comment('登陆ip')
   @Column
   ip: string
 
+  @Comment('用户名')
   @Column(DataType.CHAR)
   name: string
 
+  @Comment("个性签名")
+  @Column(DataType.TEXT)
+  signature: string
 
+  @Comment('密码')
   @Column(DataType.CHAR)
   password: string
 
+  @Comment('email')
   @Column(DataType.CHAR)
   email: string
 
+  @Comment('头像')
   @Column(DataType.CHAR)
-  profile_photo: string
+  avatar: string
 
+  @Comment('等级')
   @Column(DataType.CHAR)
   leve: string
 
@@ -39,9 +48,11 @@ export default class User extends Base {
   sign_up: Date
 
   @AllowNull
-  @Column
-  birthday: Date
+  @Comment('生日')
+  @Column(DataType.CHAR)
+  birthday: string
 
+  @Comment('电话号码')
   @Column(DataType.TINYINT)
   phone: number
 

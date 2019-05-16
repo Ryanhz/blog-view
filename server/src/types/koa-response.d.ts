@@ -1,5 +1,6 @@
 
 import Koa from "koa";
+import Router from "koa-router";
 
 declare module "koa" {
   interface Context {
@@ -9,7 +10,7 @@ declare module "koa" {
 }
 
 declare namespace ZYResponse {
-  export interface ZYContext extends Koa.Context {
+  export interface ZYContext extends Koa.ParameterizedContext<any, Router.IRouterParamContext<any, {}>> {
     /**
      * response 成功
      * @param ctx

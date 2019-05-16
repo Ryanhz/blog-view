@@ -1,0 +1,10 @@
+{
+  "verbose": true,
+  "ignore": ["public/*", "node_modules/*"],
+  "events": {
+  },
+  "watch": [
+    "src/*"
+  ],
+  "ext": "ts js json jsx scss hbs html ejs css sass"
+}

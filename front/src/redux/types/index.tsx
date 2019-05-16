@@ -1,11 +1,11 @@
 export interface User {
   nickname: string,
-  profile_photo: string,
+  avatar: string,
   phone: string,
   userId: string,
   email: string,
   birthday: string,
-  registration_time: string,
+  createdAt: string,
 }
 
 export interface Post {

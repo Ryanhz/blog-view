@@ -1,7 +1,7 @@
 import Router from "koa-router";
 import ZYResponse, { ZYContext, Next } from 'koa-response'
 import crypto from "crypto";
-import User from "@model/user";
+
 
 class Account {
 
@@ -25,10 +25,7 @@ class Account {
     const md5 = crypto.createHash("md5");
     return md5.update(password).digest('base64');
   }
-
 }
-
-
 
 const router = new Router();
 // el/api/v1/account

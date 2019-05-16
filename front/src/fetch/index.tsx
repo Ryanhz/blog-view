@@ -1,14 +1,16 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosTransformer, AxiosAdapter, AxiosBasicCredentials, AxiosProxyConfig, CancelToken } from "axios";
+import { baseURL } from "./api";
 
 let config: AxiosRequestConfig = {
-  baseURL: '/api',
+  baseURL: baseURL,
   transformRequest: [
     function (data: any, headers?: any) {
-      let ret = '';
-      for (let it in data) {
-        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-      }
-      return ret;
+      return data
+      //   let ret = '';
+      //   for (let it in data) {
+      //     ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+      //   }
+      //   return ret;
     }
   ],
   transformResponse: [
@@ -17,16 +19,57 @@ let config: AxiosRequestConfig = {
     }
   ],
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    'Content-Type': 'application/json;charset=UTF-8'
   },
   timeout: 10000,
   responseType: 'json'
 }
 
-export function get(url: string) {
-  return axios.get(url, config)
+class RequestConfig implements AxiosRequestConfig {
+  url?: string;
+  method?: string;
+  baseURL?: string;
+  transformRequest?: AxiosTransformer | AxiosTransformer[];
+  transformResponse?: AxiosTransformer | AxiosTransformer[];
+  headers?: any;
+  params?: any;
+  paramsSerializer?: (params: any) => string;
+  data?: any;
+  timeout?: number;
+  withCredentials?: boolean;
+  adapter?: AxiosAdapter;
+  auth?: AxiosBasicCredentials;
+  responseType?: string;
+  xsrfCookieName?: string;
+  xsrfHeaderName?: string;
+  onUploadProgress?: (progressEvent: any) => void;
+  onDownloadProgress?: (progressEvent: any) => void;
+  maxContentLength?: number;
+  validateStatus?: (status: number) => boolean;
+  maxRedirects?: number;
+  httpAgent?: any;
+  httpsAgent?: any;
+  proxy?: AxiosProxyConfig | false;
+  cancelToken?: CancelToken;
+
+  constructor(url: string, params: any, method?: string) {
+    this.url = url
+    this.method = method
+    this.params = params
+    this.baseURL = baseURL
+  }
 }
 
+
+export function requset(url: string, data?: any, method?: string) {
+  console.log(`-----------url: ${url}  data: ${data}, method: ${method}`)
+  return axios.request(new RequestConfig(url, data, method))
+}
+
+export function get(url: string, data: any = null) {
+  return requset(url, data, 'get')
+
+}
 export function post(url: string, data: any) {
-  return axios.post(url, data, config)
+  return requset(url, data, 'post')
 }

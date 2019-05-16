@@ -2,7 +2,7 @@ import path from 'path';
 import Koa from 'koa';
 import koaStatic from 'koa-static';
 import bodyParser from 'koa-bodyparser'
-import ZYResponse from './utils/koa-response/koa-response'
+import ZYResponse from './utils/koa-response'
 import info from "./middlewares/info";
 import cors from "./middlewares/cors";
 import errorHandler from "./middlewares/errorHandler";

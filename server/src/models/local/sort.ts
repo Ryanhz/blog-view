@@ -16,9 +16,11 @@ export default class Sort extends Base {
   @Column(DataType.CHAR(15))
   alias: string
 
+  @Comment('分类描述')
   @Column(DataType.TEXT)
   des: string
 
+  @Comment('分类父分类id')
   @Column(DataType.BIGINT)
   pid: number
 

@@ -23,6 +23,11 @@ export type SET_MESSAGE = typeof SET_MESSAGE;
 export const USER_AUTH = 'USER_AUTH';
 export type USER_AUTH = typeof USER_AUTH;
 
+export const GET_USER = "GET_USER";
+export type GET_USER = typeof GET_USER;
+
+export const RESPONSE_USER = "RESPONSE_USER";
+export type RESPONSE_USER = typeof RESPONSE_USER;
 
 
 

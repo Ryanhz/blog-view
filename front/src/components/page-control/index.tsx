@@ -17,6 +17,7 @@ export default class pageControl extends React.Component {
 
         {items.map((item, index) => {
           return <Link
+            key={index}
             replace
             className={[styles.item, index == 0 && styles.item_selected || ""].join(' ')}
             to={{ pathname: "", search: `page=${index}` }} >
