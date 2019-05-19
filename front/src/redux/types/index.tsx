@@ -1,17 +1,21 @@
+import { Post_cardable , Post_Details} from "@Types/index";
+
 export interface User {
-  nickname: string,
+  name:string
+  nickName: string,
   avatar: string,
   phone: string,
   userId: string,
   email: string,
   birthday: string,
   createdAt: string,
+  signature: string
 }
 
 export interface Post {
   category: string[],
-  postList: any[],
-  postDetail: any,
+  postList: Post_cardable[],
+  postDetail?: Post_Details,
   pageNum: number,
   total: number
 }
@@ -27,5 +31,5 @@ export interface Global {
 
 export interface BaseState {
   globalState: Global,
-  frontState: Post
+  frontState: Post,
 }

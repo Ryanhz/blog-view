@@ -18,20 +18,70 @@
 import * as React from "react";
 import * as types from "./header.scss";
 import logeSource from "@Assets/hzy-logo-1.svg";
-export default class Header extends React.Component<any, any> {
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Dispatch } from 'redux'
+import * as GlobalFunc from '@Redux/actions/global'
+import { User ,BaseState} from "@Redux/types";
+import { zy_log } from "@Units/index";
+
+interface UserProps  {
+  user?: User
+}
+
+class Header extends React.Component <UserProps, any> {
+
+  constructor(prop: any){
+    super(prop)
+    this.state = {
+      user:this.props.user,
+    }
+  }
+
+  componentWillReceiveProps(prop: UserProps) {
+    this.setState({
+      user: prop.user
+    })
+  }
+
   render() {
+    const {user} = this.state
+    zy_log(`globalState----------${JSON.stringify(user.avatar)}`)
+
     return (
       <header className={types.header}>
         <div className={types.avatarBox}>
-          <img className={types.avatar} src={logeSource} />
+          <img alt={"头像"} className={types.avatar} src={ user&&user.avatar || logeSource} />
         </div>
         <h2>
-          <a>hzy</a>
+          <a>{user&&user.nickName}</a>
         </h2>
         <p className={types.say}>
-          The whole problem with the world is that fools and fanatics are always so certain of themselves, but wiser people so full of doubts.
+        {user.signature}
         </p>
       </header>
     )
   }
 }
+
+function mapStateToProps({ globalState }: BaseState) {
+  return {
+    notification: globalState.msg,
+    isFetching: globalState.isFetching,
+    user: globalState.userInfo,
+  }
+}
+
+function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
+  return {
+    // clear_msg: bindActionCreators(clear_msg, dispatch),
+    // user_auth: bindActionCreators(user_auth, dispatch),
+    // get_user: bindActionCreators(get_user_info, dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header)

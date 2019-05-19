@@ -112,6 +112,7 @@ module.exports = {
       "@Components": path.resolve("src/components"),
       "@Routers": path.resolve("src/routers"),
       "@Types": path.resolve("src/Types"),
+      "@Units": path.resolve("src/units"),
     }
   },
 

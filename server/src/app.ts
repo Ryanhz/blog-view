@@ -7,6 +7,7 @@ import server from "./server"
 
 const mysqlConfig = configs.mysql as MysqlConfig
 
+
 console.log(mysqlConfig)
 const sequelize = new Sequelize({
   host: mysqlConfig.host[0],

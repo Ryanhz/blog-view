@@ -1,4 +1,4 @@
-import { Post, Global } from "./../types";
+import { Post, Global, BaseState } from "./../types";
 
 export let globalState: Global = {
   isFetching: false,
@@ -7,20 +7,28 @@ export let globalState: Global = {
     content: ""
   },
   userInfo: {
-    nickname: "",
+    name: "",
+    nickName: "",
     avatar: "",
     phone: "",
     userId: "",
     email: "",
     birthday: "",
     createdAt: "",
+    signature: ""
   }
 }
 
 export let frontState: Post = {
   category: [],
   postList: [],
-  postDetail: {},
+  postDetail: null,
   pageNum: 1,
   total: 0
 };
+
+export let initState: BaseState = {
+  globalState,
+  frontState: frontState,
+
+}

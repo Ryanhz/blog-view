@@ -10,11 +10,12 @@ import NotFound from '../NotFound'
 import Mine from "@Components/aside-mine";
 import * as styles from "./index.scss"
 import Menu from "@Components/memu"
+import { zy_log } from "@Units/index";
 
 export default class Front extends React.Component<RouteComponentProps> {
   render() {
     const { url } = this.props.match;
-    console.log(`Fronturl: ${url}`)
+    zy_log(`Fronturl: ${url}`)
     return (
       <div className={styles.container}>
         <aside className={styles.left_container}>

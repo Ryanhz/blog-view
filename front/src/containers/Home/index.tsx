@@ -22,26 +22,43 @@ import {
 } from 'react-router-dom'
 import { Post_cardable } from "@Types/index";
 
-const item = {
-  id: 1,
-  cover: "",
-  title: "post-title",
-  digest: `[jingsam](http://jingsam.github.io/)
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Dispatch } from 'redux'
+import * as GlobalFunc from '@Redux/actions/global'
+import * as frontFunc from '@Redux/actions/front'
+import { User ,BaseState} from "@Redux/types";
+import { zy_log } from "@Units/index";
 
-  [首页](http://jingsam.github.io/) [归档](http://jingsam.github.io/archives/) [关于](http://jingsam.github.io/about)
-  
-  ### 开发组件库时 Vue 应该放哪儿：devDependencies or peerDependencies？`,
-  created: "Dec 12, 2019",
-  modify: "Dec 12, 2019"
+interface HomeProps extends RouteComponentProps {
+  list? : Post_cardable[],
+  get_list: (tag: string, pageNum: string)=>void
 }
 
-const post_list: Post_cardable[] = [item,]
+ class Home extends React.Component<HomeProps, any> {
 
-export default class Home extends React.Component<RouteComponentProps, any> {
+  constructor(prop: HomeProps){
+    super(prop)
+    this.state = {
+      list: prop.list,
+    }
+  }
+
+  componentWillMount(){
+    this.props.get_list(null, "1")
+  }
+
+  componentWillReceiveProps(prop: HomeProps) {
+    this.setState({
+      list: prop.list
+    })
+  }
   render() {
+    const post_list: Post_cardable[] = this.state.list
+    zy_log(`-post_list--------------${post_list}`)
     return (<div className={styles.container}>
       <div className={styles.listTable}>
-        {post_list.map(item => {
+        {post_list.map(item  => {
           return <PostCard key={item.id} {...item} />
         })}
       </div>
@@ -51,3 +68,26 @@ export default class Home extends React.Component<RouteComponentProps, any> {
     </div>)
   }
 }
+
+function mapStateToProps({ frontState, globalState }: BaseState) {
+  // console.log(`globalState----------${JSON.stringify(globalState)}`)
+  return {
+    notification: globalState.msg,
+    isFetching: globalState.isFetching,
+    // user: globalState.userInfo,
+    list: frontState.postList
+  }
+}
+
+function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
+  return {
+    clear_msg: bindActionCreators(GlobalFunc.clear_msg, dispatch),
+    // user_auth: bindActionCreators(user_auth, dispatch),
+    get_list: bindActionCreators(frontFunc.get_post_list, dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)

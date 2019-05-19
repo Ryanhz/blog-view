@@ -8,11 +8,25 @@
 */
 export interface Post_cardable {
   id: number
+  user_id: number
   cover?: string
   title: string
   digest: string
   created: string
-  modify: string
+  updatedAt: string
+  createdAt: string
   [propName: string]: any
+}
 
+export interface Post_Details {
+  id: number
+  user_id: number
+  cover?: string
+  title: string
+  digest: string
+  created: string
+  updatedAt: string
+  createdAt: string
+  content: string
+  [propName: string]: any
 }

@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosTransformer, AxiosAdapter, AxiosBasicCredentials, AxiosProxyConfig, CancelToken } from "axios";
 import { baseURL } from "./api";
+import { zy_log } from "@Units/index";
 
 let config: AxiosRequestConfig = {
   baseURL: baseURL,
@@ -61,8 +62,22 @@ class RequestConfig implements AxiosRequestConfig {
 }
 
 
-export function requset(url: string, data?: any, method?: string) {
-  console.log(`-----------url: ${url}  data: ${data}, method: ${method}`)
+export async function requset(url: string, data?: any, method?: string) {
+  zy_log(`-----------url: ${url}  data: ${data}, method: ${method}`)
+
+  try {
+    let response = await axios.request(new RequestConfig(url, data, method))
+    zy_log(`------------------------request:${JSON.stringify(response.config)} \nresponse:${JSON.stringify(response.data)}`)
+    if(!response || !response.data ) {
+      throw "没有响应"
+    }
+
+    return response.data
+
+  } catch (error) {
+    throw "网络错误"
+  }
+
   return axios.request(new RequestConfig(url, data, method))
 }
 

@@ -39,7 +39,6 @@ class AccountContent extends React.Component<Props, state> {
 
   handerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(event);
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -97,7 +96,6 @@ class Signup extends React.Component<TextFiledP> {
 
   render() {
     const { onHide, show } = this.props
-    console.log(`onHide:${onHide}`)
     return (
       <Modal
         show={show}
@@ -112,7 +110,6 @@ class Signup extends React.Component<TextFiledP> {
   }
 
   post = (username: string, password: string) => {
-    console.log(`username: ${username}, password: ${password}`)
     this.props.signin(username, password)
     return true;
   }

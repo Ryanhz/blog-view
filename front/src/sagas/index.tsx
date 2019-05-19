@@ -7,9 +7,11 @@ import { getArticlesListFlow, getArticleDetailFlow } from './front'
 
 // 3. our root saga: single entry point to start our sagas at once
 export default function* rootSaga() {
-  console.log(`------rootSaga------`)
+
   yield all([
     userFlow(),
+    getArticlesListFlow(),
+    getArticleDetailFlow()
   ])
   // yield loginFlow();
   // yield fork(registerFlow);

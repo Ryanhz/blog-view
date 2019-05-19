@@ -11,9 +11,9 @@ import configureStore from "@Redux/store/configureStore";
 const store = configureStore();
 const rootElement = document.getElementById('root') as HTMLElement
 
-store.subscribe(() => {
-  console.log(store.getState());
-})
+// store.subscribe(() => {
+//   console.log(store.getState());
+// })
 
 ReactDOM.render(
   <Provider store={store} >

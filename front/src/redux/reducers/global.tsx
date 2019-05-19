@@ -3,16 +3,6 @@ import { Global } from '../types/index';
 import * as  Types from '../constants/global';
 import { globalState } from "../store/initState";
 
-let user = {
-   nickname: "hzy",
-   profile_photo: "",
-   phone: "",
-   userId: "",
-   email: "",
-   birthday: "",
-   registration_time: "",
-}
-
 export function global(state: Global = globalState, action: Global_Response_Action | Global_Notify_Action) {
    switch (action.type) {
       case Types.FETCH_START:
@@ -29,8 +19,9 @@ export function global(state: Global = globalState, action: Global_Response_Acti
             }
          };
       case Types.RESPONSE_USER_INFO:
+
          return {
-            ...state, userInfo: action.data
+            ...state, userInfo: {...action.data}
          };
       default:
          return state;

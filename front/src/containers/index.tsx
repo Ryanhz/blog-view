@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import * as GlobalFunc from '@Redux/actions/global'
-import { BaseState } from "@Redux/types";
+import { BaseState, User } from "@Redux/types";
 
 import Front from './Front';
 import NotFound from './NotFound';
@@ -12,6 +12,7 @@ import NotFound from './NotFound';
 const { clear_msg, user_auth, get_user_info } = GlobalFunc;
 
 interface AppIndexProps {
+  userInfo: User
   clear_msg: () => void
   user_auth: () => void
   get_user: (id: string) => void
@@ -21,11 +22,16 @@ class AppIndex extends React.Component<AppIndexProps> {
 
   constructor(props: any) {
     super(props)
-    console.log(JSON.stringify(this.props))
+ 
   }
 
   componentDidMount() {
-    this.props.get_user("1");
+
+    if(this.props.userInfo.userId.length == 0){
+      this.props.get_user("1");
+    }
+
+
   }
 
   render() {

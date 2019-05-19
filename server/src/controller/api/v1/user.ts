@@ -18,20 +18,15 @@ class User {
       user.name = "hzy"
       user.nickName = "抓根宝"
       user.email = "1810022686@qq.com"
-      user.avatar = "img/pkq.jpeg"
-      user.signature = `The Dragonborn Comes
-      Our hero, our hero, claims a warrior's heart.
-      I tell you, I tell you, the Dragonborn comes.
-      With a Voice wielding power of the ancient Nord art.
-      Believe, believe, the Dragonborn comes.
-      It's an end to the evil, of all Skyrim's foes.
-      Beware, beware, the Dragonborn comes.
-      For the darkness has passed, and the legend yet grows.
-      You'll know, You'll know the Dragonborn's come.`
+      user.avatar = "http://localhost:8001/img/pkq.jpeg"
+      user.signature = `Life to learn to enjoy: enjoy the joy of work, enjoy the laughter of friends, enjoy the warmth of family, enjoy the joy of creation, enjoy the sweet fruit.`
       user.birthday = '4月20'
       user = await user.save()
     } else {
-
+      user.signature = `Life to learn to enjoy: enjoy the joy of work, enjoy the laughter of friends, enjoy the warmth of family, enjoy the joy of creation, enjoy the sweet fruit.`
+      // user.nickName = "抓根宝"
+      // user.avatar = "http://localhost:8001/img/pkq.jpeg"
+      // user = await user.save()
     }
 
     console.log(`---------${user}`);
