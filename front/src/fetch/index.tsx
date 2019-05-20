@@ -63,22 +63,19 @@ class RequestConfig implements AxiosRequestConfig {
 
 
 export async function requset(url: string, data?: any, method?: string) {
-  zy_log(`-----------url: ${url}  data: ${data}, method: ${method}`)
-
+  zy_log(`requesturl: ${url}  data: ${data}, method: ${method}\n\n`)
   try {
     let response = await axios.request(new RequestConfig(url, data, method))
-    zy_log(`------------------------request:${JSON.stringify(response.config)} \nresponse:${JSON.stringify(response.data)}`)
-    if(!response || !response.data ) {
+    zy_log(`\trequest:${JSON.stringify(response.config)}
+     \n\t   response:${JSON.stringify(response.data)}`)
+    if (!response || !response.data) {
       throw "没有响应"
     }
-
     return response.data
 
   } catch (error) {
     throw "网络错误"
   }
-
-  return axios.request(new RequestConfig(url, data, method))
 }
 
 export function get(url: string, data: any = null) {

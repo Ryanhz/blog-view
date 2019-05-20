@@ -1,9 +1,10 @@
 import * as React from 'react'
+import BASE from "../../components/base";
 import NotFoundImg from './404.png'
 import style from './style.css'
 import animationStyle from './animate.css'
 
-export default class NotFound extends React.Component<any, any> {
+export default class NotFound extends BASE<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {

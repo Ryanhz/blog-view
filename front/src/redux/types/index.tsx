@@ -1,9 +1,9 @@
-import { Post_cardable , Post_Details} from "@Types/index";
+import { Post_cardable, Post_Details } from "@Types/index";
 
 export interface User {
-  name:string
+  name: string
   nickName: string,
-  avatar: string,
+  avatar?: string,
   phone: string,
   userId: string,
   email: string,

@@ -22,23 +22,18 @@ class AppIndex extends React.Component<AppIndexProps> {
 
   constructor(props: any) {
     super(props)
- 
   }
 
   componentDidMount() {
-
-    if(this.props.userInfo.userId.length == 0){
+    if (this.props.userInfo.userId.length == 0) {
       this.props.get_user("1");
     }
-
-
   }
 
   render() {
     return (
       <Router>
         <Switch>
-          <Route path='/404' component={NotFound} />
           <Route component={Front} />
         </Switch>
       </Router>

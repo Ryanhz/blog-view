@@ -1,4 +1,4 @@
-import { RequsetAction, ResponseAction } from '../actions/front';
+import { ResponseAction } from '../actions/front';
 import { Post } from '../types/index';
 import * as  Types from '../constants/front';
 import { frontState } from "../store/initState";

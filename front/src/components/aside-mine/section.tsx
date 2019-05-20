@@ -17,40 +17,44 @@
 
 import * as React from "react";
 import * as styles from "./section.scss";
-
+import BASE from "../base";
+import {
+  Link,
+  RouteComponentProps
+} from 'react-router-dom'
 const tags = [
-  { num: 12, name: "archives", herf: "" },
-  { num: 2, name: "Categories", herf: "" },
-  { num: 9, name: "Tags", herf: "" }
+  { num: 12, name: "archives", herf: "/a" },
+  { num: 2, name: "Categories", herf: "/c" },
+  { num: 9, name: "Tags", herf: "/t" }
 ]
 
 const navs = [
-  { name: "Home", herf: "" },
-  { name: "Private", herf: "" },
-  { name: "About", herf: "" },
+  { name: "Home", herf: "/" },
+  { name: "Private", herf: "/private" },
+  { name: "About", herf: "/about" },
+  { name: "search", herf: "/search" },
 ]
-
-export default class Content extends React.Component<any, any> {
+export default class Content extends BASE<RouteComponentProps, any> {
   render() {
+
     return (
       <div className={styles.content}>
         <section className={styles.section}>
           {
             tags.map((tag, index) => {
-              return <a href={tag.herf} className={styles.item} key={index}>
+              return <Link to={tag.herf} className={styles.item} key={index}>
                 <span>{tag.num}</span>
                 <span>{tag.name}</span>
-              </a>
+              </Link>
             })
           }
         </section>
-
         <nav className={styles.nav}>
           {
             navs.map((nav, index) => {
-              return <a href={nav.herf} className={styles.nav_item} key={index}>
+              return <Link to={nav.herf} className={[styles.nav_item, styles.selected].join(' ')} key={index}>
                 {nav.name}
-              </a>
+              </Link>
             })
           }
         </nav>

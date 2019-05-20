@@ -7,11 +7,6 @@ export interface GET_user_action {
   id: string
 }
 
-export interface Response_user_action {
-  type: Global.RESPONSE_USER;
-  user: User
-}
-
 export interface POST_SignIn_Action {
   type: Global.SIGNIN;
   account: string
@@ -38,16 +33,14 @@ export interface User_auth_Action {
 }
 
 //
-
 export interface RESPONSE_user_Action {
   type: Global.RESPONSE_USER_INFO;
-  data: any
+  data: User
 }
 
 export interface FETCH_Action {
   type: Global.FETCH_START | Global.FETCH_END;
 }
-
 
 export type Global_Requset_Action = GET_user_action | POST_SignIn_Action | POST_Register_Action | POST_SignOut_Action
 

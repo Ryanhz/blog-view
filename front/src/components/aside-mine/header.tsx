@@ -16,6 +16,9 @@
  */
 
 import * as React from "react";
+import {
+  Link,
+} from 'react-router-dom'
 import * as types from "./header.scss";
 import logeSource from "@Assets/hzy-logo-1.svg";
 
@@ -23,19 +26,19 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
 import * as GlobalFunc from '@Redux/actions/global'
-import { User ,BaseState} from "@Redux/types";
+import { User, BaseState } from "@Redux/types";
 import { zy_log } from "@Units/index";
 
-interface UserProps  {
+interface UserProps {
   user?: User
 }
 
-class Header extends React.Component <UserProps, any> {
+class Header extends React.Component<UserProps, any> {
 
-  constructor(prop: any){
+  constructor(prop: any) {
     super(prop)
     this.state = {
-      user:this.props.user,
+      user: this.props.user,
     }
   }
 
@@ -46,19 +49,17 @@ class Header extends React.Component <UserProps, any> {
   }
 
   render() {
-    const {user} = this.state
-    zy_log(`globalState----------${JSON.stringify(user.avatar)}`)
-
+    const { user } = this.state
     return (
       <header className={types.header}>
         <div className={types.avatarBox}>
-          <img alt={"头像"} className={types.avatar} src={ user&&user.avatar || logeSource} />
+          <img alt={"头像"} className={types.avatar} src={user.avatar || logeSource} />
         </div>
         <h2>
-          <a>{user&&user.nickName}</a>
+          <Link to={`/`}>{user.nickName}</Link>
         </h2>
         <p className={types.say}>
-        {user.signature}
+          {user.signature}
         </p>
       </header>
     )

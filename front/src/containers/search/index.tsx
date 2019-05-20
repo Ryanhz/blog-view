@@ -1,5 +1,5 @@
 import * as React from 'react';
-import BASE from "@Components/base";
+import BASE from "../../components/base";
 import *  as styles from './index.scss';
 import { RouteComponentProps } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -9,47 +9,31 @@ import * as GlobalFunc from '@Redux/actions/global'
 import * as frontFunc from '@Redux/actions/front'
 import { User, BaseState } from "@Redux/types";
 import { zy_log } from "@Units/index";
-import { Post_Details } from "@Types/index";
 
-import * as Marked from "marked";
-
-interface DetailProps extends RouteComponentProps {
-  postDetail?: Post_Details,
+interface SearchProps extends RouteComponentProps {
+  // postDetail?: Post_Details,
   get_details: (id: string) => void
 }
 
-class Detail extends BASE<DetailProps, any> {
+class Search extends BASE<SearchProps, any> {
   constructor(props: any) {
     super(props)
-    this.state = {
-      id: (this.props.match.params as any).id,
-      postDetail: this.props.postDetail
-    }
   }
   public componentDidMount() {
     // console.log(this.props.match);
   }
   componentWillMount() {
-    this.props.get_details(this.state.id)
   }
 
+  componentWillReceiveProps(props: any) {
 
-  componentWillReceiveProps(props: DetailProps) {
-    this.setState({
-      postDetail: props.postDetail
-    })
   }
 
   public render() {
-    const { postDetail } = this.state
 
     return (
       <div>
-        {postDetail &&
-          <div className={styles.container}>
-            <h2>{postDetail.title}</h2>
-            <div className={styles.content} dangerouslySetInnerHTML={{ __html: Marked(postDetail.content) }} />
-          </div>}
+        search
       </div>
     );
   }
@@ -76,4 +60,4 @@ function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Detail)
+)(Search)

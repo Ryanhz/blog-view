@@ -43,7 +43,7 @@
   "experimentalDecorators": true,
   "esModuleInterop": true,
   "include": [
-    "./src/**/*"
+    "./src/**/*", "src/sagas/.tsx"
   ],
   "exclude": [
     "node_modules",

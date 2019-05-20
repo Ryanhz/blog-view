@@ -1,4 +1,4 @@
-import { Global_Requset_Action, Global_Response_Action, Global_Notify_Action } from '../actions/global';
+import { Global_Response_Action, Global_Notify_Action } from '../actions/global';
 import { Global } from '../types/index';
 import * as  Types from '../constants/global';
 import { globalState } from "../store/initState";
@@ -21,7 +21,7 @@ export function global(state: Global = globalState, action: Global_Response_Acti
       case Types.RESPONSE_USER_INFO:
 
          return {
-            ...state, userInfo: {...action.data}
+            ...state, userInfo: { ...action.data }
          };
       default:
          return state;

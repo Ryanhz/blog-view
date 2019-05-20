@@ -19,9 +19,13 @@ import * as React from "react";
 import Header from "./header";
 import Section from "./section";
 import Footer from "./footer";
-
+import BASE from "../base";
 import * as styles from "./index.scss";
-export default class Mine extends React.Component<any, any> {
+export default class Mine extends BASE<any, any> {
+  constructor(props: any) {
+    super(props)
+  }
+
   render() {
     return (
       <div className={styles.main}>

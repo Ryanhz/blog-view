@@ -9,7 +9,7 @@ export let globalState: Global = {
   userInfo: {
     name: "",
     nickName: "",
-    avatar: "",
+    avatar: null,
     phone: "",
     userId: "",
     email: "",
@@ -30,5 +30,4 @@ export let frontState: Post = {
 export let initState: BaseState = {
   globalState,
   frontState: frontState,
-
 }

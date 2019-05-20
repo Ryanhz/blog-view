@@ -106,12 +106,16 @@
     }
 
     &:hover, &:active, &:focus {
-      font-size: .18rem;
-      font-weight: 800;
-      color: #607d8b;
-      &::after{
-        background-color: #607d8b;
-      }
+      @extend .selected
+    }
+  }
+
+  .selected {
+    font-size: .18rem;
+    font-weight: 800;
+    color: #607d8b;
+    &::after{
+      background-color: #607d8b;
     }
   }
 }

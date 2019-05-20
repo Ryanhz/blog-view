@@ -1,17 +1,14 @@
 
 import { fork, all } from 'redux-saga/effects'
-import { loginFlow, registerFlow, user_auth, userFlow } from './home'
-
-
-import { getArticlesListFlow, getArticleDetailFlow } from './front'
+import { watchUser, watchPostDetails, watchPostList } from "./watch";
 
 // 3. our root saga: single entry point to start our sagas at once
 export default function* rootSaga() {
 
   yield all([
-    userFlow(),
-    getArticlesListFlow(),
-    getArticleDetailFlow()
+    watchUser(),
+    watchPostDetails(),
+    watchPostList()
   ])
   // yield loginFlow();
   // yield fork(registerFlow);
