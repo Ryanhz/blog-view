@@ -17,7 +17,8 @@ config.devServer = {
   port: 9000,
   allowedHosts: [
     'hzy.com',
-    '.hzy.com'
+    '.hzy.com',
+    ".htoday.hzy"
   ]
 }
 config.plugins.push(new webpack.HotModuleReplacementPlugin());

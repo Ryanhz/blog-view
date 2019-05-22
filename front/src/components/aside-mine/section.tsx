@@ -23,9 +23,9 @@ import {
   RouteComponentProps
 } from 'react-router-dom'
 const tags = [
-  { num: 12, name: "archives", herf: "/a" },
-  { num: 2, name: "Categories", herf: "/c" },
-  { num: 9, name: "Tags", herf: "/t" }
+  { num: 12, name: "archives", herf: "/archives" },
+  { num: 2, name: "Categories", herf: "/categories" },
+  { num: 9, name: "Tags", herf: "/tags" }
 ]
 
 const navs = [
@@ -52,7 +52,7 @@ export default class Content extends BASE<RouteComponentProps, any> {
         <nav className={styles.nav}>
           {
             navs.map((nav, index) => {
-              return <Link to={nav.herf} className={[styles.nav_item, styles.selected].join(' ')} key={index}>
+              return <Link to={nav.herf} className={[styles.nav_item].join(' ')} key={index}>
                 {nav.name}
               </Link>
             })

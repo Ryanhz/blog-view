@@ -26,14 +26,14 @@ import {
 
 export default class PostCard extends React.Component<Post_cardable, any> {
   render() {
-    const { id, title, digest, created, createdAt } = this.props
+    const { id, title, digest, created, createdAt, cover } = this.props
     return (
       <section className={styles.container}>
-        <figure>
+        {cover && <figure>
           <Link to={`/post/${id}`}>
-            <img className={styles.cover} src={wn} />
+            <img className={styles.cover} src={cover} />
           </Link>
-        </figure>
+        </figure>}
         <Link className={styles.title} to={`/post/${id}`}>{title}</Link>
         <article >
           <MarkDown content={digest} />

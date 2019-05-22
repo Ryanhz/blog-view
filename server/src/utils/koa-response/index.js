@@ -27,8 +27,13 @@ function error(message = 'ERROR', code = -1) {
 
 export function middleware() {
   return async (ctx, next) => {
-    ctx.success = success.bind(ctx);
-    ctx.error = error.bind(ctx);
+
+    if (!ctx.success) {
+      ctx.success = success.bind(ctx);
+    }
+    if (!ctx.error) {
+      ctx.error = error.bind(ctx);
+    }
     try {
       await next();
     } catch (err) {
@@ -36,6 +41,8 @@ export function middleware() {
     }
   }
 }
+
+
 
 export default {
   middleware: middleware,

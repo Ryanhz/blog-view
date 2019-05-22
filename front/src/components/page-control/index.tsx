@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 const item = {
   title: 1,
-  path: "p",
+  path: "/posts",
   search: "?page=1"
 }
 const items = [item, item, item, item, item]
@@ -20,7 +20,7 @@ export default class pageControl extends React.Component {
             key={index}
             replace
             className={[styles.item, index == 0 && styles.item_selected || ""].join(' ')}
-            to={{ pathname: "", search: `page=${index}` }} >
+            to={{ pathname: item.path, search: `page=${index}` }} >
             {item.title}
           </Link>
         })}

@@ -9,7 +9,6 @@ import errorHandler from "./middlewares/errorHandler";
 import router from "./controller/index";
 
 const server = new Koa();
-
 // //1.应用级中间件
 server.use(bodyParser());
 
