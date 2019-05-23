@@ -1,7 +1,7 @@
 import { Table, Column, Model, PrimaryKey, AutoIncrement, DataType } from "sequelize-typescript";
 
 @Table({
-  timestamps: true,
+  timestamps: false,
   paranoid: true,
   charset: "utf8"
 })

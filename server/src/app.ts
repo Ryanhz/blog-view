@@ -7,7 +7,6 @@ import server from "./server"
 
 const mysqlConfig = configs.mysql as MysqlConfig
 
-
 console.log(mysqlConfig)
 const sequelize = new Sequelize({
   host: mysqlConfig.host[0],
@@ -17,7 +16,6 @@ const sequelize = new Sequelize({
   // 或者一些其他的数据库
   dialect: 'mysql',
   // 加载我们的实体
-  modelPaths: [path.resolve(__dirname, `./models/${mysqlConfig.modelPath}`)],
   pool: {
     // 连接池的一些相关配置
     max: 5,
@@ -25,9 +23,17 @@ const sequelize = new Sequelize({
     acquire: 30000,
     idle: 10000,
   },
-  operatorsAliases: false,
+  operatorsAliases: false, //是否识别字段别名中的下滑线
   // true会在控制台打印每次sequelize操作时对应的SQL命令
   logging: true,
+  define: {
+    timestamps: false,
+    paranoid: true, //开启假删除
+    charset: 'utf8',
+    freezeTableName: true, //固定表名为单数
+  },
+  timezone: '+8:00',//北京时间
+  modelPaths: [path.resolve(__dirname, `./models/${mysqlConfig.modelPath}`)],
 })
 sequelize.sync({ force: true })
 

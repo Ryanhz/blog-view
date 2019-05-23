@@ -1,31 +1,70 @@
-import { Table, Column, PrimaryKey, AutoIncrement, Comment, AllowNull, DataType } from "sequelize-typescript";
+import {
+  Table, Column,
+  PrimaryKey,
+  AutoIncrement,
+  Comment,
+  HasMany,
+  AllowNull,
+  DataType,
+  Default
+} from "sequelize-typescript";
 import Base from './base';
 
+import Auth from "./auth";
+import Post from "./post";
+import Social from "./social";
 
-@Table
+@Table({
+  initialAutoIncrement: "5000"
+})
 export default class User extends Base {
 
   @PrimaryKey
   @AutoIncrement
-  @Column(DataType.BIGINT(255))
+  @Column(DataType.BIGINT(20))
   id: number
-
-  // @AllowNull
-  @Comment('登陆ip')
-  @Column
-  ip: string
 
   @Comment('用户名')
   @Column(DataType.CHAR)
   name: string
 
+  @Comment("昵称")
+  @Column(DataType.CHAR)
+  nickName: string
+
+  @Comment('等级')
+  @Default('0')
+  @Column(DataType.CHAR)
+  leve: string
+
+  @Column({
+    type: DataType.CHAR(1),
+    comment: '性别, 1:男，2:女，3：保密',
+    defaultValue: '1',
+    values: ['1', '2', '3']
+  })
+  get sex(): string {
+    let sex = this.getDataValue('sex')
+    return sex == 1 && "男" || sex == 2 && "女" || "保密"
+  }
+  set sex(value: string) {
+    this.setDataValue('sex', value)
+  }
+
+  @Comment('用户状态，01:正常，02:冻结')
+  @Column({
+    type: DataType.STRING(2),
+    defaultValue: '01'
+  })
+  state: string
+
+  @Comment('登陆ip')
+  @Column(DataType.STRING(100))
+  ip: string
+
   @Comment("个性签名")
   @Column(DataType.TEXT)
   signature: string
-
-  @Comment('密码')
-  @Column(DataType.CHAR)
-  password: string
 
   @Comment('email')
   @Column(DataType.CHAR)
@@ -35,17 +74,9 @@ export default class User extends Base {
   @Column(DataType.CHAR)
   avatar: string
 
-  @Comment('等级')
-  @Column(DataType.CHAR)
-  leve: string
-
   @Comment("权限")
   @Column(DataType.CHAR)
   rights: string
-
-  @Comment("注册时间")
-  @Column(DataType.DATE)
-  sign_up: Date
 
   @AllowNull
   @Comment('生日')
@@ -56,8 +87,24 @@ export default class User extends Base {
   @Column(DataType.TINYINT)
   phone: number
 
-  @Comment("昵称")
-  @Column(DataType.CHAR)
-  nickName: string
+  @Comment("注册时间")
+  @Column(DataType.DATE)
+  createdAt: Date
 
+  @Comment("上次登陆时间")
+  @Column(DataType.DATE)
+  loginedAt: Date
+
+  @Comment("修改时间")
+  @Column(DataType.DATE)
+  updatedAt: Date
+
+  @HasMany(() => Auth)
+  auths: Auth[]
+
+  @HasMany(() => Post)
+  posts: Post[]
+
+  @HasMany(() => Social)
+  social: Social[]
 }

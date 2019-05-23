@@ -1,7 +1,7 @@
-import user from "./local/user";
-import article from "./local/article";
+import User from "./local/user";
+import Post from "./local/post";
 
-export let tables = {
-  user,
-  article
+export let Tables = {
+  User,
+  Post
 } 

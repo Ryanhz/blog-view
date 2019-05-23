@@ -1,12 +1,20 @@
-import { Table, Column, PrimaryKey, AutoIncrement, Comment, AllowNull, DataType } from "sequelize-typescript";
+import {
+  Table, Column,
+  PrimaryKey,
+  HasMany,
+  AutoIncrement,
+  Comment, DataType
+} from "sequelize-typescript";
 import Base from './base';
 
+import Post_tag from "./post_tag";
+
 @Table
-export default class Label extends Base {
+export default class Tag extends Base {
 
   @PrimaryKey
   @AutoIncrement
-  @Column(DataType.BIGINT)
+  @Column(DataType.INTEGER)
   id: number
 
   @Comment('标签名')
@@ -20,4 +28,10 @@ export default class Label extends Base {
   @Comment('标签描述')
   @Column(DataType.BIGINT)
   des: string
+
+
+  @HasMany(() => Post_tag)
+  post_tags: Post_tag[]
+
+
 }
