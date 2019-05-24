@@ -37,6 +37,7 @@ export function middleware() {
     try {
       await next();
     } catch (err) {
+      console.log(JSON.stringify(err))
       ctx.error(err.message, err.code);
     }
   }

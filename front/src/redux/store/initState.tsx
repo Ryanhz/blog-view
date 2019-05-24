@@ -6,17 +6,24 @@ export let globalState: Global = {
     type: 0,//0失败 1成功
     content: ""
   },
-  userInfo: {
+  user: {
+    sex: "",
+    id: 0,
     name: "",
     nickName: "",
+    leve: "",
+    state: "",
+    signature: "",
+    email: null,
     avatar: null,
-    phone: "",
-    userId: "",
-    email: "",
+    rights: null,
     birthday: "",
-    createdAt: "",
-    signature: ""
-  }
+    phone: null
+  },
+  postCount: 0,
+  categoryCount: 0,
+  tagCount: 0,
+  socials: []
 }
 
 export let frontState: Post = {

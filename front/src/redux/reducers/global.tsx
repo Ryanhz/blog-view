@@ -18,11 +18,20 @@ export function global(state: Global = globalState, action: Global_Response_Acti
                content: action.msgContent
             }
          };
-      case Types.RESPONSE_USER_INFO:
+      case Types.RESPONSE_USER:
 
          return {
-            ...state, userInfo: { ...action.data }
+            ...state, user: { ...action.data }
          };
+      case Types.RESPONSE_MAININFO:
+         return {
+            ...state,
+            user: action.user,
+            socials: action.socials,
+            postCount: action.postCount,
+            categoryCount: action.categoryCount,
+            tagCount: action.tagCount,
+         }
       default:
          return state;
    }

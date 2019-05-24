@@ -20,7 +20,7 @@ function mapStateToProps({ globalState }: BaseState) {
   return {
     notification: globalState.msg,
     isFetching: globalState.isFetching,
-    user: globalState.userInfo,
+    user: globalState.user,
   }
 }
 

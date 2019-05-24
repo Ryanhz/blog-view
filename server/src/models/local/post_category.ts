@@ -9,8 +9,10 @@ import Base from './base';
 import Post from "./post";
 import Category from "./category";
 
-@Table
-export default class Post_category extends Base {
+@Table({
+  comment: "文章分类关系表"
+})
+export default class Post_category extends Base<Post_category> {
 
   @ForeignKey(() => Post)
   @Comment('文章id')
@@ -27,5 +29,5 @@ export default class Post_category extends Base {
   post: Post
 
   @BelongsTo(() => Category)
-  tag: Category
+  category: Category
 }

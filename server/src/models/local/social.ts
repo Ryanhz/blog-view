@@ -9,8 +9,10 @@ import {
 import Base from './base';
 import User from "./user";
 
-@Table
-export default class Social extends Base {
+@Table({
+  comment: "社交账号表"
+})
+export default class Social extends Base<Social> {
 
   @PrimaryKey
   @AutoIncrement
@@ -34,7 +36,7 @@ export default class Social extends Base {
   link: string
 
   @Comment('社交描述')
-  @Column(DataType.BIGINT)
+  @Column(DataType.STRING)
   des: string
 
   @BelongsTo(() => User)

@@ -4,17 +4,16 @@ import {
   Comment,
   ForeignKey,
   BelongsTo,
-  BelongsToMany,
-  HasMany,
-  HasOne,
   DataType
 } from "sequelize-typescript";
 import Base from './base';
 import Post from "./post";
 import Tag from "./tag";
 
-@Table
-export default class Post_tag extends Base {
+@Table({
+  comment: "文章标签关系表"
+})
+export default class Post_tag extends Base<Post_tag> {
 
   @ForeignKey(() => Post)
   @Comment('文章id')

@@ -1,10 +1,28 @@
 import * as Global from '../constants/global';
-import { User } from "@Redux/types";
-import { type } from 'os';
+import { User, Socials } from "@Redux/types";
 
 export interface GET_user_action {
   type: Global.GET_USER;
-  id: string
+  id: number
+}
+
+export interface RESPONSE_user_Action {
+  type: Global.RESPONSE_USER;
+  data: User
+}
+
+export interface GET_mainInfo_action {
+  type: Global.GET_MAININFO;
+  id: number
+}
+
+export interface RESPONSE_MainInfo_action {
+  type: Global.RESPONSE_MAININFO;
+  user: User,
+  postCount: number,
+  categoryCount: number,
+  tagCount: number
+  socials?: Socials[]
 }
 
 export interface POST_SignIn_Action {
@@ -33,18 +51,15 @@ export interface User_auth_Action {
 }
 
 //
-export interface RESPONSE_user_Action {
-  type: Global.RESPONSE_USER_INFO;
-  data: User
-}
+
 
 export interface FETCH_Action {
   type: Global.FETCH_START | Global.FETCH_END;
 }
 
-export type Global_Requset_Action = GET_user_action | POST_SignIn_Action | POST_Register_Action | POST_SignOut_Action
+export type Global_Requset_Action = GET_user_action | POST_SignIn_Action | POST_Register_Action | POST_SignOut_Action | GET_mainInfo_action
 
-export type Global_Response_Action = User_auth_Action | RESPONSE_user_Action;
+export type Global_Response_Action = User_auth_Action | RESPONSE_user_Action | RESPONSE_MainInfo_action
 
 export type Global_Notify_Action = FETCH_Action | SET_msg_Action
 
@@ -85,9 +100,16 @@ export function user_auth(): User_auth_Action {
   }
 }
 
-export function get_user_info(id: string): GET_user_action {
+export function get_user(id: number): GET_user_action {
   return {
     type: Global.GET_USER,
+    id
+  }
+}
+
+export function get_main_info(id: number): GET_mainInfo_action {
+  return {
+    type: Global.GET_MAININFO,
     id
   }
 }

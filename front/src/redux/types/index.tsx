@@ -1,15 +1,28 @@
 import { Post_cardable, Post_Details } from "@Types/index";
 
 export interface User {
-  name: string
-  nickName: string,
+  sex: string,
+  id: number,
+  name: string,
+  nickName?: string,
+  leve: string,
+  state: string,
+  signature: string,
+  email?: string,
   avatar?: string,
-  phone: string,
-  userId: string,
-  email: string,
-  birthday: string,
-  createdAt: string,
-  signature: string
+  rights: string,
+  birthday?: string,
+  phone?: string
+
+}
+
+export interface Socials {
+  id: number,
+  name: string,
+  alias?: string,
+  icon?: string,
+  link?: string,
+  des?: string
 }
 
 export interface Post {
@@ -26,7 +39,11 @@ export interface Global {
     type: number,//0失败 1成功
     content: string
   },
-  userInfo: User
+  user: User,
+  postCount: number,
+  categoryCount: number,
+  tagCount: number
+  socials?: Socials[]
 }
 
 export interface BaseState {

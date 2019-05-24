@@ -5,7 +5,7 @@ import { Table, Column, Model, PrimaryKey, AutoIncrement, DataType } from "seque
   paranoid: true,
   charset: "utf8"
 })
-export default class Base extends Model<Base> {
+export default class Base<T extends Base<T>> extends Model<T> {
 
   // @PrimaryKey
   // @AutoIncrement

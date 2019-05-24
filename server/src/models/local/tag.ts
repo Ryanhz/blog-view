@@ -1,16 +1,21 @@
 import {
-  Table, Column,
+  Table,
+  Column,
   PrimaryKey,
+  ForeignKey,
   HasMany,
+  BelongsTo,
   AutoIncrement,
   Comment, DataType
 } from "sequelize-typescript";
 import Base from './base';
+import User from "./user";
 
 import Post_tag from "./post_tag";
-
-@Table
-export default class Tag extends Base {
+@Table({
+  comment: "文章标签表"
+})
+export default class Tag extends Base<Tag> {
 
   @PrimaryKey
   @AutoIncrement
@@ -26,12 +31,18 @@ export default class Tag extends Base {
   alias: string
 
   @Comment('标签描述')
-  @Column(DataType.BIGINT)
+  @Column(DataType.STRING)
   des: string
-
 
   @HasMany(() => Post_tag)
   post_tags: Post_tag[]
 
+  @BelongsTo(() => User, "user_id")
+  user: User
+
+  @ForeignKey(() => User)
+  @Comment('发表用户id')
+  @Column(DataType.BIGINT)
+  user_id: number
 
 }

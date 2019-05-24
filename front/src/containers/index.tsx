@@ -9,13 +9,14 @@ import { BaseState, User } from "@Redux/types";
 import Front from './Front';
 import NotFound from './NotFound';
 
-const { clear_msg, user_auth, get_user_info } = GlobalFunc;
+const { clear_msg, user_auth, get_user } = GlobalFunc;
 
 interface AppIndexProps {
-  userInfo: User
+  user: User
   clear_msg: () => void
   user_auth: () => void
-  get_user: (id: string) => void
+  get_user: (id: number) => void,
+  get_mainInfo: (id: number) => void,
 }
 
 class AppIndex extends React.Component<AppIndexProps> {
@@ -25,8 +26,8 @@ class AppIndex extends React.Component<AppIndexProps> {
   }
 
   componentDidMount() {
-    if (this.props.userInfo.userId.length == 0) {
-      this.props.get_user("1");
+    if (this.props.user.id == 0) {
+      this.props.get_mainInfo(5000);
     }
   }
 
@@ -46,7 +47,7 @@ function mapStateToProps({ globalState }: BaseState) {
   return {
     notification: globalState.msg,
     isFetching: globalState.isFetching,
-    userInfo: globalState.userInfo,
+    user: globalState.user,
   }
 }
 
@@ -54,7 +55,8 @@ function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
   return {
     clear_msg: bindActionCreators(clear_msg, dispatch),
     user_auth: bindActionCreators(user_auth, dispatch),
-    get_user: bindActionCreators(get_user_info, dispatch)
+    get_user: bindActionCreators(get_user, dispatch),
+    get_mainInfo: bindActionCreators(GlobalFunc.get_main_info, dispatch)
   }
 }
 

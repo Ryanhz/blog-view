@@ -7,6 +7,10 @@ export function* watchUser() {
   yield takeLatest(IndexActionTypes.GET_USER, hander)
 }
 
+export function* watchMainInfo() {
+  yield takeLatest(IndexActionTypes.GET_MAININFO, hander)
+}
+
 export function* watchPostList() {
   yield takeLatest(FrontActionTypes.GET_POST_LIST, hander)
 }

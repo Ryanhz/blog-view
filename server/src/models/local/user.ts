@@ -5,6 +5,7 @@ import {
   Comment,
   HasMany,
   AllowNull,
+
   DataType,
   Default
 } from "sequelize-typescript";
@@ -13,11 +14,16 @@ import Base from './base';
 import Auth from "./auth";
 import Post from "./post";
 import Social from "./social";
+import Tag from "./tag";
+import Category from "./category";
 
 @Table({
-  initialAutoIncrement: "5000"
+  initialAutoIncrement: "5000",
+  comment: "用户表",
+  timestamps: true,
 })
-export default class User extends Base {
+
+export default class User extends Base<User> {
 
   @PrimaryKey
   @AutoIncrement
@@ -25,7 +31,10 @@ export default class User extends Base {
   id: number
 
   @Comment('用户名')
-  @Column(DataType.CHAR)
+  @Column({
+    type: DataType.CHAR,
+    defaultValue: '',
+  })
   name: string
 
   @Comment("昵称")
@@ -51,10 +60,10 @@ export default class User extends Base {
     this.setDataValue('sex', value)
   }
 
-  @Comment('用户状态，01:正常，02:冻结')
+  @Comment('用户状态，1:正常，2:冻结')
   @Column({
     type: DataType.STRING(2),
-    defaultValue: '01'
+    defaultValue: '1'
   })
   state: string
 
@@ -63,6 +72,7 @@ export default class User extends Base {
   ip: string
 
   @Comment("个性签名")
+  @Default('')
   @Column(DataType.TEXT)
   signature: string
 
@@ -75,6 +85,7 @@ export default class User extends Base {
   avatar: string
 
   @Comment("权限")
+  @Default('')
   @Column(DataType.CHAR)
   rights: string
 
@@ -106,5 +117,12 @@ export default class User extends Base {
   posts: Post[]
 
   @HasMany(() => Social)
-  social: Social[]
+  socials: Social[]
+
+  @HasMany(() => Tag)
+  tags: Post[]
+
+  @HasMany(() => Category)
+  categorys: Social[]
+
 }

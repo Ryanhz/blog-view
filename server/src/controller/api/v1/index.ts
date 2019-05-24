@@ -2,14 +2,13 @@ import Router from "koa-router";
 import account from "./account";
 import art from './art';
 import user from "./user";
+import Main from "./main";
 
 const router = new Router();
 
-//el/api/v1/account/
+//api/v1/account/
 router.use("/account", account);
-router.use("/art", art)
+router.use("/post", art)
 router.use("/user", user)
-router.get("/", (ctx, n) => {
-  ctx.body = "v11111"
-});
+router.use("/mainInfo", Main);
 export default router.routes();

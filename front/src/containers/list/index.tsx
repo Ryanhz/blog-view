@@ -46,7 +46,7 @@ class Home extends BASE<HomeProps, any> {
   }
 
   componentWillMount() {
-    this.props.get_list(null, "1")
+    // this.props.get_list(null, "1")
   }
 
   componentWillReceiveProps(prop: HomeProps) {

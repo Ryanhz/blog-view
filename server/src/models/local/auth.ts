@@ -14,7 +14,7 @@ import User from "./user";
   paranoid: true,
   comment: "账号表"
 })
-export default class Auth extends Base {
+export default class Auth extends Base<Auth> {
 
   @PrimaryKey
   @AutoIncrement

@@ -3,16 +3,22 @@ import {
   Table,
   Column,
   PrimaryKey,
+  ForeignKey,
   AutoIncrement,
+  BelongsTo,
   HasMany,
   Comment,
-  DataType
+  DataType,
+  Default
 } from "sequelize-typescript";
 import Base from './base';
 import Post_category from "./post_category";
+import User from "./user";
 
-@Table
-export default class Category extends Base {
+@Table({
+  comment: "文章分类表"
+})
+export default class Category extends Base<Category> {
 
   @PrimaryKey
   @AutoIncrement
@@ -31,10 +37,18 @@ export default class Category extends Base {
   alias: string
 
   @Comment('分类描述')
-  @Column(DataType.TEXT)
+  @Column(DataType.STRING)
   des: string
 
   @HasMany(() => Post_category)
   post_categorys: Post_category[]
+
+  @BelongsTo(() => User, "user_id")
+  user: User
+
+  @ForeignKey(() => User)
+  @Comment('发表用户id')
+  @Column(DataType.BIGINT)
+  user_id: number
 
 }

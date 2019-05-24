@@ -22,7 +22,7 @@ class User {
       user.nickName = "抓根宝"
       user.email = "1810022686@qq.com"
       user.avatar = "http://localhost:8001/img/pkq.jpeg"
-      user.signature = `Life to learn to enjoy: enjoy the joy of work, enjoy the laughter of friends, enjoy the warmth of family, enjoy the joy of creation, enjoy the sweet fruit.`
+      user.signature = `种豆南山下，草盛豆苗稀。晨兴理荒秽，带月荷锄归。道狭草木长，夕露沾我衣。衣沾不足惜，但使愿无违。`
       user.birthday = '4月20'
       user = await user.save()
     } else {

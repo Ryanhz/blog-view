@@ -4,7 +4,7 @@ import {
   ForeignKey,
   BelongsTo,
   HasMany,
-  AutoIncrement, Comment, DataType
+  AutoIncrement, Comment, DataType, Default
 } from "sequelize-typescript";
 
 import Base from './base';
@@ -15,8 +15,9 @@ import Post_category from "./post_category";
 @Table({
   timestamps: true,
   paranoid: true,
+  comment: "博客文章表"
 })
-export default class Post extends Base {
+export default class Post extends Base<Post> {
 
   @PrimaryKey
   @AutoIncrement
@@ -24,14 +25,17 @@ export default class Post extends Base {
   id: number
 
   @Comment('文章title')
+  @Default('')
   @Column(DataType.STRING)
   title: string
 
   @Comment('文章正文')
+  @Default('')
   @Column(DataType.TEXT("long"))
   content: string
 
   @Comment('文章浏览数')
+  @Default(0)
   @Column(DataType.INTEGER)
   views: number
 
@@ -56,5 +60,4 @@ export default class Post extends Base {
 
   @HasMany(() => Post_category)
   post_categorys: Post_category[]
-
 }

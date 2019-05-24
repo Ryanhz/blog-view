@@ -1,15 +1,34 @@
 import { put, call } from 'redux-saga/effects'
 import { get, post } from '../fetch'
 import * as globalActionTypes from '@Redux/constants/global'
-import { API } from "../fetch/api";
-import { SET_msg_Action, RESPONSE_user_Action } from "@Redux/actions/global";
+import { API, serverHost } from "../fetch/api";
+import { SET_msg_Action, RESPONSE_user_Action, GET_mainInfo_action, RESPONSE_MainInfo_action } from "@Redux/actions/global";
 import { GET_user_action } from "@Redux/actions/global";
+import { User } from '@Redux/types';
 
 export function* user(action: GET_user_action) {
   let response = yield call(get, API.user + `/${action.id}`)
   if (response && response.status.code === 0) {
     // yield put({ type: SET_MESSAGE, msgContent: '注册成功!', msgType: 1 } as SET_msg_Action);
-    yield put({ type: globalActionTypes.RESPONSE_USER_INFO, data: response.data } as RESPONSE_user_Action)
+    yield put({ type: globalActionTypes.RESPONSE_USER, data: response.data } as RESPONSE_user_Action)
+  }
+}
+
+export function* mainInfo(action: GET_mainInfo_action) {
+  let response = yield call(get, API.mainInfo + `/${action.id}`)
+  if (response && response.status.code === 0) {
+    // yield put({ type: SET_MESSAGE, msgContent: '注册成功!', msgType: 1 } as SET_msg_Action);
+
+    let user = response.data.user as User
+    user.avatar && (user.avatar = serverHost + user.avatar)
+    yield put({
+      type: globalActionTypes.RESPONSE_MAININFO,
+      user: response.data.user,
+      socials: response.data.socials,
+      postCount: response.data.postCount,
+      categoryCount: response.data.categoryCount,
+      tagCount: response.data.tagCount,
+    } as RESPONSE_MainInfo_action)
   }
 }
 

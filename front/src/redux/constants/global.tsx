@@ -23,7 +23,11 @@ export type USER_AUTH = typeof USER_AUTH;
 export const GET_USER = "GET_USER";
 export type GET_USER = typeof GET_USER;
 
-export const RESPONSE_USER_INFO = 'RESPONSE_USER_INFO';
-export type RESPONSE_USER_INFO = typeof RESPONSE_USER_INFO;
+export const RESPONSE_USER = 'RESPONSE_USER';
+export type RESPONSE_USER = typeof RESPONSE_USER;
 
+export const GET_MAININFO = "GET_MAININFO";
+export type GET_MAININFO = typeof GET_MAININFO;
 
+export const RESPONSE_MAININFO = 'RESPONSE_MAININFO';
+export type RESPONSE_MAININFO = typeof RESPONSE_MAININFO;

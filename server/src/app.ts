@@ -35,6 +35,6 @@ const sequelize = new Sequelize({
   timezone: '+8:00',//北京时间
   modelPaths: [path.resolve(__dirname, `./models/${mysqlConfig.modelPath}`)],
 })
-sequelize.sync({ force: true })
+// sequelize.sync({ force: true })
 
 export default server;
