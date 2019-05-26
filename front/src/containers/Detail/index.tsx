@@ -7,22 +7,24 @@ import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
 import * as GlobalFunc from '@Redux/actions/global'
 import * as frontFunc from '@Redux/actions/front'
-import { User, BaseState } from "@Redux/types";
+import { BaseState } from "@Redux/types";
+import { User } from "@Types/index";
 import { zy_log } from "@Units/index";
 import { Post_Details } from "@Types/index";
+import MarkDown from "@Components/markDown";
 
-import * as Marked from "marked";
-
-interface DetailProps extends RouteComponentProps {
+interface DetailProps {
   postDetail?: Post_Details,
-  get_details: (id: string) => void
+  user: User,
+  get_details: (userid: number, id: number) => void
 }
 
-class Detail extends BASE<DetailProps, any> {
+class Detail extends BASE<DetailProps&RouteComponentProps, any> {
   constructor(props: any) {
     super(props)
     this.state = {
       id: (this.props.match.params as any).id,
+      userid: this.props.user.id,
       postDetail: this.props.postDetail
     }
   }
@@ -30,7 +32,7 @@ class Detail extends BASE<DetailProps, any> {
     // console.log(this.props.match);
   }
   componentWillMount() {
-    this.props.get_details(this.state.id)
+    this.props.get_details(this.state.userid ,this.state.id)
   }
 
 
@@ -44,11 +46,11 @@ class Detail extends BASE<DetailProps, any> {
     const { postDetail } = this.state
 
     return (
-      <div>
+      <div className={styles.container}>
         {postDetail &&
           <div className={styles.container}>
             <h2>{postDetail.title}</h2>
-            <div className={styles.content} dangerouslySetInnerHTML={{ __html: Marked(postDetail.content) }} />
+            <MarkDown className={styles.content} content={postDetail.content} />
           </div>}
       </div>
     );
@@ -60,7 +62,7 @@ function mapStateToProps({ frontState, globalState }: BaseState) {
   return {
     notification: globalState.msg,
     isFetching: globalState.isFetching,
-    // user: globalState.userInfo,
+    user: globalState.user,
     postDetail: frontState.postDetail
   }
 }

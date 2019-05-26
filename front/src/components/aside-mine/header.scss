@@ -15,10 +15,13 @@
  * ----------	---	----------------------------------------------------------
  */
 
+ @import '@Style/base.scss';
+
 .header {
+  @extend .radius;
   margin: 0.1rem .1rem .05rem;
   padding: .26rem .2rem .1rem;
-  border-radius: 0.06rem;
+  
   background-color: #fff;
   text-align: center;
 

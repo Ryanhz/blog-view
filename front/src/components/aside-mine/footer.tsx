@@ -17,20 +17,36 @@
 
 import * as React from "react";
 import * as styles from "./footer.scss";
+import BASE from "../base";
+import {
+  RouteComponentProps
+} from 'react-router-dom'
 
-export default class Footer extends React.Component<any, any> {
+import { connect } from 'react-redux';
+import {  BaseState } from "@Redux/types";
+import { zy_log } from "@Units/index";
+import { User,Social } from "@Types/index";
+interface FooterProps   {
+  username: string
+  socials?: Social[]
+}
+
+class Footer<P extends FooterProps,> extends BASE<P, any> {
+
   render() {
+    const {username, socials } = this.props
     return (
       <footer className={styles.footer_box} id="left-footer">
         <div className={styles.social_box}>
-          <a className="fa  fa-envelope fa-2x" href="#"></a>
-          <a className="fa fa-github fa-2x" href="#"></a>
+          {socials&& socials.map(social => {
+           return <a key={social.id} className={social.icon} href={social.link}></a>
+          })}
         </div>
         <p className={styles.auther}>
           <i className="fa fa-at"></i>
           2019
         <span>❤</span>
-          <a>Zy Han</a>
+          <a>{username}</a>
         </p>
       </footer>
     )
@@ -47,3 +63,17 @@ export default class Footer extends React.Component<any, any> {
   }
 
 }
+
+function mapStateToProps({ globalState }: BaseState) {
+
+  return {
+    // isFetching: globalState.isFetching,
+    username: globalState.user.name,
+    socials: globalState.socials
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(Footer)
+

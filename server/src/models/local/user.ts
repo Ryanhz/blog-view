@@ -120,9 +120,9 @@ export default class User extends Base<User> {
   socials: Social[]
 
   @HasMany(() => Tag)
-  tags: Post[]
+  tags: Tag[]
 
   @HasMany(() => Category)
-  categorys: Social[]
+  categorys: Category[]
 
 }

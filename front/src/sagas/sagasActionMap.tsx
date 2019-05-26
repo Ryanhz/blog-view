@@ -5,9 +5,11 @@ import {
 import {
   GET_POST_LIST,
   GET_POST_DETAIL,
+  GET_CATEGORY,
+  GET_CATEGORY_POSTS
 } from '@Redux/constants/front'
 
-import { postDetails, postList } from "./front";
+import { postDetails, postList, category, category_posts } from "./front";
 import { user, mainInfo } from "./global";
 
 export function sagasActionMap() {
@@ -16,5 +18,7 @@ export function sagasActionMap() {
   map.set(GET_POST_LIST, postList)
   map.set(GET_POST_DETAIL, postDetails)
   map.set(GET_MAININFO, mainInfo)
+  map.set(GET_CATEGORY,category )
+  map.set(GET_CATEGORY_POSTS,category_posts )
   return map
 }

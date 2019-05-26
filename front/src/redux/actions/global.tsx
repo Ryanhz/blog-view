@@ -1,5 +1,5 @@
 import * as Global from '../constants/global';
-import { User, Socials } from "@Redux/types";
+import { User, Social } from "@Types/index";
 
 export interface GET_user_action {
   type: Global.GET_USER;
@@ -22,7 +22,7 @@ export interface RESPONSE_MainInfo_action {
   postCount: number,
   categoryCount: number,
   tagCount: number
-  socials?: Socials[]
+  socials?: Social[]
 }
 
 export interface POST_SignIn_Action {

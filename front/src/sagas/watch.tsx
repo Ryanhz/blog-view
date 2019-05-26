@@ -18,3 +18,12 @@ export function* watchPostList() {
 export function* watchPostDetails() {
   yield takeLatest(FrontActionTypes.GET_POST_DETAIL, hander)
 }
+
+
+export function* watchCategoryList() {
+  yield takeLatest(FrontActionTypes.GET_CATEGORY, hander)
+}
+
+export function* watchCategoryPosts() {
+  yield takeLatest(FrontActionTypes.GET_CATEGORY_POSTS, hander)
+}

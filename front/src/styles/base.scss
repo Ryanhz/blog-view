@@ -38,6 +38,17 @@ $breakpoints: (
   }
 }
 
+.rightMain{
+  @extend .radius;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 7.12rem;
+  min-width: 3.2rem;
+  min-height: 100%;
+}
+
 .hoverActive{ 
   &:hover{
     color: #607d8b;
@@ -54,5 +65,17 @@ $breakpoints: (
 }
 
 .circle {
-  border-radius: 50%
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.radius{
+  border-radius: 0.08rem;
+  -webkit-border-radius: 0.08rem;
+  -moz-border-radius: 0.08rem;
+  -ms-border-radius: 0.08rem;
+  -o-border-radius: 0.08rem;
 }

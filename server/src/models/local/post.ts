@@ -30,7 +30,6 @@ export default class Post extends Base<Post> {
   title: string
 
   @Comment('文章正文')
-  @Default('')
   @Column(DataType.TEXT("long"))
   content: string
 

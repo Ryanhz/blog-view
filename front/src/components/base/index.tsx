@@ -1,13 +1,21 @@
 import * as React from 'react';
 import { zy_log } from "@Units/index";
 
-export default class Base<P = any, S = any> extends React.Component<any | P, S> {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Dispatch } from 'redux'
+import * as GlobalFunc from '@Redux/actions/global'
+import { BaseState } from "@Redux/types";
+import {
+  RouteComponentProps
+} from 'react-router-dom'
+
+export default class Base<P={}, S={} > extends React.Component<P, S> {
   constructor(props: any) {
     super(props)
   }
 
   public componentDidMount() {
-    zy_log(this.props.match);
   }
   componentWillMount() {
 

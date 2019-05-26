@@ -30,3 +30,30 @@ export interface Post_Details {
   content: string
   [propName: string]: any
 }
+
+
+export interface User {
+  sex: string,
+  id: number,
+  name: string,
+  nickName?: string,
+  leve: string,
+  state: string,
+  signature: string,
+  email?: string,
+  avatar?: string,
+  rights: string,
+  birthday?: string,
+  phone?: string
+
+}
+
+export interface Social {
+  id: number,
+  name: string,
+  alias?: string,
+  icon?: string,
+  link?: string,
+  des?: string
+}
+

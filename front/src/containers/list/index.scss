@@ -1,16 +1,10 @@
 @import '@Style/base.scss';
 .container {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  padding: 0.2rem auto;
-  margin: 0 auto;
-  max-width: 7.12rem;
-  min-width: 3.2rem;
-  min-height: 100%;
+  @extend .rightMain;
 
   .listTable {
     margin: {
+      top: 0.2rem;
       bottom: .84rem;
     }
   }

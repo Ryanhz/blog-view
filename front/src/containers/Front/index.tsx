@@ -32,14 +32,14 @@ export default class Front extends BASE<RouteComponentProps, any> {
         <main className={styles.right_container}>
           <Switch>
             <Route exact path={`/`} component={List} />
-            <Route exact path={`/posts`} component={List} />
+            <Route exact path={`/post`} component={List} />
             < Route exact path={`/archives`} component={Archives} />
             < Route exact path={`/categories`} component={Categories} />
             < Route exact path={`/tags`} component={Tags} />
             < Route exact path={`/about`} component={About} />
             < Route exact path={`/private`} component={Private} />
             < Route exact path={`/search`} component={Search} />
-            <Route exact path={`/posts/:id`} component={Detail} />
+            <Route exact path={`/post/:username/:id`} component={Detail} />
             <Route component={NotFound} />
           </Switch>
           <div className={styles.memu}>

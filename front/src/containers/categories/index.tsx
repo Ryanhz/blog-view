@@ -1,13 +1,26 @@
 import * as React from 'react';
+import * as styles from "./index.scss";
 import BASE from "../../components/base";
 import { RouteComponentProps } from "react-router-dom";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
+import * as Front from '@Redux/actions/front'
 import * as GlobalFunc from '@Redux/actions/global'
-import { User, BaseState } from "@Redux/types";
+import { BaseState } from "@Redux/types";
+import { User  } from "@Types/index";
 
-class Categories extends BASE<any, any> {
+interface CategoriesProps{
+  user: User
+  get_category: (userid: number) =>void
+  get_category_posts: (userid: number, cid: number)=>void
+}
+
+class Categories extends BASE<CategoriesProps, any> {
+
+  componentDidMount(){
+    this.props.get_category(5000)
+  }
   render() {
     const { user } = this.props
     return (<div>
@@ -28,7 +41,8 @@ function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
   return {
     // clear_msg: bindActionCreators(clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),
-    // get_user: bindActionCreators(get_user_info, dispatch)
+    get_category: bindActionCreators(Front.get_category, dispatch),
+    get_category_posts: bindActionCreators(Front.get_category_posts, dispatch)
   }
 }
 

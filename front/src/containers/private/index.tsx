@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
 import * as GlobalFunc from '@Redux/actions/global'
-import { User, BaseState } from "@Redux/types";
-
+import {  BaseState } from "@Redux/types";
+import { User } from "@Types/index";
 class Private extends BASE<any, any> {
   render() {
     const { user } = this.props

@@ -24,9 +24,9 @@ import {
   Link,
 } from 'react-router-dom'
 
-export default class PostCard extends React.Component<Post_cardable, any> {
+export default class PostCard extends React.Component<Post_cardable&{username:string}, any> {
   render() {
-    const { id, title, digest, created, createdAt, cover } = this.props
+    const { id, title, digest, created, createdAt, cover,username } = this.props
     return (
       <section className={styles.container}>
         {cover && <figure>
@@ -34,7 +34,7 @@ export default class PostCard extends React.Component<Post_cardable, any> {
             <img className={styles.cover} src={cover} />
           </Link>
         </figure>}
-        <Link className={styles.title} to={`/post/${id}`}>{title}</Link>
+        <Link className={styles.title} to={`/post/${username}/${id}`}>{title}</Link>
         <article >
           <MarkDown content={digest} />
         </article>

@@ -28,39 +28,43 @@ import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
 import * as GlobalFunc from '@Redux/actions/global'
 import * as frontFunc from '@Redux/actions/front'
-import { User, BaseState } from "@Redux/types";
+import { BaseState } from "@Redux/types";
+import { User } from "@Types/index";
 import { zy_log } from "@Units/index";
 
 interface HomeProps extends RouteComponentProps {
-  list?: Post_cardable[],
-  get_list: (tag: string, pageNum: string) => void
+  postList: Post_cardable[],
+  user: User
+  total: number
 }
 
-class Home extends BASE<HomeProps, any> {
+class Home extends BASE<HomeProps, {list:Post_cardable[], username: string}> {
 
   constructor(prop: HomeProps) {
     super(prop)
     this.state = {
-      list: prop.list,
+      list: prop.postList,
+      username: prop.user.name
     }
   }
 
   componentWillMount() {
-    // this.props.get_list(null, "1")
+    // this.props.get_list(this.props.user.id) 
   }
 
   componentWillReceiveProps(prop: HomeProps) {
     this.setState({
-      list: prop.list
+      list: prop.postList,
+      username: prop.user.name,
     })
   }
   render() {
-    const post_list: Post_cardable[] = this.state.list
-    zy_log(`-post_list--------------${post_list}`)
-    return (<div className={styles.container}>
+    const {list, username} = this.state
+    return (
+    <div className={styles.container}>
       <div className={styles.listTable}>
-        {post_list.map(item => {
-          return <PostCard key={item.id} {...item} />
+        {list.map(item => {
+          return <PostCard key={item.id} {...item} username={username} />
         })}
       </div>
       <footer className={styles.footer}>
@@ -74,8 +78,9 @@ function mapStateToProps({ frontState, globalState }: BaseState) {
   return {
     notification: globalState.msg,
     isFetching: globalState.isFetching,
-    // user: globalState.userInfo,
-    list: frontState.postList
+    user: globalState.user,
+    postList: frontState.postList,
+    total: frontState.total,
   }
 }
 

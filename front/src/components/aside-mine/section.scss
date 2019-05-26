@@ -15,15 +15,16 @@
  * ----------	---	----------------------------------------------------------
  */
 
-
+ @import '@Style/base.scss';
 .section {
+  @extend .radius;
   display: flex;
   overflow: hidden;
   -ms-flex-pack: distribute;
   justify-content: space-around;
   margin: 0 .1rem;
   padding: 0 .1rem;
-  border-radius: .06rem;
+ 
   background-color: #fff;
   text-align: center;
   white-space: nowrap;

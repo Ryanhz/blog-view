@@ -7,12 +7,13 @@ import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
 import * as GlobalFunc from '@Redux/actions/global'
 import * as frontFunc from '@Redux/actions/front'
-import { User, BaseState } from "@Redux/types";
+import { BaseState } from "@Redux/types";
+import { User } from "@Types/index";
 import { zy_log } from "@Units/index";
 
 interface SearchProps extends RouteComponentProps {
   // postDetail?: Post_Details,
-  get_details: (id: string) => void
+  // get_details: (id: string) => void
 }
 
 class Search extends BASE<SearchProps, any> {
@@ -30,7 +31,6 @@ class Search extends BASE<SearchProps, any> {
   }
 
   public render() {
-
     return (
       <div>
         search
@@ -53,7 +53,7 @@ function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
   return {
     clear_msg: bindActionCreators(GlobalFunc.clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),
-    get_details: bindActionCreators(frontFunc.get_post_detail, dispatch)
+    // get_details: bindActionCreators(frontFunc.get_post_detail, dispatch)
   }
 }
 

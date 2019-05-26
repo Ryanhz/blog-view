@@ -1,4 +1,4 @@
-import { Post, Global, BaseState } from "./../types";
+import {  Global, BaseState ,Post} from "./../types";
 
 export let globalState: Global = {
   isFetching: false,

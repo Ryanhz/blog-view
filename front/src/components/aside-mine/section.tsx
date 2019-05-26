@@ -22,10 +22,14 @@ import {
   Link,
   RouteComponentProps
 } from 'react-router-dom'
+
+import { connect } from 'react-redux';
+import { BaseState } from "@Redux/types";
+
 const tags = [
-  { num: 12, name: "archives", herf: "/archives" },
-  { num: 2, name: "Categories", herf: "/categories" },
-  { num: 9, name: "Tags", herf: "/tags" }
+  { num: 0, name: "archives", herf: "/archives" },
+  { num: 0, name: "Categories", herf: "/categories" },
+  { num: 0, name: "Tags", herf: "/tags" }
 ]
 
 const navs = [
@@ -34,16 +38,24 @@ const navs = [
   { name: "About", herf: "/about" },
   { name: "search", herf: "/search" },
 ]
-export default class Content extends BASE<RouteComponentProps, any> {
-  render() {
 
+interface ContentProps {
+  categoryCount: number,
+  postCount: number,
+  tagCount: number,
+}
+
+ class Content extends BASE<ContentProps, any> {
+
+  render() {
+    const {categoryCount,postCount, tagCount} = this.props
     return (
       <div className={styles.content}>
         <section className={styles.section}>
           {
             tags.map((tag, index) => {
               return <Link to={tag.herf} className={styles.item} key={index}>
-                <span>{tag.num}</span>
+                <span>{index==0&&postCount||index==1&&categoryCount||tagCount}</span>
                 <span>{tag.name}</span>
               </Link>
             })
@@ -62,3 +74,18 @@ export default class Content extends BASE<RouteComponentProps, any> {
     )
   }
 }
+
+
+function mapStateToProps({ globalState }: BaseState) {
+
+  return {
+    // isFetching: globalState.isFetching,
+    categoryCount: globalState.categoryCount,
+    postCount: globalState.postCount,
+    tagCount: globalState.tagCount,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(Content)

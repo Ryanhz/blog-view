@@ -2,9 +2,10 @@ import * as React from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import * as GlobalFunc from '@Redux/actions/global'
-import { BaseState, User } from "@Redux/types";
+import { BaseState } from "@Redux/types";
+import { User } from "@Types/index";
 
 import Front from './Front';
 import NotFound from './NotFound';

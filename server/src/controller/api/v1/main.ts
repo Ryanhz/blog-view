@@ -33,7 +33,7 @@ class Main {
 
       let post_category = await new Post_categoryT().save()
 
-      tags.forEach(async tag => {
+      await tags.forEach(async tag => {
         let post_Tag = await new Post_TagT().save()
         await tag.$add('post_tags', post_Tag)
         await post.$add('post_tags', post_Tag)
@@ -139,7 +139,7 @@ class Main {
     let git = await new SocialT({
       name: "git",
       alias: "git",
-      icon: "fa fa-github fa-2x",
+      icon: "fa fa-github",
       link: "https://github.com/Ryanhz",
       des: ""
     }).save()
@@ -147,7 +147,7 @@ class Main {
     let email = await new SocialT({
       name: "email",
       alias: "email",
-      icon: "fa  fa-envelope fa-2x",
+      icon: "fa  fa-envelope",
       link: "1810022686@qq.com",
       des: ""
     }).save()

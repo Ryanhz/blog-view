@@ -3,36 +3,38 @@ import ZYResponse, { ZYContext, Next } from 'koa-response'
 
 import { Tables } from "../../../models";
 
-class Art {
+class Post {
 
   static async list(ctx: ZYContext, next: Next) {
 
     console.log(ctx.request);
     console.log(`---------`);
+    let userId = ctx.params["userid"]
     let PostT = Tables.Post
 
     let articleList = await PostT.findAll({
       attributes: ["id", "user_id", "title", "views", "cover", "digest", "updatedAt", "createdAt"],
       limit: 10,
-      offset: 0
+      offset: 0,
+      where:{
+        user_id: userId
+      }
     })
-    if (articleList.length == 0) {
-      console.log(`--create-------${articleList}`);
-      let art = await Art._setArt()
-      articleList.push(art)
-    }
     console.log(`---------${articleList}`);
     ctx.success(articleList)
   }
 
   static async details(ctx: ZYContext, next: Next) {
     console.log(ctx.request);
-    console.log(`---------`);
+    console.log(`---------${JSON.stringify(ctx.params)}`);
+    let postId = ctx.params['postid']
+    let userid = ctx.params['userid']
     let PostT = Tables.Post
 
     let article = await PostT.findOne({
       where: {
-        id: 1
+        id: postId,
+        user_id: userid
       }
     })
     console.log(`---------${article}`);
@@ -57,8 +59,9 @@ class Art {
   }
 }
 
-const router = new Router();
-router.get("/list", Art.list)
-router.get("/details", Art.details)
+const post_router = new Router();
+post_router.get("/:userid", Post.list)
+post_router.get("/:userid/:postid", Post.details)
 
-export default router.routes();
+export default post_router.routes()
+

@@ -18,22 +18,25 @@
 import * as React from "react";
 import {
   Link,
+  RouteComponentProps
 } from 'react-router-dom'
 import * as types from "./header.scss";
 import logeSource from "@Assets/hzy-logo-1.svg";
+import BASE from "../base";
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
 import * as GlobalFunc from '@Redux/actions/global'
-import { User, BaseState } from "@Redux/types";
+import { BaseState } from "@Redux/types";
+import { User } from "@Types/index";
 import { zy_log } from "@Units/index";
 
 interface UserProps {
   user?: User
 }
 
-class Header extends React.Component<UserProps, any> {
+class Header extends BASE<UserProps, any> {
 
   constructor(prop: any) {
     super(prop)
@@ -68,8 +71,7 @@ class Header extends React.Component<UserProps, any> {
 
 function mapStateToProps({ globalState }: BaseState) {
   return {
-    notification: globalState.msg,
-    isFetching: globalState.isFetching,
+    // isFetching: globalState.isFetching,
     user: globalState.user,
   }
 }
@@ -84,5 +86,5 @@ function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  // mapDispatchToProps
 )(Header)
