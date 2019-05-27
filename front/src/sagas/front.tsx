@@ -31,14 +31,11 @@ export function* postDetails(action: GET_detail_Action) {
 export function* initPost(userId: number) {
   let action: GET_list_Action = yield call(get_post_list, userId, { fields: 'id,user_id,title,views,cover,digest,createdAt,updatedAt' })
   yield put(action)
-
 }
 
 export function* category(action: GET_Category_Action) {
-  let res = yield call(get, `${API.users}/${action.userid}${API.categories}`, action.query);
-  if (res && res.status.code === 0) {
-    let data = res.data
-    data.content = decodeURI(data.content)
+  let data = yield call(get, `${API.users}/${action.userid}${API.categories}`, action.query);
+  if (data) {
     yield put({ type: FrontActionTypes.RESPONSE_CATEGORY, data: data } as Response_Category_Action);
   }
 }

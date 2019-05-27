@@ -57,3 +57,9 @@ export interface Social {
   des?: string
 }
 
+export interface Category {
+  name: string
+  id: number
+  alias: string
+  [propName: string]: any
+}
