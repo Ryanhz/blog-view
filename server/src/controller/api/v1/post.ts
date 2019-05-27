@@ -3,43 +3,46 @@ import ZYResponse, { ZYContext, Next } from 'koa-response'
 
 import { Tables } from "../../../models";
 
-class Post {
+export default class Post {
 
-  static async list(ctx: ZYContext, next: Next) {
+  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
+  static async get(ctx: ZYContext, next: Next) {
 
     console.log(ctx.request);
-    console.log(`---------`);
-    let userId = ctx.params["userid"]
+    let userId = ctx.params["uid"]
+    let fields: string = ctx.query.fields
+    let page = ctx.query.page || 1
+    let pageSize = ctx.query.pageSize || 20
     let PostT = Tables.Post
 
-    let articleList = await PostT.findAll({
-      attributes: ["id", "user_id", "title", "views", "cover", "digest", "updatedAt", "createdAt"],
-      limit: 10,
-      offset: 0,
-      where:{
+    let options = {
+      limit: pageSize,
+      offset: (page - 1) * 20,
+      where: {
         user_id: userId
       }
-    })
-    console.log(`---------${articleList}`);
+    }
+    fields && (options['attributes'] = fields.split(','));
+    //["id", "user_id", "title", "views", "cover", "digest", "updatedAt", "createdAt"],
+    let articleList = await PostT.findAll(options)
+    console.log(`---------${JSON.stringify(articleList)}`);
     ctx.success(articleList)
   }
 
-  static async details(ctx: ZYContext, next: Next) {
+  static async one(ctx: ZYContext, next: Next) {
     console.log(ctx.request);
     console.log(`---------${JSON.stringify(ctx.params)}`);
-    let postId = ctx.params['postid']
-    let userid = ctx.params['userid']
+    let postId = ctx.params['pid']
+
     let PostT = Tables.Post
 
     let article = await PostT.findOne({
       where: {
         id: postId,
-        user_id: userid
       }
     })
     console.log(`---------${article}`);
     ctx.success(article)
-
   }
 
   static async setArt(ctx: ZYContext, next: Next) {
@@ -58,10 +61,3 @@ class Post {
     return art
   }
 }
-
-const post_router = new Router();
-post_router.get("/:userid", Post.list)
-post_router.get("/:userid/:postid", Post.details)
-
-export default post_router.routes()
-

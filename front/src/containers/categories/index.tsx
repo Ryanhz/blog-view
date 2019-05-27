@@ -8,18 +8,20 @@ import { Dispatch } from 'redux'
 import * as Front from '@Redux/actions/front'
 import * as GlobalFunc from '@Redux/actions/global'
 import { BaseState } from "@Redux/types";
-import { User  } from "@Types/index";
+import { User } from "@Types/index";
 
-interface CategoriesProps{
+interface CategoriesProps {
   user: User
-  get_category: (userid: number) =>void
-  get_category_posts: (userid: number, cid: number)=>void
+  get_category: (userid: number, query?: any) => void
+  get_category_posts: (userid: number, cid: number) => void
 }
 
 class Categories extends BASE<CategoriesProps, any> {
 
-  componentDidMount(){
-    this.props.get_category(5000)
+  componentDidMount() {
+    this.props.get_category(this.props.user.id, {
+      fields: 'name,id,alias'
+    })
   }
   render() {
     const { user } = this.props

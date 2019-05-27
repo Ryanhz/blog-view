@@ -4,72 +4,48 @@ import ZYResponse, { ZYContext, Next } from 'koa-response'
 
 import { Tables } from "../../../models";
 
-class Category {
+export default class Category {
 
-    static async all(ctx: ZYContext, next: ZYResponse.Next) {
-    let userid = ctx.params['userid']
-
+  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
+  static async get(ctx: ZYContext, next: ZYResponse.Next) {
+    let userid = ctx.params['uid']
+    let fields = ctx.query.fields
     let CategoryT = Tables.Category
-    let Post_categoryT = Tables.Post_category
-    let userT = Tables.User
-
-    let user = await userT.findById(userid,{include: [CategoryT]})
-
-    if (!user){
-      ctx.error(-1,"not found user")
-      return;
+    let options = {
+      where: {
+        user_id: userid
+      }
     }
-    console.log(`--------${JSON.stringify(user.categorys)}`)
+    fields && (options['attributes'] = fields.split(','));
 
-    let data = []
+    let cactegoryList = await CategoryT.findAll(options)
 
-    for ( const category  of user.categorys) {
-     let count = await Post_categoryT.count({
-        where: {
-          category_id: category.id
-        }
-      })
-      data.push( {
-        category,
-        postCount: count
-      })
-    }
-
-    ctx.success(data)
-    }
-  
-    static async one(ctx: ZYContext, next: Next) {
-      console.log(ctx.querystring)
-      let userid = ctx.params['userid']
-      let cid = ctx.params.categoryid
-
-      let Post_categoryT = Tables.Post_category
-      let PostT = Tables.Post
-
-      let post_ids = (await Post_categoryT.findAll({
-        attributes: ['post_id'],
-        where: {
-          category_id :cid
-        }
-      })).map(item=>item.post_id)
-
-     let posts = await PostT.findAll({
-        attributes: ['createdAt','title'],
-        where: {
-          id:post_ids,
-          user_id: userid
-        }
-
-      })
-      ctx.success(posts)
-    }
-  
-    static async signout(ctx: ZYContext, next: Next) {
-      console.log(ctx.querystring)
-    }
+    ctx.success(cactegoryList)
   }
-  
-  const router = new Router();
-  router.get("/:userid", Category.all)
-  router.get("/:userid/:categoryid", Category.one)
-  export default router.routes();
+
+  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
+  static async posts(ctx: ZYContext, next: Next) {
+    console.log(ctx.querystring)
+    let cid = ctx.params.cid
+    let fields = ctx.query.fields
+
+    let Post_categoryT = Tables.Post_category
+    let PostT = Tables.Post
+
+    let post_ids = (await Post_categoryT.findAll({
+      attributes: ['post_id'],
+      where: {
+        category_id: cid
+      }
+    })).map(item => item.post_id)
+    let options = {
+      where: {
+        id: post_ids
+      }
+    }
+    options['attributes'] = fields && fields.split(',') || ['createdAt', 'title']
+    let posts = await PostT.findAll(options)
+    ctx.success(posts)
+  }
+}
+

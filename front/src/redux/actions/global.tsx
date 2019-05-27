@@ -11,13 +11,13 @@ export interface RESPONSE_user_Action {
   data: User
 }
 
-export interface GET_mainInfo_action {
-  type: Global.GET_MAININFO;
+export interface GET_Profile_action {
+  type: Global.GET_PROFILE;
   id: number
 }
 
-export interface RESPONSE_MainInfo_action {
-  type: Global.RESPONSE_MAININFO;
+export interface RESPONSE_Profile_action {
+  type: Global.RESPONSE_PROFILE;
   user: User,
   postCount: number,
   categoryCount: number,
@@ -57,9 +57,9 @@ export interface FETCH_Action {
   type: Global.FETCH_START | Global.FETCH_END;
 }
 
-export type Global_Requset_Action = GET_user_action | POST_SignIn_Action | POST_Register_Action | POST_SignOut_Action | GET_mainInfo_action
+export type Global_Requset_Action = GET_user_action | POST_SignIn_Action | POST_Register_Action | POST_SignOut_Action | GET_Profile_action
 
-export type Global_Response_Action = User_auth_Action | RESPONSE_user_Action | RESPONSE_MainInfo_action
+export type Global_Response_Action = User_auth_Action | RESPONSE_user_Action | RESPONSE_Profile_action
 
 export type Global_Notify_Action = FETCH_Action | SET_msg_Action
 
@@ -107,9 +107,9 @@ export function get_user(id: number): GET_user_action {
   }
 }
 
-export function get_main_info(id: number): GET_mainInfo_action {
+export function get_main_info(id: number): GET_Profile_action {
   return {
-    type: Global.GET_MAININFO,
+    type: Global.GET_PROFILE,
     id
   }
 }

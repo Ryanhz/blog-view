@@ -1,10 +1,19 @@
-import Router from "koa-router";
+// import Router from "koa-router";
 import ZYResponse, { ZYContext, Next } from 'koa-response'
 import { Tables } from "../../../models";
 
-class User {
+export default class User {
 
   static async get(ctx: ZYContext, next: Next) {
+
+  }
+
+  static async post(ctx: ZYContext, next: Next) {
+
+  }
+
+  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
+  static async one(ctx: ZYContext, next: Next) {
 
     console.log(ctx.request);
     console.log(JSON.stringify(ctx.params))
@@ -35,12 +44,12 @@ class User {
   }
 }
 
-const router = new Router();
-router.get("/:id", User.get)
+// const router = new Router();
+// router.get("/:id", User.get)
 
 // router.get("/", (c, n) => {
 //   console.log(`---------`);
 //   c.body = "user11111"
 // })
 
-export default router.routes();
+// export default router.routes();

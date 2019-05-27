@@ -23,7 +23,7 @@ export function global(state: Global = globalState, action: Global_Response_Acti
          return {
             ...state, user: { ...action.data }
          };
-      case Types.RESPONSE_MAININFO:
+      case Types.RESPONSE_PROFILE:
          return {
             ...state,
             user: action.user,

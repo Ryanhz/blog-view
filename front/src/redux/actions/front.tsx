@@ -1,9 +1,9 @@
 import * as Front from '../constants/front';
-import { Post_cardable, Post_Details  } from "@Types/index";
+import { Post_cardable, Post_Details } from "@Types/index";
 
 export interface GET_list_Action {
   type: Front.GET_POST_LIST;
-  userId:number
+  userId: number
   query?: any
 }
 
@@ -18,8 +18,7 @@ export interface Response_list_Action {
 
 export interface GET_detail_Action {
   type: Front.GET_POST_DETAIL
-  userid: number
-  id: number
+  pid: number
 }
 
 export interface Response_Post_detail_Action {
@@ -30,6 +29,7 @@ export interface Response_Post_detail_Action {
 export interface GET_Category_Action {
   type: Front.GET_CATEGORY
   userid: number
+  query: any
 }
 
 export interface Response_Category_Action {
@@ -59,18 +59,18 @@ export function get_post_list(userId: number, query: any = null): GET_list_Actio
   }
 }
 
-export function get_post_detail(userid: number,id: number): GET_detail_Action {
+export function get_post_detail(pid: number): GET_detail_Action {
   return {
     type: Front.GET_POST_DETAIL,
-    userid,
-    id
+    pid
   }
 }
 
-export function get_category(userid: number): GET_Category_Action {
+export function get_category(userid: number, query: any = null): GET_Category_Action {
   return {
     type: Front.GET_CATEGORY,
     userid,
+    query
   }
 }
 

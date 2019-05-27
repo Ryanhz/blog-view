@@ -8,7 +8,7 @@ export function* watchUser() {
 }
 
 export function* watchMainInfo() {
-  yield takeLatest(IndexActionTypes.GET_MAININFO, hander)
+  yield takeLatest(IndexActionTypes.GET_PROFILE, hander)
 }
 
 export function* watchPostList() {

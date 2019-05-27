@@ -2,14 +2,14 @@ import Router from "koa-router";
 import ZYResponse, { ZYContext, Next } from 'koa-response'
 import { Tables } from "../../../models";
 
-class Main {
+export default class Profile {
 
-  static async main(ctx: ZYContext, next: Next) {
+  static async get(ctx: ZYContext, next: Next) {
 
     console.log(ctx.request);
     console.log(JSON.stringify(ctx.params))
     console.log(`---------`);
-    let userid = ctx.params["id"]
+    let userid = ctx.params["id"] || 5000
     let UserT = Tables.User
 
     let SocialT = Tables.Social
@@ -21,15 +21,15 @@ class Main {
     let Post_categoryT = Tables.Post_category
 
     if (!await UserT.count({ where: { id: userid } })) {
-      let user = await Main.createUser()
-      let post = await Main.createPost()
+      let user = await Profile.createUser()
+      let post = await Profile.createPost()
 
-      let auth = await Main.createAuth()
+      let auth = await Profile.createAuth()
 
-      let socials = await Main.createSocials()
+      let socials = await Profile.createSocials()
 
-      let categorys = await Main.createCategorys()
-      let tags = await Main.createTags()
+      let categorys = await Profile.createCategorys()
+      let tags = await Profile.createTags()
 
       let post_category = await new Post_categoryT().save()
 
@@ -193,16 +193,4 @@ class Main {
 
     return [coding, living]
   }
-
-
 }
-
-const router = new Router();
-router.get("/:id", Main.main)
-
-// router.get("/", (c, n) => {
-//   console.log(`---------`);
-//   c.body = "user11111"
-// })
-
-export default router.routes();

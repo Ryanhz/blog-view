@@ -16,10 +16,10 @@ import MarkDown from "@Components/markDown";
 interface DetailProps {
   postDetail?: Post_Details,
   user: User,
-  get_details: (userid: number, id: number) => void
+  get_details: (id: number) => void
 }
 
-class Detail extends BASE<DetailProps&RouteComponentProps, any> {
+class Detail extends BASE<DetailProps & RouteComponentProps, any> {
   constructor(props: any) {
     super(props)
     this.state = {
@@ -32,7 +32,7 @@ class Detail extends BASE<DetailProps&RouteComponentProps, any> {
     // console.log(this.props.match);
   }
   componentWillMount() {
-    this.props.get_details(this.state.userid ,this.state.id)
+    this.props.get_details(this.state.id)
   }
 
 

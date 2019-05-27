@@ -61,7 +61,6 @@ class RequestConfig implements AxiosRequestConfig {
   }
 }
 
-
 export async function requset(url: string, data?: any, method?: string) {
   zy_log(`requesturl: ${url}  data: ${data}, method: ${method}\n\n`)
   try {

@@ -18,16 +18,16 @@ class ResponseData {
 }
 
 function success(data) {
-  this.body = ResponseData.success(data);
+  this.type = 'pplication/json';
+  this.body = data || {}//ResponseData.success(data);
 }
 
-function error(message = 'ERROR', code = -1) {
-  this.body = ResponseData.error(code, message);
+function error(code = 400, message = 'bad request', properties = null) {
+  this.throw(code, message, properties) //= ResponseData.error(code, message);
 }
 
 export function middleware() {
   return async (ctx, next) => {
-
     if (!ctx.success) {
       ctx.success = success.bind(ctx);
     }
@@ -38,7 +38,7 @@ export function middleware() {
       await next();
     } catch (err) {
       console.log(JSON.stringify(err))
-      ctx.error(err.message, err.code);
+      ctx.error(err.code, err.message, err);
     }
   }
 }

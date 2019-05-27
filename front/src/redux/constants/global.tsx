@@ -26,8 +26,8 @@ export type GET_USER = typeof GET_USER;
 export const RESPONSE_USER = 'RESPONSE_USER';
 export type RESPONSE_USER = typeof RESPONSE_USER;
 
-export const GET_MAININFO = "GET_MAININFO";
-export type GET_MAININFO = typeof GET_MAININFO;
+export const GET_PROFILE = "GET_PROFILE";
+export type GET_PROFILE = typeof GET_PROFILE;
 
-export const RESPONSE_MAININFO = 'RESPONSE_MAININFO';
-export type RESPONSE_MAININFO = typeof RESPONSE_MAININFO;
+export const RESPONSE_PROFILE = 'RESPONSE_PROFILE';
+export type RESPONSE_PROFILE = typeof RESPONSE_PROFILE;
