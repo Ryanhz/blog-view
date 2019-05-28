@@ -1,15 +1,19 @@
 
 import Koa from "koa";
 import Router from "koa-router";
-
+import { APIError } from "../utils/error";
 declare module "koa" {
   interface Context {
     success(data?: {} | [] | string | number): void
-    error(code?: number, message?: string): void
+    error(status: number): never;
+    error(code: string): never;
+    error(code: string, message: string): never;
+    error(status: number, code: string, message: string): never;
   }
 }
 
 declare namespace ZYResponse {
+
   export interface ZYContext extends Koa.ParameterizedContext<any, Router.IRouterParamContext<any, {}>> {
     /**
      * response 成功
@@ -20,13 +24,12 @@ declare namespace ZYResponse {
      */
     success(data?: {} | [] | string | number): void
 
-    /**
-    * response 异常
-    * @param ctx
-    * @param code 错误码 || [错误码, 错误描述]
-    * @param message 错误描述
-    */
-    error(code?: number, message?: string): void
+
+    error(error: APIError): never;
+    error(status: number): never;
+    error(code: string): never;
+    error(code: string, message: string): never;
+    error(status: number, code: string, message: string): never;
   }
 
   // class ResponseData {

@@ -1,4 +1,4 @@
-import { User,Social,Post_cardable,Post_Details } from "@Types/index";
+import { User, Social, Post_cardable, Post_Details, Category, Category_posts } from "@Types/index";
 
 export interface Global {
   isFetching: boolean,
@@ -14,7 +14,9 @@ export interface Global {
 }
 
 export interface Post {
-  category: string[],
+
+  categories: Category[],
+  category_posts: Category_posts[]
   postList: Post_cardable[],
   postDetail?: Post_Details,
   pageNum: number,

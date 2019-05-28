@@ -7,7 +7,7 @@ import {
   GET_detail_Action, Response_Post_detail_Action,
   GET_list_Action, Response_list_Action,
   GET_Category_Action, Response_Category_Action,
-  GET_Category_Posts_Action, Response_Category_Posts_Action
+  GET_Category_Posts_Action, Response_Category_Posts_Action, GET_Category_Index_Action, Response_Category_Index_Action
 } from "@Redux/actions/front";
 
 import { SET_msg_Action, FETCH_Action } from "@Redux/actions/global";
@@ -33,6 +33,7 @@ export function* initPost(userId: number) {
   yield put(action)
 }
 
+
 export function* category(action: GET_Category_Action) {
   let data = yield call(get, `${API.users}/${action.userid}${API.categories}`, action.query);
   if (data) {
@@ -46,5 +47,14 @@ export function* category_posts(action: GET_Category_Posts_Action) {
     let data = res.data
     data.content = decodeURI(data.content)
     yield put({ type: FrontActionTypes.RESPONSE_CATEGORY_POSTS, data: data } as Response_Category_Posts_Action);
+  }
+}
+
+export function* category_index(action: GET_Category_Index_Action) {
+  let data = yield call(get, `${API.categories}/${action.userid}`, action.query);
+  if (data) {
+    let categories = data.map((item: { cactegory: any, posts: any }) => item.cactegory)
+    let posts = data.map((item: { cactegory: any, posts: any }) => item.posts)
+    yield put({ type: FrontActionTypes.RESPONSE_CATEGORY_INDEX, categories: categories, category_posts: posts } as Response_Category_Index_Action);
   }
 }

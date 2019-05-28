@@ -1,20 +1,23 @@
 import Router from "koa-router";
 import ZYResponse, { ZYContext, Next } from 'koa-response'
-
+import { APIError } from "../../../utils/error";
 import { Tables } from "../../../models";
 
 export default class Post {
 
+  static async _posts(options) {
+    let PostT = Tables.Post
+    let posts = await PostT.findAll(options)
+    return posts
+  }
+
   //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
   static async get(ctx: ZYContext, next: Next) {
-
     console.log(ctx.request);
     let userId = ctx.params["uid"]
     let fields: string = ctx.query.fields
     let page = ctx.query.page || 1
     let pageSize = ctx.query.pageSize || 20
-    let PostT = Tables.Post
-
     let options = {
       limit: pageSize,
       offset: (page - 1) * 20,
@@ -24,25 +27,30 @@ export default class Post {
     }
     fields && (options['attributes'] = fields.split(','));
     //["id", "user_id", "title", "views", "cover", "digest", "updatedAt", "createdAt"],
-    let articleList = await PostT.findAll(options)
+    let articleList = await Post._posts(options)
     console.log(`---------${JSON.stringify(articleList)}`);
-    ctx.success(articleList)
+    if (articleList.length > 0) {
+      ctx.success(articleList)
+    } else {
+      ctx.error({ code: "posts:posts_not_more", message: "posts not more" })
+    }
   }
 
   static async one(ctx: ZYContext, next: Next) {
     console.log(ctx.request);
-    console.log(`---------${JSON.stringify(ctx.params)}`);
     let postId = ctx.params['pid']
-
-    let PostT = Tables.Post
-
-    let article = await PostT.findOne({
+    let options = {
       where: {
         id: postId,
       }
-    })
-    console.log(`---------${article}`);
-    ctx.success(article)
+    }
+    let posts = await Post._posts(options)
+    let targetPost = posts.shift()
+    if (targetPost) {
+      ctx.success()
+    } else {
+      throw new APIError("posts:post_not_found", "post not found by id")
+    }
   }
 
   static async setArt(ctx: ZYContext, next: Next) {

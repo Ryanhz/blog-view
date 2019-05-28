@@ -1,0 +1,54 @@
+@import '@Style/base.scss';
+
+.segmentBarItem{
+position: relative;
+  display: inline-block;
+  padding: .15rem .2rem;
+  .title {
+    @extend .h4;
+    text-transform: Capitalize;
+    font-weight: bold
+  }
+
+  .count{
+    margin-left: .05rem;
+    font-size: .1rem;
+    padding: 0 .03rem;
+   border: {
+    width: 1px;
+    radius: 3px;
+    color: $gray-text;
+    style:solid
+   }
+  }
+
+  &::after{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 45%;
+    height: .03rem;
+    content: "";
+    transition: transform .4s;
+    transform: scaleY(0);
+    transform-origin: bottom center;
+  }
+
+  &:hover, &:active, &:focus {
+    @extend .selected
+  }
+}
+
+.container{
+  @extend .radius;
+  background-color: white;
+}
+
+.selected {
+  &::after{
+    background-color: #607d8b;
+    transform: scaleY(1);
+  }
+}

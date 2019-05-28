@@ -1,5 +1,5 @@
 import * as Front from '../constants/front';
-import { Post_cardable, Post_Details } from "@Types/index";
+import { Post_cardable, Post_Details, Category_posts, Category } from "@Types/index";
 
 export interface GET_list_Action {
   type: Front.GET_POST_LIST;
@@ -48,8 +48,20 @@ export interface Response_Category_Posts_Action {
   data: any
 }
 
-export type RequsetAction = GET_list_Action | GET_detail_Action | GET_Category_Action | GET_Category_Posts_Action
-export type ResponseAction = Response_list_Action | Response_Post_detail_Action | Response_Category_Action | Response_Category_Posts_Action
+export interface GET_Category_Index_Action {
+  type: Front.GET_CATEGORY_INDEX
+  userid: number
+  query: any
+}
+
+export interface Response_Category_Index_Action {
+  type: Front.RESPONSE_CATEGORY_INDEX
+  category_posts: Category_posts[]
+  categories: Category[]
+}
+
+export type RequsetAction = GET_list_Action | GET_detail_Action | GET_Category_Action | GET_Category_Posts_Action | GET_Category_Index_Action
+export type ResponseAction = Response_list_Action | Response_Post_detail_Action | Response_Category_Action | Response_Category_Posts_Action | Response_Category_Index_Action
 
 export function get_post_list(userId: number, query: any = null): GET_list_Action {
   return {
@@ -82,9 +94,18 @@ export function get_category_posts(userid: number, cid: number): GET_Category_Po
   }
 }
 
+export function get_category_index(userid: number, query: any = null): GET_Category_Index_Action {
+  return {
+    type: Front.GET_CATEGORY_INDEX,
+    userid,
+    query
+  }
+}
+
 export const Request = {
   get_post_list,
   get_post_detail,
   get_category,
-  get_category_posts
+  get_category_posts,
+  get_category_index
 }

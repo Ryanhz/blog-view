@@ -1,15 +1,13 @@
-
 import Router from "koa-router";
 import ZYResponse, { ZYContext, Next } from 'koa-response'
 
 import { Tables } from "../../../models";
+import Post from "./post";
 
 export default class Category {
 
-  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
-  static async get(ctx: ZYContext, next: ZYResponse.Next) {
-    let userid = ctx.params['uid']
-    let fields = ctx.query.fields
+  static async _cactegoryList(userid: number, fields?: string) {
+
     let CategoryT = Tables.Category
     let options = {
       where: {
@@ -17,9 +15,51 @@ export default class Category {
       }
     }
     fields && (options['attributes'] = fields.split(','));
-
     let cactegoryList = await CategoryT.findAll(options)
+    return cactegoryList
+  }
 
+  static async _posts(categoryid: number, postfields?: string) {
+    let Post_categoryT = Tables.Post_category
+    let post_ids = (await Post_categoryT.findAll({
+      attributes: ['post_id'],
+      where: {
+        category_id: categoryid
+      }
+    })).map(item => item.post_id)
+
+    let options = {
+      where: {
+        id: post_ids
+      }
+    }
+    options['attributes'] = postfields && postfields.split(',') || ['createdAt', 'title']
+    let posts = await Post._posts(options)
+    return posts
+  }
+
+  static async index(ctx: ZYContext, next: ZYResponse.Next) {
+    let userid = ctx.params['uid']
+
+    let cactegoryList = await Category._cactegoryList(userid, 'name,id,alias')
+
+    let list = []
+
+    for (const cactegory of cactegoryList) {
+      let posts = await Category._posts(cactegory.id)
+      list.push({
+        cactegory,
+        posts
+      })
+    }
+    ctx.success(list)
+  }
+
+  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
+  static async get(ctx: ZYContext, next: ZYResponse.Next) {
+    let userid = ctx.params['uid']
+    let fields = ctx.query.fields
+    let cactegoryList = await Category._cactegoryList(userid, fields)
     ctx.success(cactegoryList)
   }
 
@@ -28,23 +68,7 @@ export default class Category {
     console.log(ctx.querystring)
     let cid = ctx.params.cid
     let fields = ctx.query.fields
-
-    let Post_categoryT = Tables.Post_category
-    let PostT = Tables.Post
-
-    let post_ids = (await Post_categoryT.findAll({
-      attributes: ['post_id'],
-      where: {
-        category_id: cid
-      }
-    })).map(item => item.post_id)
-    let options = {
-      where: {
-        id: post_ids
-      }
-    }
-    options['attributes'] = fields && fields.split(',') || ['createdAt', 'title']
-    let posts = await PostT.findAll(options)
+    let posts = await Category._posts(cid, fields)
     ctx.success(posts)
   }
 }

@@ -1,3 +1,5 @@
+import { Post } from "@Redux/types";
+
 /*
 * Filename: /Users/hzf/Documents/hzy-private/blog-view/src/types/index.tsx
 * Path: /Users/hzf/Documents/hzy-private/blog-view
@@ -62,4 +64,9 @@ export interface Category {
   id: number
   alias: string
   [propName: string]: any
+}
+
+export interface Category_posts {
+  categoryid: number
+  posts: Post[]
 }

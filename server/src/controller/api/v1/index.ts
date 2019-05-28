@@ -27,6 +27,7 @@ router.get("/profile/:id", Profile.get);
 router.get("/users/:uid/posts", Post.get)
 router.get("/posts/:pid", Post.one)
 
+router.get("/categories/:uid", Category.index)
 router.get("/users/:uid/categories", Category.get)
 router.get("/categories/:cid/posts", Category.posts)
 

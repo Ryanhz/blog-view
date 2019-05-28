@@ -1,11 +1,10 @@
-@import "@Style/base";
+@import '@Style/base.scss';
 
 .container {
     @extend .rightMain;
     
     padding: 0 0.15rem;
     margin: .2rem auto;
-    background-color: white;
   
     .title {
       margin: {

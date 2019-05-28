@@ -22,8 +22,43 @@ function success(data) {
   this.body = data || {}//ResponseData.success(data);
 }
 
-function error(code = 400, message = 'bad request', properties = null) {
-  this.throw(code, message, properties) //= ResponseData.error(code, message);
+function error() {
+  let status = 400
+  let message = '未知异常'
+  let code = '未知'
+
+  if (arguments.length == 1) {
+    let element = arguments[0]
+    switch (typeof element) {
+      case 'string':
+        code = element
+        break
+      case 'number':
+        status = element
+        break
+      case 'object':
+        throw element;
+        break;
+      default:
+        break;
+    }
+  }
+
+  if (arguments.length == 2) {
+    code = arguments[0]
+    message = arguments[1]
+  }
+
+  if (arguments.length == 3) {
+    status = arguments[0]
+    code = arguments[0]
+    message = arguments[0]
+  }
+  this.status = status
+  this.body = {
+    code,
+    message
+  }
 }
 
 export function middleware() {
@@ -38,7 +73,12 @@ export function middleware() {
       await next();
     } catch (err) {
       console.log(JSON.stringify(err))
-      ctx.error(err.code, err.message, err);
+      ctx.response.status = 400;
+      ctx.response.type = 'application/json';
+      ctx.response.body = {
+        code: err.code || 'internal:unknown_error',
+        message: err.message || ''
+      }
     }
   }
 }

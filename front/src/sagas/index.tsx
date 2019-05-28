@@ -1,10 +1,11 @@
 
 import { fork, all } from 'redux-saga/effects'
-import { watchUser,
-   watchPostDetails, watchPostList,
-    watchMainInfo,
-    watchCategoryList, watchCategoryPosts
-  } from "./watch";
+import {
+  watchUser,
+  watchPostDetails, watchPostList,
+  watchMainInfo,
+  watchCategoryList, watchCategoryPosts, watchCategoryIndex
+} from "./watch";
 
 // 3. our root saga: single entry point to start our sagas at once
 export default function* rootSaga() {
@@ -15,7 +16,8 @@ export default function* rootSaga() {
     watchPostDetails(),
     watchPostList(),
     watchCategoryList(),
-    watchCategoryPosts()
+    watchCategoryPosts(),
+    watchCategoryIndex()
   ])
   // yield loginFlow();
   // yield fork(registerFlow);

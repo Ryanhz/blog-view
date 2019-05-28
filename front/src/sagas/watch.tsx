@@ -19,6 +19,9 @@ export function* watchPostDetails() {
   yield takeLatest(FrontActionTypes.GET_POST_DETAIL, hander)
 }
 
+export function* watchCategoryIndex() {
+  yield takeLatest(FrontActionTypes.GET_CATEGORY_INDEX, hander)
+}
 
 export function* watchCategoryList() {
   yield takeLatest(FrontActionTypes.GET_CATEGORY, hander)
