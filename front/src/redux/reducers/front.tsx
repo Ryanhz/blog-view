@@ -9,6 +9,8 @@ export function front(state: Post = frontState, action: ResponseAction) {
       return { ...state, postList: action.data, pageNum: action.data.pageNum, total: action.data.total };
     case Types.RESPONSE_POST_DETAIL:
       return { ...state, postDetail: action.data };
+    case Types.RESPONSE_CATEGORY_INDEX:
+      return { ...state, categories: action.categories, category_posts: action.category_posts }
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import { get, post } from '../fetch'
 import { API } from "../fetch/api";
 import * as FrontActionTypes from '@Redux/constants/front'
 import { get_post_list } from '@Redux/actions/front'
+import { Category, Category_posts } from "@Types/index";
 import {
   GET_detail_Action, Response_Post_detail_Action,
   GET_list_Action, Response_list_Action,
@@ -53,8 +54,10 @@ export function* category_posts(action: GET_Category_Posts_Action) {
 export function* category_index(action: GET_Category_Index_Action) {
   let data = yield call(get, `${API.categories}/${action.userid}`, action.query);
   if (data) {
-    let categories = data.map((item: { cactegory: any, posts: any }) => item.cactegory)
-    let posts = data.map((item: { cactegory: any, posts: any }) => item.posts)
+    let categories: Category[] = data.map((item: { cactegory: Category, posts: any }) => item.cactegory)
+    let posts: Category_posts[] = data.map((item: { cactegory: Category, posts: any }) => {
+      return { categoryid: item.cactegory.id, posts: item.posts } as Category_posts
+    })
     yield put({ type: FrontActionTypes.RESPONSE_CATEGORY_INDEX, categories: categories, category_posts: posts } as Response_Category_Index_Action);
   }
 }

@@ -8,8 +8,6 @@
  */
 import * as React from "react";
 import * as styles from "./index.scss";
-import wn from "@Assets/wn.png";
-import MarkDown from "@Components/markDown";
 import { Post_cardable } from "@Types/index";
 import BASE from "@Components/base";
 import {
@@ -23,15 +21,16 @@ interface SegmentBarItemProps {
   count?: number
   selected?: boolean
   index: number
-  onClick?: (e: React.MouseEvent, index: number) => void
+  onClick?: (e: React.MouseEvent) => void
 }
 
 export class SegmentBarItem extends BASE<SegmentBarItemProps, any> {
   render() {
     const { title, count, selected, onClick, index } = this.props
     return <a
+      data-index={index}
       className={[styles.segmentBarItem, selected && styles.selected].join(" ")}
-      onClick={e => { onClick(e, index) }}
+      onClick={onClick}
     >
       <span className={styles.title}>{title}</span>
       {count > 0 && <span className={styles.count}>{count}</span>}
@@ -39,7 +38,7 @@ export class SegmentBarItem extends BASE<SegmentBarItemProps, any> {
   }
 }
 
-type Item = {
+interface Item {
   title: string,
   count: number
 }
@@ -76,9 +75,10 @@ export default class SegmentBar extends BASE<SegmentBarProps, { selectedIndex?: 
     )
   }
 
-  itemClick = (e: React.MouseEvent, index: number) => {
+  itemClick = (e: React.MouseEvent) => {
     e.preventDefault()
-    console.log(index)
+    console.log(e.currentTarget.getAttribute('data-index'))
+    let index = parseInt(e.currentTarget.getAttribute('data-index'))
     this.setState({
       selectedIndex: index
     })
