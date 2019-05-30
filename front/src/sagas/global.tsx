@@ -16,7 +16,7 @@ export function* user(action: GET_user_action) {
 }
 
 export function* profile(action: GET_Profile_action) {
-  let data = yield call(get, API.profile + `/${action.id}`)
+  let data = yield call(get, `${API.users}/${action.id}/profile`)
   if (data) {
     // yield put({ type: SET_MESSAGE, msgContent: '注册成功!', msgType: 1 } as SET_msg_Action);
     let user = data.user as User

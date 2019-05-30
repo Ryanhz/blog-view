@@ -22,7 +22,7 @@ import {
   RouteComponentProps
 } from 'react-router-dom'
 
-import { Post_cardable } from "@Types/index";
+import { Post } from "@Types/index";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
@@ -33,12 +33,12 @@ import { User } from "@Types/index";
 import { zy_log } from "@Units/index";
 
 interface HomeProps extends RouteComponentProps {
-  postList: Post_cardable[],
+  postList: Post[],
   user: User
   total: number
 }
 
-class Home extends BASE<HomeProps, {list:Post_cardable[], username: string}> {
+class Home extends BASE<HomeProps, { list: Post[], username: string }> {
 
   constructor(prop: HomeProps) {
     super(prop)
@@ -59,18 +59,18 @@ class Home extends BASE<HomeProps, {list:Post_cardable[], username: string}> {
     })
   }
   render() {
-    const {list, username} = this.state
+    const { list, username } = this.state
     return (
-    <div className={styles.container}>
-      <div className={styles.listTable}>
-        {list.map(item => {
-          return <PostCard key={item.id} {...item} username={username} />
-        })}
-      </div>
-      <footer className={styles.footer}>
-        <PageControl></PageControl>
-      </footer>
-    </div>)
+      <div className={styles.container}>
+        <div className={styles.listTable}>
+          {list.map(item => {
+            return <PostCard key={item.id} {...item} username={username} />
+          })}
+        </div>
+        <footer className={styles.footer}>
+          <PageControl></PageControl>
+        </footer>
+      </div>)
   }
 }
 
@@ -88,7 +88,7 @@ function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
   return {
     clear_msg: bindActionCreators(GlobalFunc.clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),
-    get_list: bindActionCreators(frontFunc.get_post_list, dispatch)
+    get_list: bindActionCreators(frontFunc.get_posts, dispatch)
   }
 }
 

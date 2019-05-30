@@ -12,11 +12,11 @@ export function* watchMainInfo() {
 }
 
 export function* watchPostList() {
-  yield takeLatest(FrontActionTypes.GET_POST_LIST, hander)
+  yield takeLatest(FrontActionTypes.GET_POSTS, hander)
 }
 
 export function* watchPostDetails() {
-  yield takeLatest(FrontActionTypes.GET_POST_DETAIL, hander)
+  yield takeLatest(FrontActionTypes.GET_POST, hander)
 }
 
 export function* watchCategoryIndex() {
@@ -29,4 +29,13 @@ export function* watchCategoryList() {
 
 export function* watchCategoryPosts() {
   yield takeLatest(FrontActionTypes.GET_CATEGORY_POSTS, hander)
+}
+
+
+export function* watchTags() {
+  yield takeLatest(FrontActionTypes.GET_TAGS, hander)
+}
+
+export function* watchTagPosts() {
+  yield takeLatest(FrontActionTypes.GET_TAG_POSTS, hander)
 }

@@ -1,11 +1,13 @@
 import * as React from 'react';
+import * as styles from "./index.scss";
 import BASE from "../../components/base";
 import { RouteComponentProps } from "react-router-dom";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
-import * as GlobalFunc from '@Redux/actions/global'
-import {  BaseState } from "@Redux/types";
+import * as GlobalAction from '@Redux/actions/global'
+import * as FrontAction from '@Redux/actions/front'
+import { BaseState } from "@Redux/types";
 import { User } from "@Types/index";
 class Archives extends BASE<any, any> {
   render() {
@@ -20,15 +22,15 @@ function mapStateToProps({ globalState }: BaseState) {
   return {
     notification: globalState.msg,
     isFetching: globalState.isFetching,
-    user: globalState.user,
+    user: globalState,
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
+function mapDispatchToProps(dispatch: Dispatch<GlobalAction.Global_Action | FrontAction.RequsetAction>) {
   return {
     // clear_msg: bindActionCreators(clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),
-    // get_user: bindActionCreators(get_user_info, dispatch)
+    get_posts: bindActionCreators(FrontAction.get_posts, dispatch)
   }
 }
 

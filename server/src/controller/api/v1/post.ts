@@ -47,7 +47,7 @@ export default class Post {
     let posts = await Post._posts(options)
     let targetPost = posts.shift()
     if (targetPost) {
-      ctx.success()
+      ctx.success(targetPost)
     } else {
       throw new APIError("posts:post_not_found", "post not found by id")
     }

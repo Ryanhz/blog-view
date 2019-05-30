@@ -1,15 +1,15 @@
 
-export const GET_POST_LIST = "GET_POST_LIST";
-export type GET_POST_LIST = typeof GET_POST_LIST;
+export const GET_POSTS = "GET_POSTS";
+export type GET_POSTS = typeof GET_POSTS;
 
-export const RESPONSE_POST_LIST = "RESPONSE_POST_LIST";
-export type RESPONSE_POST_LIST = typeof RESPONSE_POST_LIST;
+export const RESPONSE_POSTS = "RESPONSE_POSTS";
+export type RESPONSE_POSTS = typeof RESPONSE_POSTS;
 
-export const GET_POST_DETAIL = "GET_POST_DETAIL";
-export type GET_POST_DETAIL = typeof GET_POST_DETAIL;
+export const GET_POST = "GET_POST";
+export type GET_POST = typeof GET_POST;
 
-export const RESPONSE_POST_DETAIL = "RESPONSE_POST_DETAIL";
-export type RESPONSE_POST_DETAIL = typeof RESPONSE_POST_DETAIL;
+export const RESPONSE_POST = "RESPONSE_POST";
+export type RESPONSE_POST = typeof RESPONSE_POST;
 
 
 export const GET_CATEGORY = "GET_CATEGORY";
@@ -31,3 +31,18 @@ export type GET_CATEGORY_INDEX = typeof GET_CATEGORY_INDEX;
 
 export const RESPONSE_CATEGORY_INDEX = "RESPONSE_CATEGORY_INDEX";
 export type RESPONSE_CATEGORY_INDEX = typeof RESPONSE_CATEGORY_INDEX;
+
+
+export const GET_TAGS = "GET_TAGS";
+export type GET_TAGS = typeof GET_TAGS;
+
+export const RESPONSE_TAGS = "RESPONSE_TAGS";
+export type RESPONSE_TAGS = typeof RESPONSE_TAGS;
+
+
+export const GET_TAG_POSTS = "GET_TAG_POSTS";
+export type GET_TAG_POSTS = typeof GET_TAG_POSTS;
+
+export const RESPONSE_TAG_POSTS = "RESPONSE_TAG_POSTS";
+export type RESPONSE_TAG_POSTS = typeof RESPONSE_TAG_POSTS;
+

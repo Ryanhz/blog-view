@@ -15,7 +15,9 @@ import Categories from "../categories";
 import Private from "../private";
 import Detail from './../Detail'
 import NotFound from '../NotFound'
+import Tag_Posts from "../tags/posts"
 import Mine from "@Components/aside-mine";
+
 import * as styles from "./index.scss"
 import Menu from "@Components/memu"
 import { zy_log } from "@Units/index";
@@ -36,6 +38,7 @@ export default class Front extends BASE<RouteComponentProps, any> {
             < Route exact path={`/archives`} component={Archives} />
             < Route exact path={`/categories`} component={Categories} />
             < Route exact path={`/tags`} component={Tags} />
+            <Route exact path={`/tags/:tagName/posts`} component={Tag_Posts} />
             < Route exact path={`/about`} component={About} />
             < Route exact path={`/private`} component={Private} />
             < Route exact path={`/search`} component={Search} />

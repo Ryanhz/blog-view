@@ -1,30 +1,29 @@
-import Router from "koa-router";
 import ZYResponse, { ZYContext, Next } from 'koa-response'
 
 import { Tables } from "../../../models";
 import Post from "./post";
 
-export default class Category {
+export default class Tag {
 
-  static async _cactegoryList(userid: number, fields?: string) {
+  private static async _tags(userid: number, fields?: string) {
 
-    let CategoryT = Tables.Category
+    let TagT = Tables.Tag
     let options = {
       where: {
         user_id: userid
       }
     }
     fields && (options['attributes'] = fields.split(','));
-    let cactegoryList = await CategoryT.findAll(options)
+    let cactegoryList = await TagT.findAll(options)
     return cactegoryList
   }
 
-  static async _posts(categoryid: number, postfields?: string) {
-    let Post_categoryT = Tables.Post_category
-    let post_ids = (await Post_categoryT.findAll({
+  private static async _posts(tagid: number, postfields?: string) {
+    let Post_tagT = Tables.Post_tag
+    let post_ids = (await Post_tagT.findAll({
       attributes: ['post_id'],
       where: {
-        category_id: categoryid
+        tag_id: tagid
       }
     })).map(item => item.post_id)
 
@@ -38,37 +37,20 @@ export default class Category {
     return posts
   }
 
-  static async index(ctx: ZYContext, next: ZYResponse.Next) {
-    let userid = ctx.params['uid']
-
-    let cactegoryList = await Category._cactegoryList(userid, 'name,id,alias')
-
-    let list = []
-
-    for (const cactegory of cactegoryList) {
-      let posts = await Category._posts(cactegory.id)
-      list.push({
-        cactegory,
-        posts
-      })
-    }
-    ctx.success(list)
-  }
-
   //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
   static async get(ctx: ZYContext, next: ZYResponse.Next) {
     let userid = ctx.params['uid']
     let fields = ctx.query.fields
-    let cactegoryList = await Category._cactegoryList(userid, fields)
+    let cactegoryList = await Tag._tags(userid, fields)
     ctx.success(cactegoryList)
   }
 
   //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
   static async posts(ctx: ZYContext, next: Next) {
     console.log(ctx.querystring)
-    let cid = ctx.params.cid
+    let tid = ctx.params.tid
     let fields = ctx.query.fields
-    let posts = await Category._posts(cid, fields)
+    let posts = await Tag._posts(tid, fields)
     ctx.success(posts)
   }
 }

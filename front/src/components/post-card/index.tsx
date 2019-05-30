@@ -19,22 +19,22 @@ import * as React from "react";
 import * as styles from "./index.scss";
 import wn from "@Assets/wn.png";
 import MarkDown from "@Components/markDown";
-import { Post_cardable } from "@Types/index";
+import { Post } from "@Types/index";
 import {
   Link,
 } from 'react-router-dom'
 
-export default class PostCard extends React.Component<Post_cardable & { username: string }, any> {
+export default class PostCard extends React.Component<Post & { username: string }, any> {
   render() {
     const { id, title, digest, created, createdAt, cover, username } = this.props
     return (
       <section className={styles.container}>
         {cover && <figure>
-          <Link to={`/posts/${id}`}>
+          <Link to={{ pathname: `/posts/${title}`, state: { id: id } }}>
             <img className={styles.cover} src={cover} />
           </Link>
         </figure>}
-        <Link className={styles.title} to={`/posts/${id}`}>{title}</Link>
+        <Link className={styles.title} to={{ pathname: `/posts/${title}`, state: { id: id } }}>{title}</Link>
         <article >
           <MarkDown content={digest} />
         </article>

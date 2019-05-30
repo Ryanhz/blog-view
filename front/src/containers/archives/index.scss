@@ -1,0 +1,26 @@
+@import '@Style/base.scss';
+
+.container {
+    @extend .rightMain;
+    
+    padding: 0 0.15rem;
+    margin: .2rem auto;
+  
+    .content {
+      @extend .radius;
+      padding: .2rem;
+      background-color: white;
+
+      .tagContent{
+        display: inline-flex;
+        flex-wrap:wrap;
+      }
+      .tag {
+        display: block;
+        @include radius-to(0.03rem);
+        margin: .1rem;
+        padding: 0.05rem 0.1rem;
+        background-color: rgba(96,125,139,.05)
+      }
+    }
+  }

@@ -8,7 +8,7 @@
  */
 import * as React from "react";
 import * as styles from "./index.scss";
-import { Post_cardable } from "@Types/index";
+import { Post } from "@Types/index";
 import BASE from "@Components/base";
 import {
   Link,
@@ -39,8 +39,12 @@ export class SegmentBarItem extends BASE<SegmentBarItemProps, any> {
 }
 
 interface Item {
-  title: string,
-  count: number
+
+  //id: number // category.id,
+  title: string//category.name,
+  //alias: string//category.alias,
+  count: number//c_post.posts.length,
+  selected: boolean//selected
 }
 
 interface SegmentBarProps {
@@ -67,7 +71,7 @@ export default class SegmentBar extends BASE<SegmentBarProps, { selectedIndex?: 
             key={index}
             index={index}
             count={item.count}
-            selected={index == (selectedIndex || 0)}
+            selected={item.selected}
             onClick={this.itemClick}
           />
         })}

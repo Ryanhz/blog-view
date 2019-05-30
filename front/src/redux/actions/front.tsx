@@ -1,29 +1,29 @@
 import * as Front from '../constants/front';
-import { Post_cardable, Post_Details, Category_posts, Category } from "@Types/index";
+import { Post, Category_posts, Category, Tag } from "@Types/index";
 
-export interface GET_list_Action {
-  type: Front.GET_POST_LIST;
+export interface GET_Posts_Action {
+  type: Front.GET_POSTS;
   userId: number
   query?: any
 }
 
-export interface Response_list_Action {
-  type: Front.RESPONSE_POST_LIST;
+export interface Response_Posts_Action {
+  type: Front.RESPONSE_POSTS;
   data: {
-    list: Post_cardable[]
+    list: Post[]
     pageNum: number
     total: number
   }
 }
 
-export interface GET_detail_Action {
-  type: Front.GET_POST_DETAIL
+export interface GET_Post_Action {
+  type: Front.GET_POST
   pid: number
 }
 
-export interface Response_Post_detail_Action {
-  type: Front.RESPONSE_POST_DETAIL;
-  data: Post_Details
+export interface Response_Post_Action {
+  type: Front.RESPONSE_POST;
+  data: Post
 }
 
 export interface GET_Category_Action {
@@ -39,7 +39,6 @@ export interface Response_Category_Action {
 
 export interface GET_Category_Posts_Action {
   type: Front.GET_CATEGORY_POSTS
-  userid: number
   cid: number
 }
 
@@ -60,20 +59,44 @@ export interface Response_Category_Index_Action {
   categories: Category[]
 }
 
-export type RequsetAction = GET_list_Action | GET_detail_Action | GET_Category_Action | GET_Category_Posts_Action | GET_Category_Index_Action
-export type ResponseAction = Response_list_Action | Response_Post_detail_Action | Response_Category_Action | Response_Category_Posts_Action | Response_Category_Index_Action
+//------------tags
+export interface GET_Tags_Action {
+  type: Front.GET_TAGS
+  userid: number
+  query: any
+}
 
-export function get_post_list(userId: number, query: any = null): GET_list_Action {
+export interface Response_Tags_Action {
+  type: Front.RESPONSE_TAGS
+  tags: Tag[]
+}
+
+export interface GET_Tag_Posts_Action {
+  type: Front.GET_TAG_POSTS
+  tid: number
+}
+
+export interface Response_Tag_Posts_Action {
+  type: Front.RESPONSE_TAG_POSTS
+  posts: Post[]
+}
+
+export type RequsetAction = GET_Posts_Action | GET_Post_Action | GET_Category_Action | GET_Category_Posts_Action | GET_Category_Index_Action | GET_Tags_Action | GET_Tag_Posts_Action
+export type ResponseAction = Response_Posts_Action | Response_Post_Action | Response_Category_Action | Response_Category_Posts_Action | Response_Category_Index_Action | Response_Tags_Action | Response_Tag_Posts_Action
+
+export type FrontAction = RequsetAction | ResponseAction
+
+export function get_posts(userId: number, query: any = null): GET_Posts_Action {
   return {
-    type: Front.GET_POST_LIST,
+    type: Front.GET_POSTS,
     userId,
     query
   }
 }
 
-export function get_post_detail(pid: number): GET_detail_Action {
+export function get_post(pid: number): GET_Post_Action {
   return {
-    type: Front.GET_POST_DETAIL,
+    type: Front.GET_POST,
     pid
   }
 }
@@ -86,10 +109,9 @@ export function get_category(userid: number, query: any = null): GET_Category_Ac
   }
 }
 
-export function get_category_posts(userid: number, cid: number): GET_Category_Posts_Action {
+export function get_category_posts(cid: number): GET_Category_Posts_Action {
   return {
     type: Front.GET_CATEGORY_POSTS,
-    userid,
     cid
   }
 }
@@ -102,10 +124,29 @@ export function get_category_index(userid: number, query: any = null): GET_Categ
   }
 }
 
-export const Request = {
-  get_post_list,
-  get_post_detail,
-  get_category,
-  get_category_posts,
-  get_category_index
+
+export function get_tags(userid: number, query: any = null): GET_Tags_Action {
+  return {
+    type: Front.GET_TAGS,
+    userid,
+    query
+  }
 }
+
+export function get_tag_posts(tid: number): GET_Tag_Posts_Action {
+  return {
+    type: Front.GET_TAG_POSTS,
+    tid
+  }
+}
+
+
+// export const Request = {
+//   get_post_list,
+//   get_post_detail,
+//   get_category,
+//   get_category_posts,
+//   get_category_index,
+//   get_tags,
+//   get_tags_posts
+// }

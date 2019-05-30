@@ -1,0 +1,20 @@
+@import '@Style/base.scss';
+.container{
+  position: relative;
+
+  .row{
+    color: $gray-text;
+    &:before{
+      content: "-";
+      font-size: .08rem;
+      opacity: .63;
+      transform: translateY(-50%);
+    }
+
+    .title{
+      @extend .h5;
+      font-weight: bold;
+      color: $black-text;
+    }
+  }
+}

@@ -51,8 +51,6 @@ export interface User_auth_Action {
 }
 
 //
-
-
 export interface FETCH_Action {
   type: Global.FETCH_START | Global.FETCH_END;
 }

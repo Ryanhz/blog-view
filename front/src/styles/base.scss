@@ -26,6 +26,10 @@ $breakpoints: (
   'x-lg': 'only screen and ( max-width: 1200px)',
 ) !default;
 
+@mixin radius-to($radius) {
+  border-radius: $radius;
+}
+
 @mixin respond-to($breakpoint) {
   $query: map-get($breakpoints, $breakpoint);
   
@@ -73,9 +77,6 @@ $breakpoints: (
 }
 
 .radius{
-  border-radius: 0.08rem;
-  -webkit-border-radius: 0.08rem;
-  -moz-border-radius: 0.08rem;
-  -ms-border-radius: 0.08rem;
-  -o-border-radius: 0.08rem;
+  @include radius-to(0.08rem);
+
 }

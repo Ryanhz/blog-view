@@ -1,5 +1,3 @@
-import { Post } from "@Redux/types";
-
 /*
 * Filename: /Users/hzf/Documents/hzy-private/blog-view/src/types/index.tsx
 * Path: /Users/hzf/Documents/hzy-private/blog-view
@@ -8,31 +6,18 @@ import { Post } from "@Redux/types";
 * 
 * Copyright (c) 2019 Your Company
 */
-export interface Post_cardable {
+
+export interface Post {
   id: number
-  user_id: number
+  user_id?: number
   cover?: string
   title: string
-  digest: string
-  created: string
-  updatedAt: string
-  createdAt: string
+  digest?: string
+  updatedAt?: string
+  createdAt?: string
+  content?: string
   [propName: string]: any
 }
-
-export interface Post_Details {
-  id: number
-  user_id: number
-  cover?: string
-  title: string
-  digest: string
-  created: string
-  updatedAt: string
-  createdAt: string
-  content: string
-  [propName: string]: any
-}
-
 
 export interface User {
   sex: string,
@@ -67,6 +52,18 @@ export interface Category {
 }
 
 export interface Category_posts {
+  categoryid: number
+  posts: Post[]
+}
+
+export interface Tag {
+  name: string
+  id: number
+  alias: string
+  [propName: string]: any
+}
+
+export interface Tag_posts {
   categoryid: number
   posts: Post[]
 }

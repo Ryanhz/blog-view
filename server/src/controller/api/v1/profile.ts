@@ -9,7 +9,7 @@ export default class Profile {
     console.log(ctx.request);
     console.log(JSON.stringify(ctx.params))
     console.log(`---------`);
-    let userid = ctx.params["id"] || 5000
+    let userid = ctx.params["uid"] || 5000
     let UserT = Tables.User
 
     let SocialT = Tables.Social
@@ -173,7 +173,25 @@ export default class Profile {
       alias: "nodejs",
       des: "Node.js 就是运行在服务端的 JavaScript。"
     }).save()
-    return [ts_tag, js_tag, node_tag]
+
+    let ts_tag2 = await new TagT({
+      name: "TypeScript2",
+      alias: "ts",
+      des: "TypeScript...."
+    }).save()
+
+    let js_tag2 = await new TagT({
+      name: "JavaScript2",
+      alias: "js",
+      des: "JavaScript...."
+    }).save()
+
+    let node_tag2 = await new TagT({
+      name: "Node.js2",
+      alias: "nodejs",
+      des: "Node.js 就是运行在服务端的 JavaScript。"
+    }).save()
+    return [ts_tag, js_tag, node_tag, ts_tag2, js_tag2, node_tag2]
   }
 
   static async createCategorys() {

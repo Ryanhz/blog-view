@@ -12,7 +12,7 @@ import Post from './post';
 import User from "./user";
 import Profile from "./profile";
 import Category from "./category";
-
+import Tag from "./tag";
 
 const router = new Router();
 
@@ -21,8 +21,8 @@ router.get("/users", User.get)
 router.get("/users/:uid", User.one)
 router.post("/users", User.post)
 
+router.get("/users/:uid/profile/", Profile.get);
 router.get("/profile", Profile.get);
-router.get("/profile/:id", Profile.get);
 
 router.get("/users/:uid/posts", Post.get)
 router.get("/posts/:pid", Post.one)
@@ -31,6 +31,8 @@ router.get("/categories/:uid", Category.index)
 router.get("/users/:uid/categories", Category.get)
 router.get("/categories/:cid/posts", Category.posts)
 
+router.get("/users/:uid/tags", Tag.get)
+router.get("/tags/:tid/posts", Tag.posts)
 
 
 // router.use('/category', Category)

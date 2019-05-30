@@ -10,20 +10,21 @@ import * as frontFunc from '@Redux/actions/front'
 import { BaseState } from "@Redux/types";
 import { User } from "@Types/index";
 import { zy_log } from "@Units/index";
-import { Post_Details } from "@Types/index";
+import { Post } from "@Types/index";
 import MarkDown from "@Components/markDown";
 
 interface DetailProps {
-  postDetail?: Post_Details,
+  postDetail?: Post,
   user: User,
   get_details: (id: number) => void
 }
 
-class Detail extends BASE<DetailProps & RouteComponentProps, any> {
+class Detail extends BASE<DetailProps & RouteComponentProps<{ postTitle: string }, any, { id: number }>, any> {
   constructor(props: any) {
     super(props)
+    const { location } = this.props
     this.state = {
-      id: (this.props.match.params as any).id,
+      id: location.state && location.state.id,
       userid: this.props.user.id,
       postDetail: this.props.postDetail
     }
@@ -71,7 +72,7 @@ function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
   return {
     clear_msg: bindActionCreators(GlobalFunc.clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),
-    get_details: bindActionCreators(frontFunc.get_post_detail, dispatch)
+    get_details: bindActionCreators(frontFunc.get_post, dispatch)
   }
 }
 
