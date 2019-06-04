@@ -4,14 +4,10 @@ import index from "./web"
 
 import api from "./api";
 
-import music from "./music";
-
 const router = new Router();
 
-router.use("/api", api.routes());
+router.use("", api.routes());
 
-router.use("/music", music.routes());
-
-router.use("", index.routes());
+router.use("/doc", index.routes());
 
 export default router;
