@@ -1,5 +1,13 @@
-export const serverHost = "http://localhost:8001"
-export const baseURL = serverHost + "/api/v1"
+export const serverHost = host()
+export const baseURL = serverHost + "/v1"
+
+function host() {
+  if (process.env.NODE_ENV == 'production') {
+    return 'http://api.enight.club'
+  } else {
+    return "http://localhost:8001"
+  }
+}
 
 const profile = '/profile'
 const users = '/users'

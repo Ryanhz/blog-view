@@ -2,13 +2,19 @@ import * as React from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import * as GlobalFunc from '@Redux/actions/global'
 import { BaseState } from "@Redux/types";
 import { User } from "@Types/index";
 
 import Front from './Front';
 import NotFound from './NotFound';
+// let Router: any;
+// if (process.env.NODE_ENV == 'production') {
+//   Router = BrowserRouter
+// } else {
+//   Router = HashRouter
+// }
 
 const { clear_msg, user_auth, get_user } = GlobalFunc;
 
