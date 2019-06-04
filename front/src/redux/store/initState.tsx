@@ -8,7 +8,7 @@ export let globalState: Global = {
   },
   user: {
     sex: "",
-    id: 0,
+    id: 5000,
     name: "",
     nickName: "",
     leve: "",

@@ -36,8 +36,8 @@ class Tags extends BASE<TagsProps & RouteComponentProps, any> {
             return < Link className={styles.tag}
               key={item.id}
               to={{
-                pathname: `/tags/${item.name}/posts`,
-                state: { tid: item.id }
+                pathname: `/tags/${item.id}/posts`,
+                state: { tname: item.name }
               }}
             ># {item.name}</Link>
           })}

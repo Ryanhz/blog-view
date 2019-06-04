@@ -34,7 +34,7 @@ export default class PostCard extends React.Component<Post & { username: string 
             <img className={styles.cover} src={cover} />
           </Link>
         </figure>}
-        <Link className={styles.title} to={{ pathname: `/posts/${title}`, state: { id: id } }}>{title}</Link>
+        <Link className={styles.title} to={{ pathname: `/posts/${id}`, state: { title: title } }}>{title}</Link>
         <article >
           <MarkDown content={digest} />
         </article>

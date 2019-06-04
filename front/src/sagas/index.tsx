@@ -15,6 +15,7 @@ export default function* rootSaga() {
     watchs.watchCategoryIndex(),
     watchs.watchTags(),
     watchs.watchTagPosts(),
+    watchs.watchTag()
   ])
   // yield loginFlow();
   // yield fork(registerFlow);

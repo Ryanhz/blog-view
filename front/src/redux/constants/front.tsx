@@ -11,7 +11,6 @@ export type GET_POST = typeof GET_POST;
 export const RESPONSE_POST = "RESPONSE_POST";
 export type RESPONSE_POST = typeof RESPONSE_POST;
 
-
 export const GET_CATEGORY = "GET_CATEGORY";
 export type GET_CATEGORY = typeof GET_CATEGORY;
 
@@ -32,6 +31,12 @@ export type GET_CATEGORY_INDEX = typeof GET_CATEGORY_INDEX;
 export const RESPONSE_CATEGORY_INDEX = "RESPONSE_CATEGORY_INDEX";
 export type RESPONSE_CATEGORY_INDEX = typeof RESPONSE_CATEGORY_INDEX;
 
+
+export const GET_TAG = "GET_TAG";
+export type GET_TAG = typeof GET_TAG;
+
+export const RESPONSE_TAG = "RESPONSE_TAG";
+export type RESPONSE_TAG = typeof RESPONSE_TAG;
 
 export const GET_TAGS = "GET_TAGS";
 export type GET_TAGS = typeof GET_TAGS;

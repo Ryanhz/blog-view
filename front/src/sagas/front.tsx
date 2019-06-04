@@ -11,6 +11,7 @@ import {
   GET_Category_Posts_Action, Response_Category_Posts_Action, GET_Category_Index_Action, Response_Category_Index_Action
   , GET_Tag_Posts_Action, Response_Tag_Posts_Action,
   GET_Tags_Action, Response_Tags_Action,
+  GET_Tag_Action, Response_Tag_Action
 } from "@Redux/actions/front";
 
 import { SET_msg_Action, FETCH_Action } from "@Redux/actions/global";
@@ -65,6 +66,13 @@ export function* category_index(action: GET_Category_Index_Action) {
 }
 
 //=========================tag
+
+export function* tag(action: GET_Tag_Action) {
+  let data: Tag = yield call(get, `${API.tags}/${action.tid}`, action.query);
+  if (data) {
+    yield put({ type: FrontActionTypes.RESPONSE_TAG, tag: data } as Response_Tag_Action);
+  }
+}
 
 export function* tags(action: GET_Tags_Action) {
   let data: Tag[] = yield call(get, `${API.users}/${action.userid}${API.tags}`, action.query);

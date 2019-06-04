@@ -18,6 +18,19 @@ export default class Tag {
     return cactegoryList
   }
 
+  private static async _tag(tid: number, fields?: string) {
+
+    let TagT = Tables.Tag
+    let options = {
+      where: {
+        id: tid
+      }
+    }
+    fields && (options['attributes'] = fields.split(','));
+    let tag = await TagT.findOne(options)
+    return tag
+  }
+
   private static async _posts(tagid: number, postfields?: string) {
     let Post_tagT = Tables.Post_tag
     let post_ids = (await Post_tagT.findAll({
@@ -38,10 +51,18 @@ export default class Tag {
   }
 
   //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
-  static async get(ctx: ZYContext, next: ZYResponse.Next) {
+  static async tags(ctx: ZYContext, next: ZYResponse.Next) {
     let userid = ctx.params['uid']
     let fields = ctx.query.fields
     let cactegoryList = await Tag._tags(userid, fields)
+    ctx.success(cactegoryList)
+  }
+
+   //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
+   static async tag(ctx: ZYContext, next: ZYResponse.Next) {
+    let userid = ctx.params['tid']
+    let fields = ctx.query.fields
+    let cactegoryList = await Tag._tag(userid, fields)
     ctx.success(cactegoryList)
   }
 

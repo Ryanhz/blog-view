@@ -19,12 +19,18 @@ interface DetailProps {
   get_details: (id: number) => void
 }
 
-class Detail extends BASE<DetailProps & RouteComponentProps<{ postTitle: string }, any, { id: number }>, any> {
+interface DetailState {
+  pid?: number,
+  userid: number,
+  postDetail: Post
+}
+
+class Detail extends BASE<DetailProps & RouteComponentProps<{ pid: string }, any, { title: string }>, DetailState> {
   constructor(props: any) {
     super(props)
-    const { location } = this.props
+    const { location, match } = this.props
     this.state = {
-      id: location.state && location.state.id,
+      pid: parseInt(match.params && match.params.pid),
       userid: this.props.user.id,
       postDetail: this.props.postDetail
     }
@@ -33,7 +39,7 @@ class Detail extends BASE<DetailProps & RouteComponentProps<{ postTitle: string 
     // console.log(this.props.match);
   }
   componentWillMount() {
-    this.props.get_details(this.state.id)
+    this.state.pid&&this.props.get_details(this.state.pid)
   }
 
 

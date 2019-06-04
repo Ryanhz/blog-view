@@ -31,7 +31,9 @@ router.get("/categories/:uid", Category.index)
 router.get("/users/:uid/categories", Category.get)
 router.get("/categories/:cid/posts", Category.posts)
 
-router.get("/users/:uid/tags", Tag.get)
+
+router.get("/tags/:tid", Tag.tag)
+router.get("/users/:uid/tags", Tag.tags)
 router.get("/tags/:tid/posts", Tag.posts)
 
 

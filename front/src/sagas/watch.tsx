@@ -31,6 +31,9 @@ export function* watchCategoryPosts() {
   yield takeLatest(FrontActionTypes.GET_CATEGORY_POSTS, hander)
 }
 
+export function* watchTag() {
+  yield takeLatest(FrontActionTypes.GET_TAG, hander)
+}
 
 export function* watchTags() {
   yield takeLatest(FrontActionTypes.GET_TAGS, hander)

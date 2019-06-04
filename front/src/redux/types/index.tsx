@@ -23,7 +23,8 @@ export interface Front {
   postList: Post[],
   postDetail?: Post,
   pageNum: number,
-  total: number
+  total: number,
+  tag?:Tag
 }
 
 export interface BaseState {

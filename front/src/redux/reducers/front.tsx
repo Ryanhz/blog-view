@@ -15,6 +15,8 @@ export function front(state: Front = frontState, action: ResponseAction) {
       return { ...state, tags: action.tags }
     case Types.RESPONSE_TAG_POSTS:
       return { ...state, tag_posts: action.posts }
+      case Types.RESPONSE_TAG:
+        return {...state, tag:action.tag}
     default:
       return state;
   }

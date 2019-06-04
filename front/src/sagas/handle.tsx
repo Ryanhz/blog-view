@@ -20,6 +20,7 @@ function sagasActionMap() {
   map.set(FrontConstants.GET_CATEGORY_INDEX, FrontHander.category_index)
   map.set(FrontConstants.GET_TAGS, FrontHander.tags)
   map.set(FrontConstants.GET_TAG_POSTS, FrontHander.tag_posts)
+  map.set(FrontConstants.GET_TAG, FrontHander.tag)
   return map
 }
 let map = sagasActionMap()

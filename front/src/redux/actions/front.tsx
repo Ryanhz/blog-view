@@ -60,6 +60,17 @@ export interface Response_Category_Index_Action {
 }
 
 //------------tags
+export interface GET_Tag_Action {
+  type: Front.GET_TAG
+  tid: number
+  query: any
+}
+
+export interface Response_Tag_Action {
+  type: Front.RESPONSE_TAG
+  tag: Tag
+}
+
 export interface GET_Tags_Action {
   type: Front.GET_TAGS
   userid: number
@@ -81,8 +92,8 @@ export interface Response_Tag_Posts_Action {
   posts: Post[]
 }
 
-export type RequsetAction = GET_Posts_Action | GET_Post_Action | GET_Category_Action | GET_Category_Posts_Action | GET_Category_Index_Action | GET_Tags_Action | GET_Tag_Posts_Action
-export type ResponseAction = Response_Posts_Action | Response_Post_Action | Response_Category_Action | Response_Category_Posts_Action | Response_Category_Index_Action | Response_Tags_Action | Response_Tag_Posts_Action
+export type RequsetAction = GET_Tag_Action|GET_Posts_Action | GET_Post_Action | GET_Category_Action | GET_Category_Posts_Action | GET_Category_Index_Action | GET_Tags_Action | GET_Tag_Posts_Action
+export type ResponseAction = Response_Tag_Action|Response_Posts_Action | Response_Post_Action | Response_Category_Action | Response_Category_Posts_Action | Response_Category_Index_Action | Response_Tags_Action | Response_Tag_Posts_Action
 
 export type FrontAction = RequsetAction | ResponseAction
 
@@ -124,6 +135,13 @@ export function get_category_index(userid: number, query: any = null): GET_Categ
   }
 }
 
+export function get_tag(tid: number, query: any = null): GET_Tag_Action {
+  return {
+    type: Front.GET_TAG,
+    tid,
+    query
+  }
+}
 
 export function get_tags(userid: number, query: any = null): GET_Tags_Action {
   return {

@@ -11,7 +11,7 @@ export class Post_Row extends BASE<{ date: string, title: string, postid: number
     const { date, title, postid } = this.props
     return (
       <div className={styles.container}>
-        <Link className={styles.row} to={{ pathname: `/posts/${title}`, state: { id: postid } }}>
+        <Link className={styles.row} to={{ pathname: `/posts/${postid}`, state: { title:  title} }}>
           {"  " + date + "  "}
           <span className={styles.title}>{title}</span>
         </Link>

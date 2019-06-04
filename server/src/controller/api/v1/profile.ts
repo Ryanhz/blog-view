@@ -148,7 +148,7 @@ export default class Profile {
       name: "email",
       alias: "email",
       icon: "fa  fa-envelope",
-      link: "1810022686@qq.com",
+      link: "mailto:1810022686@qq.com",
       des: ""
     }).save()
     return [git, email]
