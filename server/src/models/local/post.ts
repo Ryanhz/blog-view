@@ -15,7 +15,8 @@ import Post_category from "./post_category";
 @Table({
   timestamps: true,
   paranoid: true,
-  comment: "博客文章表"
+  comment: "博客文章表",
+  indexes:[{index:"SPATIAL",fields:["title"]}]
 })
 export default class Post extends Base<Post> {
 

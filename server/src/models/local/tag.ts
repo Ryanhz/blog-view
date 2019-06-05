@@ -13,7 +13,8 @@ import User from "./user";
 
 import Post_tag from "./post_tag";
 @Table({
-  comment: "文章标签表"
+  comment: "文章标签表",
+  indexes:[{index:"SPATIAL",fields:["name"]}]
 })
 export default class Tag extends Base<Tag> {
 

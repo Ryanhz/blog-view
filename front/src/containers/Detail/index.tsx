@@ -15,23 +15,20 @@ import MarkDown from "@Components/markDown";
 
 interface DetailProps {
   postDetail?: Post,
-  user: User,
-  get_details: (id: number) => void
+  get_details: (key: number|string) => void
 }
 
 interface DetailState {
-  pid?: number,
-  userid: number,
+  title?: string,
   postDetail: Post
 }
 
-class Detail extends BASE<DetailProps & RouteComponentProps<{ pid: string }, any, { title: string }>, DetailState> {
+class Detail extends BASE<DetailProps & RouteComponentProps<{ title: string }, any, { pid: string }>, DetailState> {
   constructor(props: any) {
     super(props)
     const { location, match } = this.props
     this.state = {
-      pid: parseInt(match.params && match.params.pid),
-      userid: this.props.user.id,
+      title: match.params && match.params.title,
       postDetail: this.props.postDetail
     }
   }
@@ -39,7 +36,7 @@ class Detail extends BASE<DetailProps & RouteComponentProps<{ pid: string }, any
     // console.log(this.props.match);
   }
   componentWillMount() {
-    this.state.pid&&this.props.get_details(this.state.pid)
+    this.state.title&&this.props.get_details(this.state.title)
   }
 
 
@@ -69,7 +66,6 @@ function mapStateToProps({ frontState, globalState }: BaseState) {
   return {
     notification: globalState.msg,
     isFetching: globalState.isFetching,
-    user: globalState.user,
     postDetail: frontState.postDetail
   }
 }

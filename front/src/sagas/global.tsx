@@ -8,7 +8,7 @@ import { User } from '@Types/index';
 import { initPost } from "./front";
 
 export function* user(action: GET_user_action) {
-  let response = yield call(get, API.users + `/${action.id}`)
+  let response = yield call(get, API.user + `/${action.id}`)
   if (response) {
 
     yield put({ type: globalActionTypes.RESPONSE_USER, data: response } as RESPONSE_user_Action)
@@ -16,7 +16,7 @@ export function* user(action: GET_user_action) {
 }
 
 export function* profile(action: GET_Profile_action) {
-  let data = yield call(get, `${API.users}/${action.id}/profile`)
+  let data = yield call(get, `${API.profile}`)
   if (data) {
     // yield put({ type: SET_MESSAGE, msgContent: '注册成功!', msgType: 1 } as SET_msg_Action);
     let user = data.user as User

@@ -1,5 +1,5 @@
 export const serverHost = host()
-export const baseURL = serverHost + "/v1"
+export const baseURL = serverHost + "/v2"
 
 function host() {
   if (process.env.NODE_ENV == 'production') {
@@ -10,14 +10,14 @@ function host() {
 }
 
 const profile = '/profile'
-const users = '/users'
+const user = '/user'
 const posts = '/posts'
 const categories = '/categories'
 const tags = '/tags'
 
 export const API = {
   profile,
-  users,
+  user,
   posts,
   categories,
   tags

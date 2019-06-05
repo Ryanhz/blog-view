@@ -9,14 +9,15 @@ import {
   HasMany,
   Comment,
   DataType,
-  Default
+  Default,
 } from "sequelize-typescript";
 import Base from './base';
 import Post_category from "./post_category";
 import User from "./user";
 
 @Table({
-  comment: "文章分类表"
+  comment: "文章分类表",
+  indexes:[{index:"SPATIAL",fields:["name"]}]
 })
 export default class Category extends Base<Category> {
 

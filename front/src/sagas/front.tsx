@@ -18,14 +18,14 @@ import { SET_msg_Action, FETCH_Action } from "@Redux/actions/global";
 import { func } from 'prop-types';
 
 export function* postList(action: GET_Posts_Action) {
-  let data = yield call(get, `${API.users}/${action.userId}${API.posts}`, action.query)
+  let data = yield call(get, `${API.posts}`, action.query)
   if (data) {
     yield put({ type: FrontActionTypes.RESPONSE_POSTS, data: data } as Response_Posts_Action);
   }
 }
 
 export function* postDetails(action: GET_Post_Action) {
-  let data = yield call(get, `${API.posts}/${action.pid}`);
+  let data = yield call(get, `${API.posts}/${action.key}`);
   if (data) {
     data.content = decodeURI(data.content)
     yield put({ type: FrontActionTypes.RESPONSE_POST, data: data } as Response_Post_Action);
@@ -39,7 +39,7 @@ export function* initPost(userId: number) {
 
 
 export function* category(action: GET_Category_Action) {
-  let data = yield call(get, `${API.users}/${action.userid}${API.categories}`, action.query);
+  let data = yield call(get, `${API.categories}`, action.query);
   if (data) {
     yield put({ type: FrontActionTypes.RESPONSE_CATEGORY, data: data } as Response_Category_Action);
   }
@@ -55,7 +55,7 @@ export function* category_posts(action: GET_Category_Posts_Action) {
 }
 
 export function* category_index(action: GET_Category_Index_Action) {
-  let data = yield call(get, `${API.categories}/${action.userid}`, action.query);
+  let data = yield call(get, `${API.categories}/page`, action.query);
   if (data) {
     let categories: Category[] = data.map((item: { cactegory: Category, posts: any }) => item.cactegory)
     let posts: Category_posts[] = data.map((item: { cactegory: Category, posts: any }) => {
@@ -75,14 +75,14 @@ export function* tag(action: GET_Tag_Action) {
 }
 
 export function* tags(action: GET_Tags_Action) {
-  let data: Tag[] = yield call(get, `${API.users}/${action.userid}${API.tags}`, action.query);
+  let data: Tag[] = yield call(get, `${API.tags}`, action.query);
   if (data) {
     yield put({ type: FrontActionTypes.RESPONSE_TAGS, tags: data } as Response_Tags_Action);
   }
 }
 
 export function* tag_posts(action: GET_Tag_Posts_Action) {
-  let data: Post[] = yield call(get, `${API.tags}/${action.tid}/posts`);
+  let data: Post[] = yield call(get, `${API.tags}/${action.key}/posts`);
   if (data) {
     yield put({ type: FrontActionTypes.RESPONSE_TAG_POSTS, posts: data } as Response_Tag_Posts_Action);
   }

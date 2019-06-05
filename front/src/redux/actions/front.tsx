@@ -18,7 +18,7 @@ export interface Response_Posts_Action {
 
 export interface GET_Post_Action {
   type: Front.GET_POST
-  pid: number
+  key: number|string
 }
 
 export interface Response_Post_Action {
@@ -84,7 +84,7 @@ export interface Response_Tags_Action {
 
 export interface GET_Tag_Posts_Action {
   type: Front.GET_TAG_POSTS
-  tid: number
+  key: number|string
 }
 
 export interface Response_Tag_Posts_Action {
@@ -105,10 +105,10 @@ export function get_posts(userId: number, query: any = null): GET_Posts_Action {
   }
 }
 
-export function get_post(pid: number): GET_Post_Action {
+export function get_post(key: number|string): GET_Post_Action {
   return {
     type: Front.GET_POST,
-    pid
+    key
   }
 }
 
@@ -151,10 +151,10 @@ export function get_tags(userid: number, query: any = null): GET_Tags_Action {
   }
 }
 
-export function get_tag_posts(tid: number): GET_Tag_Posts_Action {
+export function get_tag_posts(key: number| string): GET_Tag_Posts_Action {
   return {
     type: Front.GET_TAG_POSTS,
-    tid
+    key
   }
 }
 

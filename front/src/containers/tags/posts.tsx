@@ -19,32 +19,25 @@ import { dateStr } from "@Units/index";
 interface TagsProps {
   user: User
   posts?: Post[]
-  tag?: Tag
-  get_posts: (tid: number) => void
+  get_posts: (tname: string) => void
   get_tag:(tid: number)=>void
 }
 
-class Tags_Posts extends BASE<TagsProps & RouteComponentProps<{ tid: string }, any, {tname?: string}>, any> {
+class Tags_Posts extends BASE<TagsProps & RouteComponentProps<{ tname: string }, any, {tid?: string}>, any> {
 
   componentDidMount() {
-    const { user, get_posts, get_tag,match,location} = this.props
-    if (match.params && match.params.tid) {
-      let tid = match.params.tid
-      zy_log(`---------------------------${tid}`)
-      tid && get_posts(parseInt(tid))
-      let name = location.state&&location.state.tname
-      name|| get_tag(parseInt(tid))
+    const { user, get_posts,match,location} = this.props
+    if (match.params && match.params.tname) {
+      let tname = match.params.tname
+      tname && get_posts(tname)
     }
   }
   render() {
-    const { user, posts, match, tag, location} = this.props
-
-    let name = location.state&&location.state.tname
-    name =name||tag&&tag.name
+    const {posts, match} = this.props
 
     return (<div className={styles.container}>
       <div className={styles.content}>
-        <h3>{ name} </h3>
+        <h3>{ match.params && match.params.tname} </h3>
         <div className={styles.tagContent}>
           {posts && posts.map(item => {
             return <Post_Row key={item.id} date={dateStr(item.createdAt)} title={item.title} postid={item.id} />
@@ -62,7 +55,6 @@ function mapStateToProps({ globalState, frontState }: BaseState) {
     isFetching: globalState.isFetching,
     user: globalState.user,
     posts: frontState.tag_posts,
-    tag: frontState.tag
   }
 }
 
