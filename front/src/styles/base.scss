@@ -1,5 +1,7 @@
 $gray-text: #828282;
 $black-text: #41464b;
+$main-color: #607d8b;
+$bg-color:  #f3f6f7;
 
 $h1-font-size: .32rem;
 $h2-font-size: .24rem;
@@ -55,7 +57,7 @@ $breakpoints: (
 
 .hoverActive{ 
   &:hover{
-    color: #607d8b;
+    color: $main-color;
   }
 }
 
@@ -65,7 +67,7 @@ $breakpoints: (
 }
 
 .bg {
-  background-color: #607d8b;
+  background-color: $main-color;
 }
 
 .circle {

@@ -1,12 +1,154 @@
 @import '@Style/base.scss';
 
-.memu{
+$item-width: 0.44rem;
+$item-height: 0.44rem;
+
+@mixin menuAnimal($name,$transforms) {
+ @keyframes #{$name} {
+  0%, 100%, 60%, 75%, 90% {
+    transition-timing-function: cubic-bezier(0.215,.61,.355,1);
+  }
+  @each $i,$val in $transforms {
+    #{$i} {
+      @each $v1,$val2 in $val {
+        #{$v1}:$val2;
+      }
+    }
+  }
+ }
+}
+
+$up-animal:( opacity:0, transform: translate(0,0));
+$up-animal2:( opacity: 1, transform: translate(0,-1.7*$item-height));
+$up-animal3:( opacity: 1, transform: translate(0,-1.3*$item-height));
+$up-animal4:( opacity: 1, transform: translate(0,-1.6*$item-height));
+$up-animal5:( opacity: 1, transform: translate(0,-1.5*$item-height));
+
+$up-transform:(0%: $up-animal,
+60%: $up-animal2,
+75%: $up-animal3,
+90%: $up-animal4,
+100%: $up-animal5,
+);
+
+$left-animal:( opacity: 0, transform: translate(0,0));
+$left-animal2:( opacity: 1, transform: translate(-1.7*$item-width,0));
+$left-animal3:( opacity: 1, transform: translate(-1.3*$item-height,0));
+$left-animal4:( opacity: 1, transform: translate(-1.6*$item-height,0));
+$left-animal5:( opacity: 1, transform: translate(-1.5*$item-width,0));
+
+$left-transform:(0%: $left-animal,
+60%: $left-animal2,
+75%: $left-animal3,
+90%: $left-animal4,
+100%: $left-animal5,
+);
+
+$down-animal:( opacity: 0, transform: translate(0,0));
+$down-animal2:( opacity: 1, transform: translate(0,1.7*$item-width));
+$down-animal3:( opacity: 1, transform: translate(0,1.3*$item-height));
+$down-animal4:( opacity: 1, transform: translate(0,1.6*$item-height));
+$down-animal5:( opacity: 1, transform: translate(0,1.5*$item-height));
+
+$down-transform:(0%: $down-animal,
+60%: $down-animal2,
+75%: $down-animal3,
+90%: $down-animal4,
+100%: $down-animal5,
+);
+
+
+@include menuAnimal(menuUp, $up-transform);
+
+@include menuAnimal(menuleft, $left-transform);
+
+@include menuAnimal(menuDown, $down-transform);
+
+.menu_item {
+  height: $item-width;
+  width: $item-height;
   @extend .circle, .bg;
-  width: 100%;
-  height: 100%;
   padding: 0.13rem;
   i{
-    font-size: 0.3rem;
     color: white
+  };
+  &:hover{
+    opacity: 0.8;
+  };
+  &:active{
+    background-color:  $bg-color;
+    i {
+      color: $main-color
+    }
   }
 }
+
+.dock_item {
+  @extend .menu_item;
+  width: $item-width;
+  height:$item-height;
+  position: absolute;
+  i {
+    color: wheat
+  }
+}
+
+
+.meum_container{
+  position: relative;
+  width: $item-width;
+  height: $item-height;
+  background-color: wheat;
+
+  .front{
+    position: absolute;
+    .item {
+      @extend .menu_item;
+    }
+  }
+
+  .dock{
+    background-color: #fff;
+    position: absolute;
+    width: $item-width * 2.5;
+    height: $item-height * 4;
+    right: 0;
+    bottom: -1.5*$item-height;
+
+    .up{
+      @extend .dock_item;
+      top: 1.5*$item-height;
+      right: 0;
+      opacity: 0;
+      animation-duration: 1.5s;
+      animation-fill-mode: forwards;
+      animation-delay: 1s;
+      animation-name: menuUp;
+    }
+
+    .left{
+      @extend .dock_item;
+      left: 1.5*$item-width;
+      bottom: 1.5*$item-height;
+      opacity: 1;
+      animation-duration: 1.5s;
+      animation-fill-mode: forwards;
+      animation-delay: 1s;
+      animation-name: menuleft;
+    }
+    
+    .down{
+      @extend .dock_item;
+      bottom: 1.5*$item-height;
+      right: 0;
+      opacity: 1;
+      animation-duration: 1.5s;
+      animation-fill-mode: forwards;
+      animation-delay: 1s;
+      // animation-name: menuDown;
+    }
+  }
+}
+
+
+

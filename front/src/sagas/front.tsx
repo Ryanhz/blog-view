@@ -37,7 +37,6 @@ export function* initPost(userId: number) {
   yield put(action)
 }
 
-
 export function* category(action: GET_Category_Action) {
   let data = yield call(get, `${API.categories}`, action.query);
   if (data) {
