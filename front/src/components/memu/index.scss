@@ -57,7 +57,6 @@ $down-transform:(0%: $down-animal,
 100%: $down-animal5,
 );
 
-
 @include menuAnimal(menuUp, $up-transform);
 
 @include menuAnimal(menuleft, $left-transform);
@@ -93,12 +92,11 @@ $down-transform:(0%: $down-animal,
   }
 }
 
-
 .meum_container{
   position: relative;
   width: $item-width;
   height: $item-height;
-  background-color: wheat;
+  // background-color: wheat;
 
   .front{
     position: absolute;
@@ -108,7 +106,7 @@ $down-transform:(0%: $down-animal,
   }
 
   .dock{
-    background-color: #fff;
+    // background-color: #fff;
     position: absolute;
     width: $item-width * 2.5;
     height: $item-height * 4;
@@ -120,10 +118,9 @@ $down-transform:(0%: $down-animal,
       top: 1.5*$item-height;
       right: 0;
       opacity: 0;
-      animation-duration: 1.5s;
+      animation-duration: 1s;
       animation-fill-mode: forwards;
-      animation-delay: 1s;
-      animation-name: menuUp;
+      animation-delay: 0.1s;
     }
 
     .left{
@@ -131,10 +128,9 @@ $down-transform:(0%: $down-animal,
       left: 1.5*$item-width;
       bottom: 1.5*$item-height;
       opacity: 1;
-      animation-duration: 1.5s;
+      animation-duration: 1s;
       animation-fill-mode: forwards;
-      animation-delay: 1s;
-      animation-name: menuleft;
+      animation-delay: 0.1s;
     }
     
     .down{
@@ -142,12 +138,38 @@ $down-transform:(0%: $down-animal,
       bottom: 1.5*$item-height;
       right: 0;
       opacity: 1;
-      animation-duration: 1.5s;
+      animation-duration: 1s;
       animation-fill-mode: forwards;
-      animation-delay: 1s;
-      // animation-name: menuDown;
+      animation-delay: 0.1s;
     }
   }
+
+  .open {
+    .up{
+      animation-name: menuUp;
+      animation-direction: normal;
+    }
+    .left{
+      animation-name: menuleft;
+      animation-direction: normal;
+    }
+    .down{
+      animation-name: menuDown;
+      animation-direction: normal;
+    }
+  }
+
+  // .close {
+  //   .up{
+  //     animation-fill-mode:backwards
+  //   }
+  //   .left{
+  //     animation-fill-mode:backwards
+  //   }
+  //   .down{
+  //     animation-fill-mode:backwards
+  //   }
+  // }
 }
 
 

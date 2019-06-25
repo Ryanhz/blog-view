@@ -84,3 +84,11 @@ figure {
 .display-none{
   display: none;
 }
+
+.CodeMirror{
+  border: none   
+}
+
+.editor-toolbar{
+  border: none;
+}

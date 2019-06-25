@@ -2,13 +2,14 @@ import * as React from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
-import { BrowserRouter, HashRouter , Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import * as GlobalFunc from '@Redux/actions/global'
 import { BaseState } from "@Redux/types";
 import { User } from "@Types/index";
 
 import Front from './Front';
 import NotFound from './NotFound';
+import { zy_log } from "@Units/index";
 let Router: any;
 if (process.env.NODE_ENV == 'production') {
   Router = BrowserRouter
@@ -37,10 +38,14 @@ class AppIndex extends React.Component<AppIndexProps> {
       this.props.get_mainInfo(5000);
     }
   }
+  _getUserConfirmation = (message: string, callback: (ok: boolean) => void) => {
+    zy_log(`==========_getUserConfirmation:${message}`);
+    // callback(true);
+  }
 
   render() {
     return (
-      <Router>
+      <Router getUserConfirmation={this._getUserConfirmation}>
         <Switch>
           <Route component={Front} />
         </Switch>

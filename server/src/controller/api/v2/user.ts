@@ -33,6 +33,7 @@ export default class User {
       user.avatar = "http://localhost:8001/img/pkq.jpeg"
       user.signature = `种豆南山下，草盛豆苗稀。晨兴理荒秽，带月荷锄归。道狭草木长，夕露沾我衣。衣沾不足惜，但使愿无违。`
       user.birthday = '4月20'
+      user.rights = "master"
       user = await user.save()
     } else {
 

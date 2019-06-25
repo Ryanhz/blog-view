@@ -1,4 +1,9 @@
 import * as Dayjs from "dayjs"
+
+import eventproxy from "./eventProxy";
+
+export let eventProxy = eventproxy;
+
 export function zy_log(text: any) {
 
   //  console.log(text, getCircularReplacer())

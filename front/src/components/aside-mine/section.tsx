@@ -45,17 +45,17 @@ interface ContentProps {
   tagCount: number,
 }
 
- class Content extends BASE<ContentProps, any> {
+class Content extends BASE<ContentProps, any> {
 
   render() {
-    const {categoryCount,postCount, tagCount} = this.props
+    const { categoryCount, postCount, tagCount } = this.props
     return (
       <div className={styles.content}>
         <section className={styles.section}>
           {
             tags.map((tag, index) => {
               return <Link to={tag.herf} className={styles.item} key={index}>
-                <span>{index==0&&postCount||index==1&&categoryCount||tagCount}</span>
+                <span>{index == 0 && postCount || index == 1 && categoryCount || tagCount}</span>
                 <span>{tag.name}</span>
               </Link>
             })
@@ -75,9 +75,7 @@ interface ContentProps {
   }
 }
 
-
 function mapStateToProps({ globalState }: BaseState) {
-
   return {
     // isFetching: globalState.isFetching,
     categoryCount: globalState.categoryCount,

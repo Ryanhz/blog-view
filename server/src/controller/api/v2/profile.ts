@@ -102,6 +102,7 @@ export default class Profile {
     let user = await new UserT({
       name: "hzy",
       nickName: "抓根宝",
+      rights: 'master',
       email: "1810022686@qq.com",
       avatar: "/img/pkq.jpeg",
       signature: `种豆南山下，草盛豆苗稀。

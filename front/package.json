@@ -6,9 +6,8 @@
     "pro": "cross-env NODE_ENV=production",
     "dev": "cross-env NODE_ENV=development",
     "build": "npm run pro && webpack --config webpack.pro.config.js",
-    "run_dev": "npm run pro && webpack-dev-server --config webpack.dev.config.js",
+    "run_dev": "npm run dev && webpack-dev-server --config webpack.dev.config.js",
     "run_pro": "npm run pro &&  webpack-dev-server --config webpack.pro.config.js"
-
   },
   "repository": "https://github.com/Ryanhz/blog-view",
   "author": "韩争锋 <1810022686@qq.com>",
@@ -16,6 +15,7 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@uiw/react-markdown-editor": "^1.1.8",
     "axios": "^0.18.0",
     "dayjs": "^1.8.14",
     "marked": "^0.6.1",
@@ -26,6 +26,7 @@
     "react-redux": "^6.0.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
+    "react-simplemde-editor": "^4.0.3",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2"
   },

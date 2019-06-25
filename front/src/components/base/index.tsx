@@ -10,7 +10,7 @@ import {
   RouteComponentProps
 } from 'react-router-dom'
 
-export default class Base<P={}, S={} > extends React.Component<P, S> {
+export default class Base<P = {}, S = {}> extends React.Component<P, S> {
   constructor(props: any) {
     super(props)
   }
@@ -26,6 +26,27 @@ export default class Base<P={}, S={} > extends React.Component<P, S> {
     return (
       <div>
         search
+      </div>
+    );
+  }
+}
+
+export class BasePage<P = {}, S = {}> extends Base<P, S> {
+  constructor(props: any) {
+    super(props)
+  }
+
+  public componentDidMount() {
+  }
+  componentWillMount() {
+
+  }
+  componentWillReceiveProps(props: any) {
+  }
+  public render() {
+    return (
+      <div>
+        child
       </div>
     );
   }
