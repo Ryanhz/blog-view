@@ -20,8 +20,8 @@
   overflow-x: visible;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  margin-right: -.05rem;
-  padding-right: .05rem;
+  margin-right: -.3125rem /* 5/16 */;
+  padding-right: .3125rem;
   height: 100%;
   width: 100%;
   box-sizing: content-box;

@@ -22,8 +22,8 @@
   overflow: hidden;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  margin: 0 .1rem;
-  padding: 0 .1rem;
+  margin: 0 .625rem /* 10/16 */;
+  padding: 0 .625rem;
  
   background-color: #fff;
   text-align: center;
@@ -34,9 +34,9 @@
   .item {
     position: relative;
     display: inline-block;
-    padding: .125rem 0;
+    padding: .78125rem /* 12.5/16 */ 0;
     min-width: 24%;
-    border-radius: .06rem;
+    border-radius: .375rem /* 6/16 */;
     
     &::after{
       position: absolute;
@@ -45,7 +45,7 @@
       left: 0;
       margin: auto;
       width: 62%;
-      height: .03rem;
+      height: .1875rem /* 3/16 */;
       content: "";
       transition: transform .4s;
       transform: scaleY(0);
@@ -62,15 +62,15 @@
     span{
       position: relative;
       display: block;
-      padding: 0 .05rem;
+      padding: 0 .3125rem /* 5/16 */;
 
       &:first-child {
-        padding-bottom: .05rem;
-        font-size: .14rem;
+        padding-bottom: .3125rem /* 5/16 */;
+        font-size: .875rem /* 14/16 */;
       }
 
       &:last-child{
-        font-size: .095rem;
+        font-size: .59375rem /* 9.5/16 */;
         opacity: .618;
       }
     }
@@ -78,7 +78,7 @@
 }
 
 .nav {
-  padding: .2rem 0 .4rem;
+  padding: 1.25rem /* 20/16 */ 0  2.5rem /* 40/16 */;
   user-select: none;
 
   .nav_item {
@@ -86,19 +86,19 @@
 
     position: relative;
     display: block;
-    padding-right: .2rem;
-    height: .3rem;
+    padding-right: 1.25rem /* 20/16 */;
+    height: 1.875rem /* 30/16 */;
     text-align: right;
     text-transform: capitalize;
     // font-family: Baloo Bhaijaan,PingFang SC,Microsoft JhengHei,sans-serif;
-    line-height: .3rem;
+    line-height: 1.875rem /* 30/16 */;
 
     &::after{
       position: absolute;
       top: 50%;
-      right: -0.04rem;
-      width: .08rem;
-      height: .08rem;
+      right: -.25rem /* 4/16 */;
+      width: .5rem;
+      height: .5rem;
       border-radius: 50%; 
       background-color: #f3f6f7;
       box-shadow: 0 0 0 1px rgba(0,0,0,.1);
@@ -112,7 +112,7 @@
   }
 
   .selected {
-    font-size: .18rem;
+    font-size: 1.125rem /* 18/16 */;
     font-weight: 800;
     color: #607d8b;
     &::after{

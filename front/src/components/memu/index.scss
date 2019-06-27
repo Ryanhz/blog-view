@@ -1,7 +1,7 @@
 @import '@Style/base.scss';
 
-$item-width: 0.44rem;
-$item-height: 0.44rem;
+$item-width: 2.75rem /* 44/16 */;
+$item-height: 2.75rem /* 44/16 */;
 
 @mixin menuAnimal($name,$transforms) {
  @keyframes #{$name} {
@@ -67,10 +67,8 @@ $down-transform:(0%: $down-animal,
   height: $item-width;
   width: $item-height;
   @extend .circle, .bg;
-  padding: 0.13rem;
-  i{
-    color: white
-  };
+  padding: .8125rem /* 13/16 */;
+  color: white;
   &:hover{
     opacity: 0.8;
   };

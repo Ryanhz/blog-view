@@ -6,13 +6,13 @@
     color: $gray-text;
     &:before{
       content: "-";
-      font-size: .08rem;
+      font-size: .5rem /* 8/16 */;
       opacity: .63;
       transform: translateY(-50%);
     }
 
     .title{
-      @extend .h5;
+      font-size: .875rem; /* 14/16 */
       font-weight: bold;
       color: $black-text;
     }

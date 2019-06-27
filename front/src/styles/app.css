@@ -6,9 +6,7 @@
 html {
   overflow: hidden;
   height: 100%;
-  font-size: 625%; /*//62.5%; 10px*/
-  -webkit-text-size-adjust: 100%;
-}
+} 
 
 body {
   overflow: hidden;
@@ -20,7 +18,7 @@ body {
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
-  font-size: .14rem;
+  font-size:  .875rem /* 14/16 */;
   left: 0;
   top: 0;
 }
@@ -46,8 +44,8 @@ a:hover {
 
 p {
   display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
+  margin-block-start: pxto .625rem /* 10/16 */;
+  margin-block-end: .625rem /* 10/16 */;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }

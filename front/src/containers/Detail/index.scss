@@ -2,13 +2,13 @@
 .container {
   @extend .rightMain;
   
-  padding: 0 0.15rem;
-  margin: .2rem auto;
+  padding: 0 .9375rem /* 15/16 */;
+  margin: 1.25rem /* 20/16 */ auto;
   background-color: white;
 
   .title {
     margin: {
-      bottom: .84rem;
+      bottom: 5.25rem /* 84/16 */;
     }
   }
 

@@ -3,20 +3,6 @@ $black-text: #41464b;
 $main-color: #607d8b;
 $bg-color:  #f3f6f7;
 
-$h1-font-size: .32rem;
-$h2-font-size: .24rem;
-$h3-font-size: .1872rem;
-$h4-font-size: .16rem;
-$h5-font-size: .1382rem;
-$h6-font-size: .12rem;
-
-h1, .h1 { font-size: $h1-font-size; }
-h2, .h2 { font-size: $h2-font-size; }
-h3, .h3 { font-size: $h3-font-size; }
-h4, .h4 { font-size: $h4-font-size; }
-h5, .h5 { font-size: $h5-font-size; }
-h6, .h6 { font-size: $h6-font-size; }
-
 $breakpoints: (
   'xs': 'only screen and ( min-width: 480px)',
   'sm': 'only screen and ( min-width: 768px)',
@@ -50,8 +36,8 @@ $breakpoints: (
   display: block;
   overflow: hidden;
   margin: 0 auto;
-  max-width: 7.12rem;
-  min-width: 3.2rem;
+  max-width: 44.5rem /* 712/16 */;
+  min-width: 20rem /* 32/16 */;
   min-height: 100%;
 }
 
@@ -79,6 +65,6 @@ $breakpoints: (
 }
 
 .radius{
-  @include radius-to(0.08rem);
+  @include radius-to(.5rem /* 8/16 */);
 
 }

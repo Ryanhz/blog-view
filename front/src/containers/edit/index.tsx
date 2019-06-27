@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOMServer from "react-dom/server";
-import BASE from "@Components/base";
+import BasePage from "@Components/base/basePage";
+import Menu, { MenueType } from "@Components/memu";
 import *  as styles from './index.scss';
 import { RouteComponentProps } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -15,7 +16,8 @@ import { Post } from "@Types/index";
 import MarkDown from "@Components/markDown";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-
+import { faDog, faLeaf } from '@fortawesome/free-solid-svg-icons';
+import From from './form'
 
 interface DetailProps {
   postDetail?: Post,
@@ -23,59 +25,69 @@ interface DetailProps {
 }
 
 interface EditState {
-  title?: string,
+  showMode: boolean,
 }
 
 
 let cover = '';//'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1561433658&di=4884ceecb4c77294820827090165a174&src=http://hbimg.b0.upaiyun.com/458af12108c4da0f1cf4fe8e2713a458898e332b28196-jdjJ3j_fw658'
 
-class Edit extends BASE<DetailProps & RouteComponentProps<{ title: string }, any>, EditState> {
+class Edit extends BasePage<DetailProps & RouteComponentProps<{ title: string }, any>, EditState> {
+
+  mde: any
+
   constructor(props: any) {
     super(props)
     const { match } = this.props
-    // this.state = {
-    //   title: match.params && match.params.title,
-    //   postDetail: this.props.postDetail
-    // }
+    this.state = {
+      showMode: false
+    }
+
   }
   public componentDidMount() {
 
-    // var ele_textarea = document.getElementById('md_editor');
-    // var mditor = Mditor.fromTextarea(ele_textarea);
-  }
-  componentWillMount() {
-    // this.state.title && this.props.get_details(this.state.title)
   }
 
+  componentWillMount() {
+
+  }
 
   componentWillReceiveProps(props: DetailProps) {
-    // this.setState({
-    //   postDetail: props.postDetail
-    // })
+
   }
 
-  public render() {
-    // const { title } = this.state
+  _menu() {
+    return <Menu leftIcon={faLeaf} menuItemDidClick={this._menuItemDidClick} />
+  }
 
-    return (
-      <div className={styles.container}>
-        <SimpleMDE
-          onChange={this.handleChange}
-          options={{
-            // hideIcons: ["fullscreen"],
-            initialValue: "Hello world!",
-            // toolbar: false,
-          }}
-        />;
-      </div>
-    );
+  _menuItemDidClick = (type: MenueType) => {
+    switch (type) {
+      case MenueType.left: {
+        this.setState({
+          showMode: true
+        })
+      }
+    }
+    return false;
+  }
+
+  _render() {
+    return <div className={styles.container}>
+      <From show={this.state.showMode} />
+      <SimpleMDE
+        onChange={this.handleChange}
+        options={{
+          // hideIcons: ["fullscreen"],
+          initialValue: "# Hello world!",
+          // toolbar: false,
+        }}
+      />
+
+    </div>
   }
 
   handleChange = (value: string) => {
-    // this.setState({ mdeValue: value });
+
   };
-
-
 }
 
 function mapStateToProps({ frontState, globalState }: BaseState) {

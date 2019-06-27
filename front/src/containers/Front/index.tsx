@@ -26,7 +26,7 @@ import { zy_log } from "@Units/index";
 export default class Front extends BASE<RouteComponentProps, any> {
   render() {
     const { path } = this.props.match;
-    zy_log(`Fronturl: ${JSON.stringify(this.props.match)}`)
+    // zy_log(`Fronturl: ${JSON.stringify(this.props.match)}`)
     return (
       <div className={styles.container}>
         <aside className={styles.left_container}>
@@ -34,7 +34,7 @@ export default class Front extends BASE<RouteComponentProps, any> {
         </aside>
         <main className={styles.right_container}>
           <Switch>
-            < Route exact path={`/`} component={List} />
+            <Route exact path={`/`} component={List} />
             < Route exact path={`/posts`} component={List} />
             < Route exact path={`/archives`} component={Archives} />
             < Route exact path={`/categories`} component={Categories} />
@@ -44,9 +44,12 @@ export default class Front extends BASE<RouteComponentProps, any> {
             < Route exact path={`/private`} component={Private} />
             < Route exact path={`/search`} component={Search} />
             < Route exact path={`/posts/:title`} component={Detail} />
-            < Route exact path={'/Edit'} component={Edit} />
+            < Route exact path={'/edit'} component={Edit} />
             < Route component={NotFound} />
           </Switch>
+          {/* <div className={styles.memu}>
+            <Menu />
+          </div> */}
         </main>
       </div >
     )

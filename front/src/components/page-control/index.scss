@@ -6,21 +6,20 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  margin: .2rem 0;
+  margin: 1.25rem /* 20/16 */ 0;
 
   .item {
     margin: 0 2px;
-    width: .24rem;
-    height: .24rem;
+    width: 1.5rem /* 24/16 */;
+    height: 1.5rem;
     border-radius: 50%;
-    line-height: .24rem;
+    line-height: 1.5rem;
   }
 
   .item_selected {
     @extend .item;
     @extend .bg;
     color: white;
-
   }
 
 }

@@ -1,21 +1,29 @@
 import * as React from 'react'
 import BASE from "@Components/base";
 import * as styles from "./index.scss";
+import { withRouter, RouteComponentProps } from 'react-router-dom' //引入withRouter
+
 import {
   Link,
-
 } from 'react-router-dom'
-// import { connect } from 'react-redux';
-import { zy_log, eventProxy } from '@Units/index';
-const item = {
-  title: 1,
-  path: "p",
-  search: "?page=1"
-}
-// import { BaseState } from "@Redux/types";
-const items = [item, item, item, item, item]
 
-export default class Memu extends BASE<any, { isOpen: boolean }>{
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faPaw, faChevronDown, faChevronUp, IconDefinition } from '@fortawesome/free-solid-svg-icons'
+
+import { zy_log, eventProxy } from '@Units/index';
+
+export enum MenueType {
+  up, down, left, center
+}
+
+interface MemuProps {
+  menuItemDidClick?: (type: MenueType) => boolean
+  upIcon?: IconDefinition
+  leftIcon?: IconDefinition
+  downIcon?: IconDefinition
+  centerIcon?: IconDefinition
+}
+class Memu extends BASE<MemuProps & RouteComponentProps, { isOpen: boolean }>{
 
   constructor(props: any) {
     super(props)
@@ -26,61 +34,58 @@ export default class Memu extends BASE<any, { isOpen: boolean }>{
 
   render() {
     const { isOpen } = this.state;
-    // const { location, history } = this.props
-    // zy_log(`location:${JSON.stringify(location)},---${JSON.stringify(history)}`)
+    const { upIcon, leftIcon, downIcon, centerIcon } = this.props
+
     return (
       <div className={styles.meum_container}>
         <div className={[styles.dock, isOpen && styles.open || styles.close].join(' ')}>
 
-          <div className={styles.up} onClick={this._menuDidClick}>
-            <span className="fa-stack fa-lg">
-              <i className="fa fa-chevron-up"></i>
-            </span>
+          <div className={styles.up} onClick={(e) => {
+            this._menuDidClick(e, MenueType.up)
+          }}>
+            <FontAwesomeIcon icon={upIcon || faChevronUp} size='lg' />
           </div>
 
-          <div className={styles.left}>
-            <Link to={'/edit'}>
-              <span className="fa-stack fa-lg">
-                <i className="fa fa-edit"></i>
-              </span>
-            </Link>
+          <div className={styles.left} onClick={(e) => {
+            this._menuDidClick(e, MenueType.left)
+          }}>
+            <FontAwesomeIcon icon={leftIcon || faEdit} size='lg' />
           </div>
 
-          <div className={styles.down} onClick={this._menuDidClick}>
-            <span className="fa-stack fa-lg">
-              <i className="fa fa-chevron-down"></i>
-            </span>
+          <div className={styles.down} onClick={(e) => {
+            this._menuDidClick(e, MenueType.down)
+          }}>
+            <FontAwesomeIcon icon={downIcon || faChevronDown} size='lg' />
           </div>
         </div>
 
         <div className={styles.front}>
-          <div className={styles.item} onClick={this._menuDidClick}>
-            <span className="fa-stack fa-lg">
-              <i className="fa fa-paw"></i>
-            </span>
+          <div className={styles.item} onClick={(e) => {
+            this._menuDidClick(e, MenueType.center)
+          }}>
+            <FontAwesomeIcon icon={centerIcon || faPaw} size='lg' />
           </div>
         </div>
       </div>
     )
   }
 
-  _menuDidClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  _menuDidClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, type: MenueType) => {
+    const { menuItemDidClick, history } = this.props
+    if (menuItemDidClick && menuItemDidClick(type)) {
+
+      return;
+    }
+
+    zy_log('type:' + type);
+    if (type == MenueType.left) {
+      history.push('/edit')
+    }
     const { isOpen } = this.state;
     this.setState({
       isOpen: !isOpen
     })
   }
 }
-// function mapStateToProps({ globalState }: BaseState) {
 
-//   return {
-//     // isFetching: globalState.isFetching,
-//     categoryCount: globalState.categoryCount,
-//     postCount: globalState.postCount,
-//     tagCount: globalState.tagCount,
-//   }
-// }
-
-// export default connect(
-//   mapStateToProps,
-// )(Memu)
+export default withRouter(Memu);

@@ -3,17 +3,17 @@
 .segmentBarItem{
 position: relative;
   display: inline-block;
-  padding: .15rem .2rem;
+  padding: .9375rem /* 15/16 */ 1.25rem /* 20/16 */;
   .title {
-    @extend .h4;
+    font-size: 1.125rem /* 18/16 */;
     text-transform: Capitalize;
     font-weight: bold
   }
 
   .count{
-    margin-left: .05rem;
-    font-size: .1rem;
-    padding: 0 .03rem;
+    margin-left: .3125rem /* 5/16 */;
+    font-size: 1.25rem /* 20/16 */;
+    padding: 0 .1875rem /* 3/16 */;
    border: {
     width: 1px;
     radius: 3px;
@@ -29,7 +29,7 @@ position: relative;
     left: 0;
     margin: auto;
     width: 45%;
-    height: .03rem;
+    height: .1875rem /* 3/16 */;
     content: "";
     transition: transform .4s;
     transform: scaleY(0);

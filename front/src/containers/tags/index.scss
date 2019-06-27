@@ -3,12 +3,12 @@
 .container {
     @extend .rightMain;
     
-    padding: 0 0.15rem;
-    margin: .2rem auto;
+    padding: 0 .625rem /* 10/16 */;
+    margin: 1.25rem /* 20/16 */ auto;
   
     .content {
       @extend .radius;
-      padding: .2rem;
+      padding: 1.25rem /* 20/16 */;
       background-color: white;
 
       .tagContent{
@@ -17,9 +17,9 @@
       }
       .tag {
         display: block;
-        @include radius-to(0.03rem);
-        margin: .1rem;
-        padding: 0.05rem 0.1rem;
+        @include radius-to(.1875rem /* 3/16 */);
+        margin: .625rem /* 10/16 */;
+        padding: .3125rem /* 5/16 */ .625rem /* 10/16 */;
         background-color: rgba(96,125,139,.05)
       }
     }

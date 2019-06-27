@@ -14,7 +14,7 @@
 // import { StoreState, Account } from "@Redux/types";
 
 import * as React from "react";
-import BASE from "../../components/base";
+import BasePage from "@Components/base/basePage";
 import PageControl from "@Components/page-control";
 import PostCard from "@Components/post-card";
 import * as styles from "./index.scss";
@@ -38,7 +38,7 @@ interface HomeProps extends RouteComponentProps {
   total: number
 }
 
-class Home extends BASE<HomeProps, { list: Post[], username: string }> {
+class Home extends BasePage<HomeProps, { list: Post[], username: string }> {
 
   constructor(prop: HomeProps) {
     super(prop)
@@ -58,7 +58,8 @@ class Home extends BASE<HomeProps, { list: Post[], username: string }> {
       username: prop.user.name,
     })
   }
-  render() {
+
+  _render() {
     const { list, username } = this.state
     return (
       <div className={styles.container}>

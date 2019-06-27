@@ -18,34 +18,34 @@
 @import '@Style/base.scss';
 
 .container{
-  border-radius: .06rem;
+  border-radius: .375rem /* 6/16 */;
   overflow: hidden;
   background-color: white;
-  margin-bottom: .175rem;
+  margin-bottom: 1.09375rem /* 17.5/16 */;
 
   @media only screen and (max-width: 1012px) {
-    margin: .15rem;
+    margin: .9375rem /* 15/16 */;
   }
   .cover{
     width: 100%;
   }
   .title{
     @extend .hoverActive;
-    @extend h3;
+    font-size:  1.5rem /* 24/16 */;
     display: block;
-    padding: .15rem .15rem 0;
+    padding: .9375rem /* 15/16 */ .9375rem 0;
     color: #2a2b33;
     -webkit-transition: color .15s;
     transition: color .15s;
   }
 
   article{
-    padding: 0 .15rem;
+    padding: 0 .9375rem;
   }
 
   footer {
-    margin: .1rem .15rem 0;
-    padding-bottom: .15rem;
+    margin: .625rem /* 10/16 */ .9375rem /* 15/16 */ 0;
+    padding-bottom: .9375rem;
     opacity: .5;
   }
 }
