@@ -32,7 +32,7 @@ export default class Front extends BASE<RouteComponentProps, any> {
         <aside className={styles.left_container}>
           <Mine />
         </aside>
-        <main className={styles.right_container}>
+        <main className={styles.right_container} id={'right-content'}>
           <Switch>
             <Route exact path={`/`} component={List} />
             < Route exact path={`/posts`} component={List} />

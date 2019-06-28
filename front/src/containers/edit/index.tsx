@@ -39,7 +39,7 @@ class Edit extends BasePage<DetailProps & RouteComponentProps<{ title: string },
     super(props)
     const { match } = this.props
     this.state = {
-      showMode: false
+      showMode: true
     }
 
   }
@@ -60,10 +60,13 @@ class Edit extends BasePage<DetailProps & RouteComponentProps<{ title: string },
   }
 
   _menuItemDidClick = (type: MenueType) => {
+
+    const { showMode } = this.state
+
     switch (type) {
       case MenueType.left: {
         this.setState({
-          showMode: true
+          showMode: !showMode
         })
       }
     }

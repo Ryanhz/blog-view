@@ -77,14 +77,35 @@ class Memu extends BASE<MemuProps & RouteComponentProps, { isOpen: boolean }>{
       return;
     }
 
-    zy_log('type:' + type);
-    if (type == MenueType.left) {
-      history.push('/edit')
+    switch (type) {
+      case MenueType.left: {
+        history.push('/edit')
+        break
+      }
+      case MenueType.up: {
+        let e = document.querySelector('#right-content');
+        e.scrollTop = 0
+      }
+        break
+      case MenueType.down: {
+        let container = document.querySelector('#right-content')
+        let content = container.firstElementChild;
+        let containerHeight = container.clientHeight;
+        let contentHeight = content.clientHeight;
+        contentHeight > containerHeight && (container.scrollTop = contentHeight - containerHeight + 40);
+        zy_log(`${contentHeight}-${containerHeight}=${contentHeight - containerHeight}`)
+        break
+      }
+          
+
+      default: {
+        const { isOpen } = this.state;
+        this.setState({
+          isOpen: !isOpen
+        })
+      }
     }
-    const { isOpen } = this.state;
-    this.setState({
-      isOpen: !isOpen
-    })
+    zy_log('type:' + type);
   }
 }
 

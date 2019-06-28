@@ -4,7 +4,6 @@ import *  as styles from './form.scss';
 import { RouteComponentProps } from "react-router-dom";
 import { zy_log } from "@Units/index";
 import { Post } from "@Types/index";
-import { Button, Modal } from "react-bootstrap";
 
 interface FromProps {
   show?: boolean,
@@ -50,11 +49,21 @@ export default class From extends BASE<FromProps, EditState> {
     return (
       <div className={[styles.container, show && styles.show || ''].join(' ')}>
         <div className={[styles.form, show && styles.show_anima || ''].join(' ')}>
-
+          {this._form()}
         </div>
       </div>
     );
   }
+
+  _form = () => {
+    return (
+      <div>
+        <textarea className={styles.title} />
+      </div>
+    );
+
+  }
+
 
   handleChange = (value: string) => {
 
