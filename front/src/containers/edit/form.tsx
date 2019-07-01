@@ -1,5 +1,6 @@
 import * as React from 'react';
 import BASE from "@Components/base";
+import ASTextarea from "@Components/autosize-textarea";
 import *  as styles from './form.scss';
 import { RouteComponentProps } from "react-router-dom";
 import { zy_log } from "@Units/index";
@@ -13,6 +14,7 @@ interface FromProps {
 interface EditState {
   show: boolean,
   container?: any
+  src?: any
 }
 
 export default class From extends BASE<FromProps, EditState> {
@@ -56,17 +58,28 @@ export default class From extends BASE<FromProps, EditState> {
   }
 
   _form = () => {
+    const { src } = this.state;
+    zy_log(src);
     return (
       <div>
-        <textarea className={styles.title} />
+        <ASTextarea className={styles.title} value='' placeholder='title' />
+        <input type='file' multiple={true} accept="image/*" onChange={this.imagePick} />
+        {src && <img src={src}></img>}
       </div>
     );
 
   }
 
 
+  imagePick = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    zy_log(e.currentTarget.files);
+    this.setState({
+      src: e.currentTarget.value
+    })
+  }
+
   handleChange = (value: string) => {
 
   };
 }
-

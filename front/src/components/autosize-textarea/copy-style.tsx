@@ -86,3 +86,4 @@ export const calculateGhostTextareaHeight = function (ghostTextarea: HTMLTextAre
   ghostTextarea.value = textarea.value || textarea.placeholder || 'x'
   return ghostTextarea.scrollHeight;
 }
+

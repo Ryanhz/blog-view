@@ -6,8 +6,14 @@ export let eventProxy = eventproxy;
 
 export function zy_log(text: any) {
 
-  //  console.log(text, getCircularReplacer())
-  console.log(text)
+  if (typeof text == 'object') {
+    console.log(print(text));
+  } else {
+    console.log(text)
+  }
+
+  // console.log(text, getCircularReplacer())
+  // 
 }
 
 const getCircularReplacer = () => {
@@ -29,4 +35,20 @@ export function dateStr(dateStr: string) {
 
   zy_log(str)
   return str
+}
+
+export function print(obj: object) {
+  try {
+    var seen: any[] = [];
+    let json = JSON.stringify(obj, function (key, val) {
+      if (typeof val == "object") {
+        if (seen.indexOf(val) >= 0) return;
+        seen.push(val)
+      }
+      return val;
+    });
+    return json;
+  } catch (e) {
+    return e;
+  }
 }
