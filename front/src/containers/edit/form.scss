@@ -2,6 +2,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  min-height: 100%;
   z-index: 100;
   right: 0;
   display: none;
@@ -27,6 +28,52 @@
       border: none;
       resize: none;
     }
+    .img-prev-container{
+      width: 200px;
+      height: 156px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      vertical-align: middle;
+      display: table-cell;
+      color: #838383;
+      text-align: center;
+
+      .prev-img-item{
+        position: relative;
+        .prev-img{
+          width: 100%;
+          height: 100%;
+        }
+        .img-delete{
+          position: absolute;
+          padding: .3125rem; /* 5/16 */
+          top: 0;
+          right: 0;
+        }
+      }
+      .img-pick-input-label{
+        text-align: center;
+        padding: 2.8125rem /* 45/16 */
+    }
+      .img-pick-input{
+        display: none
+      }
+    }
+
+    .categories{
+
+    }
+
+    .tags{
+
+    }
+
+    .intro{
+      margin-top: 1.25rem /* 20/16 */;
+      height: 12.5rem /* 200/16 */;
+  
+    } 
   }
 }
 
@@ -71,3 +118,4 @@
     transform:  translate(0, 0)
   }
 }
+

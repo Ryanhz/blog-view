@@ -10,7 +10,7 @@ import {
 
 interface ResizeTextareaProps {
     className?: string,
-    value?: string,
+    defaultValue?: string,
     placeholder?: string,
     inputRef?: (ref: HTMLTextAreaElement) => void,
     onChange?: (value: string) => void,
@@ -88,7 +88,7 @@ export default class ResizeTextarea extends React.Component<ResizeTextareaProps,
 
     render() {
         console.log('rendering...')
-        const { className, value, placeholder } = this.props;
+        const { className, defaultValue, placeholder } = this.props;
         const { height } = this.state;
         return (
             <div className={style['comp-textarea-with-ghost']}>
@@ -96,7 +96,7 @@ export default class ResizeTextarea extends React.Component<ResizeTextareaProps,
                     ref={this.bindRef}
                     className={style['textarea'] + ' ' + className}
                     placeholder={placeholder}
-                    defaultValue={value}
+                    defaultValue={defaultValue}
                     onChange={this.handleChange}
                     style={{ height }}
                 />

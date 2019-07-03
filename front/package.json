@@ -6,8 +6,8 @@
     "pro": "cross-env NODE_ENV=production",
     "dev": "cross-env NODE_ENV=development",
     "build": "npm run pro && webpack --config webpack.pro.config.js",
-    "run_dev": "npm run dev && webpack-dev-server --config webpack.dev.config.js",
-    "run_pro": "npm run pro &&  webpack-dev-server --config webpack.pro.config.js"
+    "run-dev": "npm run dev && webpack-dev-server --config webpack.dev.config.js",
+    "run-pro": "npm run pro &&  webpack-dev-server --config webpack.pro.config.js"
   },
   "repository": "https://github.com/Ryanhz/blog-view",
   "author": "韩争锋 <1810022686@qq.com>",

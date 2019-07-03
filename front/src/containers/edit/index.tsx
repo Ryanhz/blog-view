@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOMServer from "react-dom/server";
 import BasePage from "@Components/base/basePage";
 import Menu, { MenueType } from "@Components/memu";
 import *  as styles from './index.scss';
@@ -17,7 +16,7 @@ import MarkDown from "@Components/markDown";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { faDog, faLeaf } from '@fortawesome/free-solid-svg-icons';
-import From from './form'
+import From, { FormData } from './form'
 
 interface DetailProps {
   postDetail?: Post,
@@ -33,7 +32,10 @@ let cover = '';//'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image
 
 class Edit extends BasePage<DetailProps & RouteComponentProps<{ title: string }, any>, EditState> {
 
-  mde: any
+  src?: any
+  title?: string
+  intro?: string
+  psot_detail?: string
 
   constructor(props: any) {
     super(props)
@@ -75,7 +77,7 @@ class Edit extends BasePage<DetailProps & RouteComponentProps<{ title: string },
 
   _render() {
     return <div className={styles.container}>
-      <From show={this.state.showMode} />
+      <From show={this.state.showMode} onChange={this._formOnchange} />
       <SimpleMDE
         onChange={this.handleChange}
         options={{
@@ -84,13 +86,19 @@ class Edit extends BasePage<DetailProps & RouteComponentProps<{ title: string },
           // toolbar: false,
         }}
       />
-
     </div>
   }
 
   handleChange = (value: string) => {
-
+    this.psot_detail = value
   };
+
+  _formOnchange = (data: FormData) => {
+    this.intro = data.intro
+    this.title = data.title
+    this.src = data.cover
+    zy_log(data.cover)
+  }
 }
 
 function mapStateToProps({ frontState, globalState }: BaseState) {
