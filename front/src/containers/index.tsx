@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
 import { BrowserRouter, HashRouter, Route, Switch, Redirect } from 'react-router-dom';
-import * as GlobalFunc from '@Redux/actions/global'
-import { BaseState } from "@Redux/types";
+import { GlobalActionCreator } from '@Redux/global'
+import { BaseState } from "@Redux/storeMix";
 import { User } from "@Types/index";
 
 import Front from './Front';
@@ -17,7 +17,6 @@ if (process.env.NODE_ENV == 'production') {
   Router = HashRouter
 }
 
-const { clear_msg, user_auth, get_user } = GlobalFunc;
 
 interface AppIndexProps {
   user: User
@@ -63,12 +62,12 @@ function mapStateToProps({ globalState }: BaseState) {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    clear_msg: bindActionCreators(clear_msg, dispatch),
-    user_auth: bindActionCreators(user_auth, dispatch),
-    get_user: bindActionCreators(get_user, dispatch),
-    get_mainInfo: bindActionCreators(GlobalFunc.get_main_info, dispatch)
+    clear_msg: bindActionCreators(GlobalActionCreator.clear_msg, dispatch),
+    user_auth: bindActionCreators(GlobalActionCreator.user_auth, dispatch),
+    get_user: bindActionCreators(GlobalActionCreator.getUser, dispatch),
+    get_mainInfo: bindActionCreators(GlobalActionCreator.get_main_info, dispatch)
   }
 }
 

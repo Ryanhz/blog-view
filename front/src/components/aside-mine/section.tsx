@@ -24,7 +24,7 @@ import {
 } from 'react-router-dom'
 
 import { connect } from 'react-redux';
-import { BaseState } from "@Redux/types";
+import { BaseState } from "@Redux/storeMix";
 
 const tags = [
   { num: 0, name: "archives", herf: "/archives" },

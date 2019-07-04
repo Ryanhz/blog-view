@@ -6,7 +6,7 @@ import IndexApp from "./containers";
 import "./styles/app.css";
 import "./styles/base.scss"
 
-import configureStore from "@Redux/store/configureStore";
+import configureStore from "@Redux/configureStore";
 
 const store = configureStore();
 const rootElement = document.getElementById('root') as HTMLElement

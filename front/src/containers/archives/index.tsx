@@ -5,9 +5,8 @@ import { RouteComponentProps } from "react-router-dom";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
-import * as GlobalAction from '@Redux/actions/global'
-import * as FrontAction from '@Redux/actions/front'
-import { BaseState } from "@Redux/types";
+import { FrontActionCreator } from '@Redux/front'
+import { BaseState } from "@Redux/storeMix";
 import { User } from "@Types/index";
 class Archives extends BASE<any, any> {
   render() {
@@ -26,11 +25,11 @@ function mapStateToProps({ globalState }: BaseState) {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<GlobalAction.Global_Action | FrontAction.RequsetAction>) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     // clear_msg: bindActionCreators(clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),
-    get_posts: bindActionCreators(FrontAction.get_posts, dispatch)
+    get_posts: bindActionCreators(FrontActionCreator.get_posts, dispatch)
   }
 }
 

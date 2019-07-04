@@ -26,9 +26,9 @@ import { Post } from "@Types/index";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
-import * as GlobalFunc from '@Redux/actions/global'
-import * as frontFunc from '@Redux/actions/front'
-import { BaseState } from "@Redux/types";
+import { GlobalActionCreator } from '@Redux/global'
+import { FrontActionCreator } from '@Redux/front'
+import { BaseState } from "@Redux/storeMix";
 import { User } from "@Types/index";
 import { zy_log } from "@Units/index";
 
@@ -85,11 +85,11 @@ function mapStateToProps({ frontState, globalState }: BaseState) {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    clear_msg: bindActionCreators(GlobalFunc.clear_msg, dispatch),
+    clear_msg: bindActionCreators(GlobalActionCreator.clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),
-    get_list: bindActionCreators(frontFunc.get_posts, dispatch)
+    get_list: bindActionCreators(FrontActionCreator.get_posts, dispatch)
   }
 }
 

@@ -8,9 +8,8 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
-import * as GlobalAction from '@Redux/actions/global'
-import * as FrontAction from '@Redux/actions/front'
-import { BaseState } from "@Redux/types";
+import { FrontActionCreator } from '@Redux/front'
+import { BaseState } from "@Redux/storeMix";
 import { User, Tag } from "@Types/index";
 
 interface TagsProps {
@@ -57,11 +56,11 @@ function mapStateToProps({ globalState, frontState }: BaseState) {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<FrontAction.FrontAction | GlobalAction.Global_Action>) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     // clear_msg: bindActionCreators(clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),
-    get_tags: bindActionCreators(FrontAction.get_tags, dispatch)
+    get_tags: bindActionCreators(FrontActionCreator.get_tags, dispatch)
   }
 }
 

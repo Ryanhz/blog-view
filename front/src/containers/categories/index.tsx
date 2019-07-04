@@ -3,11 +3,10 @@ import * as styles from "./index.scss";
 import BASE from "../../components/base";
 import { RouteComponentProps } from "react-router-dom";
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Dispatch } from 'redux'
-import * as Front from '@Redux/actions/front'
-import * as GlobalFunc from '@Redux/actions/global'
-import { BaseState } from "@Redux/types";
+import { bindActionCreators, Dispatch } from 'redux';
+import { FrontActionCreator } from '@Redux/front'
+import * as GlobalFunc from '@Redux/global'
+import { BaseState } from "@Redux/storeMix";
 import { User, Category, Category_posts } from "@Types/index";
 import SegmentBar from "@Components/segmentBar";
 import { Post_Row } from "@Components/list-row";
@@ -119,13 +118,13 @@ function mapStateToProps({ globalState, frontState }: BaseState) {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     // clear_msg: bindActionCreators(clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),
-    get_category: bindActionCreators(Front.get_category, dispatch),
-    get_category_posts: bindActionCreators(Front.get_category_posts, dispatch),
-    get_category_index: bindActionCreators(Front.get_category_index, dispatch)
+    get_category: bindActionCreators(FrontActionCreator.get_category, dispatch),
+    get_category_posts: bindActionCreators(FrontActionCreator.get_category_posts, dispatch),
+    get_category_index: bindActionCreators(FrontActionCreator.get_category_index, dispatch)
   }
 }
 

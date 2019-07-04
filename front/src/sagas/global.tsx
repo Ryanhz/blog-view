@@ -1,34 +1,62 @@
 import { put, call, take, fork } from 'redux-saga/effects'
 import { get, post } from '../fetch'
-import * as globalActionTypes from '@Redux/constants/global'
 import { API, serverHost } from "../fetch/api";
-import { SET_msg_Action, RESPONSE_user_Action, GET_Profile_action, RESPONSE_Profile_action as RESPONSE_Profile_action } from "@Redux/actions/global";
-import { GET_user_action } from "@Redux/actions/global";
+import { GlobalReduxType, GlobalActions } from "@Redux/global";
 import { User } from '@Types/index';
 import { initPost } from "./front";
 
-export function* user(action: GET_user_action) {
-  let response = yield call(get, API.user + `/${action.id}`)
+export function* user(action: GlobalActions.GET_user) {
+  let response = yield call(get, API.users + `/${action.id}`)
   if (response) {
 
-    yield put({ type: globalActionTypes.RESPONSE_USER, data: response } as RESPONSE_user_Action)
+    yield put({ type: GlobalReduxType.RESPONSE_USER, data: response } as GlobalActions.RESPONSE_user)
   }
 }
 
-export function* profile(action: GET_Profile_action) {
+export function* categoryCount(action: GlobalActions.GET_categories_count) {
+  let response = yield call(get, API.categories + `/${action.uid}`)
+  if (response) {
+
+    yield put({ type: GlobalReduxType.RESPONSE_categories_count, data: response } as GlobalActions.RESPONSE_categories_count)
+  }
+}
+
+export function* socials(action: GlobalActions.GET_Socials) {
+  let response = yield call(get, API.socials + `/${action.uid}`)
+  if (response) {
+    yield put({ type: GlobalReduxType.RESPONSE_Socials, data: response } as GlobalActions.RESPONSE_Socials)
+  }
+}
+
+export function* tagCount(action: GlobalActions.GET_tags_count) {
+  let response = yield call(get, API.tags + `/${action.uid}`)
+  if (response) {
+    yield put({ type: GlobalReduxType.RESPONSE_tags_count, data: response } as GlobalActions.RESPONSE_tags_count)
+  }
+}
+
+export function* postCount(action: GlobalActions.GET_Posts_Count) {
+  let response = yield call(get, API.posts + `/${action.uid}`)
+  if (response) {
+    yield put({ type: GlobalReduxType.RESPONSE_Posts_Count, data: response } as GlobalActions.RESPONSE_Posts_Count)
+  }
+}
+
+
+export function* profile(action: GlobalActions.GET_Profile) {
   let data = yield call(get, `${API.profile}`)
   if (data) {
     // yield put({ type: SET_MESSAGE, msgContent: '注册成功!', msgType: 1 } as SET_msg_Action);
     let user = data.user as User
     user.avatar && (user.avatar = serverHost + user.avatar)
     yield put({
-      type: globalActionTypes.RESPONSE_PROFILE,
+      type: GlobalReduxType.RESPONSE_PROFILE,
       user: data.user,
       socials: data.socials,
       postCount: data.postCount,
       categoryCount: data.categoryCount,
       tagCount: data.tagCount,
-    } as RESPONSE_Profile_action)
+    } as GlobalActions.RESPONSE_Profile)
 
     yield fork(initPost, user.id)
   }

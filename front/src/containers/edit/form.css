@@ -1,4 +1,8 @@
 .form .CodeMirror-wrap {
   background-color: #f3f6f7;
   border-radius: 6px;
-}    
+  height: 12.5rem /* 200/16 */
+}
+
+.form .CodeMirror-scroll {
+}

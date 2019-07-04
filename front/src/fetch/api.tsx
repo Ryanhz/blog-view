@@ -10,15 +10,17 @@ function host() {
 }
 
 const profile = '/profile'
-const user = '/user'
+const users = '/users'
 const posts = '/posts'
 const categories = '/categories'
 const tags = '/tags'
+const socials = '/socials'
 
 export const API = {
   profile,
-  user,
+  users,
   posts,
   categories,
-  tags
+  tags,
+  socials
 }

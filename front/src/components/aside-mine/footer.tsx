@@ -19,7 +19,7 @@ import * as React from "react";
 import * as styles from "./footer.scss";
 import BASE from "../base";
 import { connect } from 'react-redux';
-import { BaseState } from "@Redux/types";
+import { BaseState } from "@Redux/storeMix";
 import { library, IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faPaperPlane } from '@fortawesome/free-solid-svg-icons'

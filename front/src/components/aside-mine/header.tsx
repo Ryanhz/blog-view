@@ -27,8 +27,8 @@ import BASE from "../base";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Dispatch } from 'redux'
-import * as GlobalFunc from '@Redux/actions/global'
-import { BaseState } from "@Redux/types";
+import { } from '@Redux/global'
+import { BaseState } from "@Redux/storeMix";
 import { User } from "@Types/index";
 import { zy_log } from "@Units/index";
 
@@ -76,7 +76,7 @@ function mapStateToProps({ globalState }: BaseState) {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<GlobalFunc.Global_Action>) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     // clear_msg: bindActionCreators(clear_msg, dispatch),
     // user_auth: bindActionCreators(user_auth, dispatch),

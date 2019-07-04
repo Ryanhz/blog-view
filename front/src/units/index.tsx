@@ -7,7 +7,7 @@ export let eventProxy = eventproxy;
 export function zy_log(text: any) {
 
   if (typeof text == 'object') {
-    console.log(print(text));
+    console.log(text);
   } else {
     console.log(text)
   }
