@@ -4,7 +4,6 @@ export interface APIError {
 }
 
 export class APIError implements APIError {
-
   code: string
   message?: string
   constructor(code: string, message: string = null) {

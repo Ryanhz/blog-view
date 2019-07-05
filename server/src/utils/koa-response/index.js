@@ -72,12 +72,22 @@ export function middleware() {
     try {
       await next();
     } catch (err) {
-      console.log(JSON.stringify(err))
+
+      console.error(`err.name: ${err.name}, err.message: ${err.message}  err:${err}`)
+
+      // console.log(`error Type: ${typeof err}, error: ${err}`)
+      let code = err.code || err.name || 'internal:unknown_error'
+      let message = err.message || ''
+      if (err.name && err.original) { //数据库错误
+        code = err.parent.code && `${err.name}: ${err.parent.errno} sqlState:${err.parent.sqlState}(${err.parent.code}) ` || code
+        message = '水逆'
+      }
+
       ctx.response.status = 400;
       ctx.response.type = 'application/json';
       ctx.response.body = {
-        code: err.code || 'internal:unknown_error',
-        message: err.message || ''
+        code: code,
+        message: message
       }
     }
   }

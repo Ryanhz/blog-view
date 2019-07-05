@@ -16,23 +16,26 @@ import Tag from "./tag";
 
 const router = new Router();
 
-//api/v1/account/
-router.get("/users", User.get)
+//api/v3/account/
+router.get("/users", User.some)
+router.get("/users/:uid", User.one)
 router.post("/users", User.post)
+router.get("/master", User.master)
 
-router.get("/profile", Profile.default);
+router.get("/users/:uid/profile/", Profile.get);
+router.get("/profile", Profile.get);
 
-router.get("/posts", Post.list)
-router.get("/posts/:title", Post.one)
+router.get("/users/:uid/posts", Post.get)
+router.get("/posts/:pid", Post.one)
 
-router.get("/categories/page", Category.pages)
-router.get("/categories", Category.categories)
+router.get("/categories/:uid", Category.index)
+router.get("/users/:uid/categories", Category.get)
 router.get("/categories/:cid/posts", Category.posts)
 
 
-router.get("/tags", Tag.tags)
 router.get("/tags/:tid", Tag.tag)
-router.get("/tags/:name/posts", Tag.posts)
+router.get("/users/:uid/tags", Tag.tags)
+router.get("/tags/:tid/posts", Tag.posts)
 
 
 // router.use('/category', Category)

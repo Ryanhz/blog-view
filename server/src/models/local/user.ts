@@ -52,13 +52,7 @@ export default class User extends Base<User> {
     defaultValue: '1',
     values: ['1', '2', '3']
   })
-  get sex(): string {
-    let sex = this.getDataValue('sex')
-    return sex == 1 && "男" || sex == 2 && "女" || "保密"
-  }
-  set sex(value: string) {
-    this.setDataValue('sex', value)
-  }
+
 
   @Comment('用户状态，1:正常，2:冻结')
   @Column({

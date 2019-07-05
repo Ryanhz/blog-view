@@ -12,6 +12,8 @@ class Account {
 
   static async signup(ctx: ZYContext, next: Next) {
     console.log(ctx.querystring)
+
+
     ///User
   }
 
