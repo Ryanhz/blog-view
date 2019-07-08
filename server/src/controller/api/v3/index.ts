@@ -9,21 +9,18 @@
 
 import Router from "koa-router";
 import Post from './post';
-import User from "./user";
+import User, { userControl } from "./user";
 import Profile from "./profile";
 import Category from "./category";
-import Tag from "./tag";
+import Tag, { tagController } from "./tag";
 
 const router = new Router();
 
 //api/v3/account/
-router.get("/users", User.some)
-router.get("/users/:uid", User.one)
-router.post("/users", User.post)
-router.get("/master", User.master)
-
-router.get("/users/:uid/profile/", Profile.get);
-router.get("/profile", Profile.get);
+router.get("/users", userControl.some)
+router.get("/users/:uid", userControl.one)
+router.post("/users", userControl.post)
+router.get("/master", userControl.master)
 
 router.get("/users/:uid/posts", Post.get)
 router.get("/posts/:pid", Post.one)
@@ -32,10 +29,9 @@ router.get("/categories/:uid", Category.index)
 router.get("/users/:uid/categories", Category.get)
 router.get("/categories/:cid/posts", Category.posts)
 
-
-router.get("/tags/:tid", Tag.tag)
-router.get("/users/:uid/tags", Tag.tags)
-router.get("/tags/:tid/posts", Tag.posts)
+router.get("/tags/:tid", tagController.tag)
+router.get("/users/:uid/tags", tagController.tags)
+router.get("/tags/:tid/posts", tagController.posts)
 
 
 // router.use('/category', Category)

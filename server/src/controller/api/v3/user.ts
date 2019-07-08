@@ -1,7 +1,7 @@
 import ZYResponse, { ZYContext, Next } from 'koa-response'
-import { Model } from "sequelize-typescript";
 import { Tables } from "../../../models";
 import { APIError } from "../../../utils/error";
+import { BaseController } from "./base";
 
 class UserError implements APIError {
   code: string
@@ -15,47 +15,32 @@ class UserError implements APIError {
   }
 }
 
-class BaseController<Table extends any> {
-  attributes?: string[]
-  table: Table
-  colums: string[] = Object.keys(this.table.rawAttributes)
+export default class User extends BaseController {
 
-}
+  get Table() {
+    return Tables.User
+  }
 
-export default class User {
-
-  static attributes = ['sex', 'id', 'name', 'nickName', 'ip', 'signature', 'email', 'avatar', 'rights', 'birthday', 'loginedAt']
-  static table = Tables.User
-  static colums = Object.keys(User.table.rawAttributes)
-
-  static async some(ctx: ZYContext, next: Next) {
+  async some(ctx: ZYContext, next: Next) {
 
   }
 
-  static async post(ctx: ZYContext, next: Next) {
+  async post(ctx: ZYContext, next: Next) {
 
   }
 
-  static async master(ctx: ZYContext, next: Next) {
-
+  master = async (ctx: ZYContext, next: Next) => {
     let fields: string = ctx.query.fields
-    let attributes = fields && fields.split(',') || []
-    attributes = attributes.filter(va => {
-      return this.colums.indexOf(va) > -1
-    })
-
-    attributes.length == 0 && (attributes = this.attributes)
-
     await this._createMaster()
-
-    let res = await this.table.findByPk(1, {
-      attributes: attributes
+    console.log(this.attributes(fields))
+    let res = await this.Table.findByPk(1, {
+      attributes: this.attributes(fields)
     })
     ctx.success(res)
   }
 
   //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
-  static async one(ctx: ZYContext, next: Next) {
+  one = async (ctx: ZYContext, next: Next) => {
 
     console.log(ctx.request);
     console.log(JSON.stringify(ctx.params))
@@ -63,24 +48,25 @@ export default class User {
 
     let userId = ctx.params["uid"]
     let fields: string = ctx.query.fields
-    let attributes = fields && fields.split(',') || this.attributes
+
     if (userId) {
-      let res = await this.table.findById(userId, {
-        attributes: attributes
+      let res = await this.Table.findById(userId, {
+        attributes: this.attributes(fields)
       })
       res ? ctx.success(res) : ctx.error(UserError.notFind(userId))
       return
     }
   }
 
-  static async _createMaster() {
+  _createMaster = async () => {
 
-    if (await this.table.count({ where: { id: 1 } })) {
+    if (await this.Table.count({ where: { id: 1 } })) {
       return;
     }
-    let user = await this.table.build({ name: "hzy" })
+    let user = await this.Table.build({ name: "hzy" })
     user.name = "hzy"
     user.id = 1
+    // user.sex = 5
     user.rights = 'master'
     user.nickName = "抓根宝"
     user.email = "1810022686@qq.com"
@@ -90,3 +76,5 @@ export default class User {
     user = await user.save()
   }
 }
+
+export const userControl = new User()

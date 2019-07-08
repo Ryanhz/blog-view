@@ -47,11 +47,12 @@ export default class User extends Base<User> {
   leve: string
 
   @Column({
-    type: DataType.CHAR(1),
+    type: DataType.TINYINT(1),
     comment: '性别, 1:男，2:女，3：保密',
-    defaultValue: '1',
-    values: ['1', '2', '3']
+    defaultValue: 1,
+    values: ["1", '2', '3']
   })
+  sex: number
 
 
   @Comment('用户状态，1:正常，2:冻结')

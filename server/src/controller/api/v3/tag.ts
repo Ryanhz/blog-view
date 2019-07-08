@@ -1,43 +1,53 @@
 import ZYResponse, { ZYContext, Next } from 'koa-response'
-
+import { BaseController } from "./base";
 import { Tables } from "../../../models";
 import Post from "./post";
 
-export default class Tag {
+export default class Tag extends BaseController {
 
-  private static async _tags(userid: number, fields?: string) {
+  get Table() {
+    return Tables.Tag
+  }
 
-    let TagT = Tables.Tag
-    let options = {
+  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
+  tags = async (ctx: ZYContext, next: ZYResponse.Next) => {
+    let userid = ctx.params['uid']
+    let fields = ctx.query.fields
+    console.log(this)
+    let cactegoryList = await this.Table.findAll({
       where: {
         user_id: userid
-      }
-    }
-    fields && (options['attributes'] = fields.split(','));
-    let cactegoryList = await TagT.findAll(options)
-    return cactegoryList
+      },
+      attributes: this.attributes(fields)
+    })
+    ctx.success(cactegoryList)
   }
 
-  private static async _tag(tid: number, fields?: string) {
-
-    let TagT = Tables.Tag
-    let options = {
+  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
+  async tag(ctx: ZYContext, next: ZYResponse.Next) {
+    let tid = ctx.params['tid']
+    let fields = ctx.query.fields
+    let tag = await this.Table.findOne({
       where: {
         id: tid
-      }
-    }
-    fields && (options['attributes'] = fields.split(','));
-    let tag = await TagT.findOne(options)
-    return tag
+      },
+      attributes: this.attributes(fields)
+    })
+    ctx.success(tag)
   }
 
-  private static async _posts(tagid: number, postfields?: string) {
+  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
+  posts = async (ctx: ZYContext, next: Next) => {
+    console.log(ctx.querystring)
+    let tid = ctx.params.tid
+    let fields = ctx.query.fields
+
     let Post_tagT = Tables.Post_tag
     let post_ids = (await Post_tagT.findAll({
-      attributes: ['post_id'],
       where: {
-        tag_id: tagid
-      }
+        tag_id: tid
+      },
+      attributes: this.attributesFor(Post_tagT, null, ['post_id'])
     })).map(item => item.post_id)
 
     let options = {
@@ -45,34 +55,11 @@ export default class Tag {
         id: post_ids
       }
     }
-    options['attributes'] = postfields && postfields.split(',') || ['createdAt', 'title', 'id']
+    options['attributes'] = fields && fields.split(',') || ['createdAt', 'title', 'id']
     let posts = await Post._posts(options)
-    return posts
-  }
 
-  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
-  static async tags(ctx: ZYContext, next: ZYResponse.Next) {
-    let userid = ctx.params['uid']
-    let fields = ctx.query.fields
-    let cactegoryList = await Tag._tags(userid, fields)
-    ctx.success(cactegoryList)
-  }
-
-   //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
-   static async tag(ctx: ZYContext, next: ZYResponse.Next) {
-    let userid = ctx.params['tid']
-    let fields = ctx.query.fields
-    let cactegoryList = await Tag._tag(userid, fields)
-    ctx.success(cactegoryList)
-  }
-
-  //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
-  static async posts(ctx: ZYContext, next: Next) {
-    console.log(ctx.querystring)
-    let tid = ctx.params.tid
-    let fields = ctx.query.fields
-    let posts = await Tag._posts(tid, fields)
     ctx.success(posts)
   }
 }
 
+export const tagController = new Tag()
