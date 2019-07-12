@@ -1,7 +1,7 @@
 import ZYResponse, { ZYContext, Next } from 'koa-response'
 import { BaseController } from "./base";
 import { Tables } from "../../../models";
-import Post from "./post";
+import Post, { postController } from "./post";
 
 export default class Tag extends BaseController {
 
@@ -50,14 +50,12 @@ export default class Tag extends BaseController {
       attributes: this.attributesFor(Post_tagT, null, ['post_id'])
     })).map(item => item.post_id)
 
-    let options = {
+    let posts = await postController._posts({
       where: {
         id: post_ids
-      }
-    }
-    options['attributes'] = fields && fields.split(',') || ['createdAt', 'title', 'id']
-    let posts = await Post._posts(options)
-
+      },
+      attributes: postController.attributes(fields, ['createdAt', 'title', 'id'])
+    })
     ctx.success(posts)
   }
 }

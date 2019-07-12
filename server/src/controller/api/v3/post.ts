@@ -2,17 +2,24 @@ import Router from "koa-router";
 import ZYResponse, { ZYContext, Next } from 'koa-response'
 import { APIError } from "../../../utils/error";
 import { Tables } from "../../../models";
+import { BaseController } from "./base";
+import Page from "../../../utils/page";
 
-export default class Post {
+export default class Post extends BaseController {
 
-  static async _posts(options) {
-    let PostT = Tables.Post
-    let posts = await PostT.findAll(options)
+
+
+  get Table() {
+    return Tables.Post
+  }
+
+  _posts = async (options) => {
+    let posts = await this.Table.findAll(options)
     return posts
   }
 
   //GET /tickets?fields=id,subject,customer_name,updated_at&state=open&sort=-updated_at
-  static async get(ctx: ZYContext, next: Next) {
+  get = async (ctx: ZYContext, next: Next) => {
     console.log(ctx.request);
     let userId = ctx.params["uid"]
     let fields: string = ctx.query.fields
@@ -27,7 +34,7 @@ export default class Post {
     }
     fields && (options['attributes'] = fields.split(','));
     //["id", "user_id", "title", "views", "cover", "digest", "updatedAt", "createdAt"],
-    let articleList = await Post._posts(options)
+    let articleList = await this._posts(options)
     console.log(`---------${JSON.stringify(articleList)}`);
     if (articleList.length > 0) {
       ctx.success(articleList)
@@ -36,7 +43,7 @@ export default class Post {
     }
   }
 
-  static async one(ctx: ZYContext, next: Next) {
+  one = async (ctx: ZYContext, next: Next) => {
     console.log(ctx.request);
     let postId = ctx.params['pid']
     let options = {
@@ -44,7 +51,7 @@ export default class Post {
         id: postId,
       }
     }
-    let posts = await Post._posts(options)
+    let posts = await this._posts(options)
     let targetPost = posts.shift()
     if (targetPost) {
       ctx.success(targetPost)
@@ -69,3 +76,5 @@ export default class Post {
     return art
   }
 }
+
+export const postController = new Post()

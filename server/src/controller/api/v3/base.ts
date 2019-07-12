@@ -20,6 +20,10 @@ export abstract class BaseController implements BindModelable {
     return Object.keys(model.rawAttributes)
   }
 
+  where(query: Object) {
+    query
+  }
+
   /**
    * 
    * @param fields 查询的colums

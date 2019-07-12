@@ -5,9 +5,9 @@ import {
   Comment,
   HasMany,
   AllowNull,
-
   DataType,
-  Default
+  Default,
+  Unique
 } from "sequelize-typescript";
 import Base from './base';
 
@@ -18,11 +18,11 @@ import Tag from "./tag";
 import Category from "./category";
 
 @Table({
-  initialAutoIncrement: "5000",
+  initialAutoIncrement: "100",
   comment: "用户表",
   timestamps: true,
+  indexes: [{ index: "SPATIAL", fields: ["name"] }]
 })
-
 export default class User extends Base<User> {
 
   @PrimaryKey
@@ -31,10 +31,9 @@ export default class User extends Base<User> {
   id: number
 
   @Comment('用户名')
-  @Column({
-    type: DataType.CHAR,
-    defaultValue: '',
-  })
+  @Unique
+  @AllowNull(false)
+  @Column(DataType.CHAR)
   name: string
 
   @Comment("昵称")

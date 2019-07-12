@@ -2,7 +2,7 @@ import Router from "koa-router";
 import ZYResponse, { ZYContext, Next } from 'koa-response'
 
 import { Tables } from "../../../models";
-import Post from "./post";
+import Post, { postController } from "./post";
 
 export default class Category {
 
@@ -34,7 +34,7 @@ export default class Category {
       }
     }
     options['attributes'] = postfields && postfields.split(',') || ['createdAt', 'title', 'id']
-    let posts = await Post._posts(options)
+    let posts = await postController._posts(options)
     return posts
   }
 

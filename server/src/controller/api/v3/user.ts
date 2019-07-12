@@ -2,6 +2,7 @@ import ZYResponse, { ZYContext, Next } from 'koa-response'
 import { Tables } from "../../../models";
 import { APIError } from "../../../utils/error";
 import { BaseController } from "./base";
+import Page from "../../../utils/page";
 
 class UserError implements APIError {
   code: string
@@ -21,8 +22,32 @@ export default class User extends BaseController {
     return Tables.User
   }
 
-  async some(ctx: ZYContext, next: Next) {
+  // name
+  some = async (ctx: ZYContext, next: Next) => {
+    let fields: string = ctx.query.fields
+    let name: string = ctx.query.name
+    let page = new Page(parseInt(ctx.query.page), parseInt(ctx.query.pageSize))
 
+    if (name) {
+      let res = await this.Table.findOne({
+        where: {
+          name: name
+        },
+        attributes: this.attributes(fields)
+      })
+      res ? ctx.success(res) : ctx.error(UserError.notFind(name))
+      return
+    }
+
+    let res = await this.Table.findAndCountAll({
+      where: {
+
+      },
+      attributes: this.attributes(fields),
+      limit: page.pageSize,
+      offset: page.page
+    })
+    ctx.success(res)
   }
 
   async post(ctx: ZYContext, next: Next) {
@@ -59,12 +84,11 @@ export default class User extends BaseController {
   }
 
   _createMaster = async () => {
-
     if (await this.Table.count({ where: { id: 1 } })) {
       return;
     }
-    let user = await this.Table.build({ name: "hzy" })
-    user.name = "hzy"
+    let user = await this.Table.build({ name: "Ryan" })
+    user.name = "Ryan"
     user.id = 1
     // user.sex = 5
     user.rights = 'master'

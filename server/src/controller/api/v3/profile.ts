@@ -1,15 +1,10 @@
 import Router from "koa-router";
-import ZYResponse, { ZYContext, Next } from 'koa-response'
 import { Tables } from "../../../models";
 
 export default class Profile {
 
-  static async get(ctx: ZYContext, next: Next) {
-
-    console.log(ctx.request);
-    console.log(JSON.stringify(ctx.params))
-    console.log(`---------`);
-    let userid = ctx.params["uid"] || 5000
+  static async get() {
+    let userid = 1
     let UserT = Tables.User
 
     let SocialT = Tables.Social
@@ -20,87 +15,45 @@ export default class Profile {
     let Post_TagT = Tables.Post_tag
     let Post_categoryT = Tables.Post_category
 
-    if (!await UserT.count({ where: { id: userid } })) {
-      let user = await Profile.createUser()
-      let post = await Profile.createPost()
+    let user = await Profile.createUser()
+    let post = await Profile.createPost()
 
-      let auth = await Profile.createAuth()
+    let auth = await Profile.createAuth()
 
-      let socials = await Profile.createSocials()
+    let socials = await Profile.createSocials()
 
-      let categorys = await Profile.createCategorys()
-      let tags = await Profile.createTags()
+    let categorys = await Profile.createCategorys()
+    let tags = await Profile.createTags()
 
-      let post_category = await new Post_categoryT().save()
+    let post_category = await new Post_categoryT().save()
 
-      await tags.forEach(async tag => {
-        let post_Tag = await new Post_TagT().save()
-        await tag.$add('post_tags', post_Tag)
-        await post.$add('post_tags', post_Tag)
-      });
+    await tags.forEach(async tag => {
+      let post_Tag = await new Post_TagT().save()
+      await tag.$add('post_tags', post_Tag)
+      await post.$add('post_tags', post_Tag)
+    });
 
-      await categorys[0].$add('post_categorys', post_category)
-      await post.$add('post_categorys', post_category)
+    await categorys[0].$add('post_categorys', post_category)
+    await post.$add('post_categorys', post_category)
 
-      await user.save()
-      await user.$add("auths", auth)
-      await user.$set("socials", socials)
-      await user.$add("posts", post)
-      await user.$set('tags', tags)
-      await user.$set('categorys', categorys)
-    }
-
-    let user = await UserT.findOne({
-      attributes: ["sex", "id",
-        "name", "nickName",
-        "leve", "state",
-        "signature", "email",
-        "avatar", "rights",
-        "birthday", "phone"],
-      where: { id: userid }
-    })
-    let postCount = await PostT.count({
-      where: {
-        user_id: userid
-      }
-    })
-
-    let categoryCount = await CategoryT.count({
-      where: {
-        user_id: userid
-      }
-    })
-
-    let tagCount = await TagT.count({
-      where: {
-        user_id: userid
-      }
-    })
-
-    let socials = await SocialT.findAll({
-      attributes: ["id", "name", "alias", "icon", "link", "des"],
-      where: {
-        user_id: userid
-      }
-    })
+    await user.save()
+    await user.$add("auths", auth)
+    await user.$set("socials", socials)
+    await user.$add("posts", post)
+    await user.$set('tags', tags)
+    await user.$set('categorys', categorys)
 
 
-    let data = {
-      user,
-      postCount,
-      categoryCount,
-      tagCount,
-      socials
-    }
     console.log(`user---------${user}`);
-    ctx.success(data)
   }
 
 
   static async createUser() {
     let UserT = Tables.User
     let user = await new UserT({
-      name: "hzy",
+      id: 1,
+      rights: 'master',
+      name: "Ryan",
       nickName: "抓根宝",
       email: "1810022686@qq.com",
       avatar: "/img/pkq.jpeg",
